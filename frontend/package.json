@@ -1,5 +1,5 @@
 {
-  "name": "Divide",
+  "name": "divide",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -31,5 +31,9 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
-  }
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "proxy": "http://localhost:3001"
 }

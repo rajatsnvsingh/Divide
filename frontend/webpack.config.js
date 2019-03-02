@@ -19,6 +19,16 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001/api",
+        pathRewrite: { "^/api": "" },
+        secure: false,
+        changeOrigin: true
+      }
+    }
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",

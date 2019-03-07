@@ -4,9 +4,36 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
 const connectionString = require("./connection.js");
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('./keys');
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
+
+//This is our google authentication api
+//Strategy instantiation from passport-google-oauth20
+//http://www.passportjs.org/packages/passport-google-oauth20/
+passport.use(new GoogleStrategy({
+  clientID: keys.googleAuthClientID,
+  clientSecret: keys.googleAuthSecret,
+  callbackURL:'/auth/google/callback'
+},(accessToken, refreshToken, profile, done)=>{
+//callback function
+//data recieved from successful authentication
+//can store this in the database ex) email
+console.log(accessToken) ;
+console.log(refreshToken);
+console.log(profile);
+}))
+//scope/info we're dealing with
+//user currently types in localhost:3001/auth/google to log in
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile','email']
+}));
+//can add redirect code here for sucessful and unsucessful authentication
+app.get('/auth/google/callback',passport.authenticate('google'));
+
 
 // this is our MongoDB database
 // const dbRoute =

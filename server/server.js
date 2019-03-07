@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({
 console.log(accessToken) ;
 console.log(refreshToken);
 console.log(profile);
-}))
+}));
 //scope/info we're dealing with
 //user currently types in localhost:3001/auth/google to log in
 app.get('/auth/google', passport.authenticate('google', {

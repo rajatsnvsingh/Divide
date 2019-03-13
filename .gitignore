@@ -1,4 +1,5 @@
 node_modules
 dist
 server/connection.js
-server/keys.js
+server/config/authKey.js
+server/config/databaseKey.js

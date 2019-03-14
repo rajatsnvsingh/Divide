@@ -17,7 +17,7 @@ module.exports = function(app, router, passport) {
     passport.authenticate("google", { failureRedirect: "/", session: false }),
     function(req, res) {
       var token = req.user.token;
-      res.redirect("/?token=" + token);
+      res.redirect("http://localhost:8080/?token=" + token);
     }
   );
 

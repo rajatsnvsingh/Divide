@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import axios from "axios";
 import Input from "../presentational/Input.jsx";
+
 class FormContainer extends Component {
   constructor() {
     super();
@@ -13,6 +12,7 @@ class FormContainer extends Component {
   }
 
   componentDidMount() {
+    console.log("mount");
     fetch("/api/getData")
       .then(data => data.json())
       // .then(res => this.setState({ data: res.data }))
@@ -39,5 +39,3 @@ class FormContainer extends Component {
   }
 }
 export default FormContainer;
-const wrapper = document.getElementById("create-article-form");
-wrapper ? ReactDOM.render(<FormContainer />, wrapper) : false;

@@ -1,21 +1,14 @@
 // server.js
-const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const connectionString = require("./config/databaseKey.js");
 const passport = require("passport");
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
 // Database Configuration ======================================================
-// connect to our database. This can all be moved into config/databse.js
-mongoose.connect(connectionString, { useNewUrlParser: true });
-let db = mongoose.connection;
-db.once("open", () => console.log("connected to the database"));
-// checks if connection with the database is successful
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+require("./config/database");
 
 // Other Configuration =========================================================
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -13,6 +13,7 @@ const Input = ({ label, text, type, id, value, handleChange }) => (
     />
   </div>
 );
+
 Input.propTypes = {
   label: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,

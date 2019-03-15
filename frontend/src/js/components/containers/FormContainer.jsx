@@ -1,39 +1,35 @@
 import React, { Component } from "react";
-import Input from "../presentational/Input.jsx";
+import { socket } from "./App.jsx";
 
 class FormContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      ans: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
 
-  componentDidMount() {
-    console.log("mount");
-    fetch("/api/getData")
-      .then(data => data.json())
-      // .then(res => this.setState({ data: res.data }))
-      .then(res => console.log(res.data));
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
+    this.setState({value: event.target.value});
   }
+
+  handleSubmit(event) {
+    socket.emit("test",
+    {
+      value: this.state.value
+    });
+    event.preventDefault();
+  }
+
   render() {
-    const { ans } = this.state;
     return (
-      <form id="article-form">
-        <Input
-          text="The real question is what do you want??"
-          label="ques"
-          type="text"
-          id="ans"
-          value={ans}
-          handleChange={this.handleChange}
-        />
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Message:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
       </form>
     );
   }

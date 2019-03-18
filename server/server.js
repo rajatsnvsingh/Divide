@@ -8,13 +8,15 @@ const app = express();
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 var http = require('http').Server(app);
+var passportSocketIo = require('passport.socketio');
 var io = require('socket.io')(http);
 io.origins('*:*')
 const router = express.Router();
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // Database Configuration ======================================================
-require("./config/database");
+var {db} = require("./config/database");
 
 // Other Configuration =========================================================
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,10 +24,22 @@ app.use(bodyParser.json()); //parses request bodies to json format
 app.use(logger("dev")); //for logging
 
 // Passport Configuration ======================================================
+// Sets up a session store with Mongo
+var sessionStore = new MongoStore({ mongooseConnection: db });
+
 app.use(session({
+  store: sessionStore,
   secret: 'dividesecretencryptkey',
   resave: false,
   saveUninitialized: false
+}));
+
+io.use(passportSocketIo.authorize({
+  key: 'connect.sid',
+  store: sessionStore,
+  secret: 'dividesecretencryptkey',
+  passport: passport,
+  cookieParser: cookieParser
 }));
 
 require("./config/passport");
@@ -44,6 +58,12 @@ io.on('connection', function (socket) {
   console.log("new connection");
   
   socket.on('test', function (data) {
+    // user data from the socket.io passport middleware
+    if (socket.request.user && socket.request.user.logged_in) {
+      console.log("im here!");
+      console.log(socket.request.user);
+    }
     console.log(data);
   });
+  
 });

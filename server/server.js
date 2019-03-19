@@ -60,10 +60,11 @@ io.on('connection', function (socket) {
   socket.on('test', function (data) {
     // user data from the socket.io passport middleware
     if (socket.request.user && socket.request.user.logged_in) {
-      console.log("im here!");
-      console.log(socket.request.user);
+      console.log("authenticated message rcvd: " + data.value);
     }
-    console.log(data);
+    else {
+    console.log("NON-AUTHENTICATED MSG RCVD:" + data.value);
+    }
   });
   
 });

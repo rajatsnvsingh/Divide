@@ -1,3 +1,8 @@
+/*
+ * This file can be removed / rewritten. 
+ * It is left here for now so that presentational folder is not empty.
+ */  
+
 import React from "react";
 import PropTypes from "prop-types";
 const Input = ({ label, text, type, id, value, handleChange }) => (

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { socket } from "./App.jsx";
+import { socket } from "../../../App.js";
 
 class FormContainer extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class FormContainer extends Component {
     {
       value: this.state.value
     });
+    this.setState({value: ""});
     event.preventDefault();
   }
 
@@ -26,7 +27,6 @@ class FormContainer extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Message:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />

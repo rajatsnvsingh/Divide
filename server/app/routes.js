@@ -14,7 +14,7 @@ module.exports = function(app, router, passport) {
 
   app.get(
     "/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/", successRedirect: "http://localhost:8080/api/getData" })
+    passport.authenticate("google", { failureRedirect: "http://localhost:8080/login", successRedirect: "http://localhost:8080/" })
   );
 
   app.get('/auth/logout', function(req, res){
@@ -51,7 +51,7 @@ module.exports = function(app, router, passport) {
     let val = req.isAuthenticated();
     console.log(val);
     if (req.isAuthenticated()) { return next(); }
-    res.redirect('/');
+    res.redirect('http://localhost:8080/login');
   }
 
   // this is our update method

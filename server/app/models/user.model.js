@@ -2,24 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  email: {
-    type: String,
-    required: true
-  },
+  email: String,
+  password: String,
+  googleId: String,
   name: {
     type: String,
     required: true
   },
   picture: {
-    data: Buffer,
-    // default: ... TODO: Set default for user picture
-    contentType: String
+    type: String
+
   },
-  password: {
-    type: String,
-    required: true
-  },
-  googleId: String,
   expenseId: {
     type: [Schema.ObjectId],
     ref: 'Expense'
@@ -30,4 +23,4 @@ const UserSchema = new Schema({
   }
 });
 
-mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

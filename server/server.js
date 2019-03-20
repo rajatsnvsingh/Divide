@@ -34,14 +34,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-io.use(passportSocketIo.authorize({
-  key: 'connect.sid',
-  store: sessionStore,
-  secret: 'dividesecretencryptkey',
-  passport: passport,
-  cookieParser: cookieParser
-}));
-
 require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
@@ -50,6 +42,15 @@ app.use(passport.session());
 app.use('/api', router);
 // load our routes and pass in our app and fully configured passport
 require("./app/routes.js")(app, router, passport);
+
+io.use(passportSocketIo.authorize({
+  key: 'connect.sid',
+  store: sessionStore,
+  secret: 'dividesecretencryptkey',
+  passport: passport,
+  cookieParser: cookieParser,
+  fail: onAuthorizeFail,     // *optional* callback on fail/error
+}));
 
 // launch our backend into a port
 http.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
@@ -66,5 +67,11 @@ io.on('connection', function (socket) {
     console.log("NON-AUTHENTICATED MSG RCVD:" + data.value);
     }
   });
-  
 });
+
+function onAuthorizeFail(data, message, error, accept){
+  // error indicates whether the fail is due to an error or just a unauthorized client
+  if(error)  throw new Error(message);
+  // send the (not-fatal) error-message to the client and deny the connection
+  return accept(new Error(message));
+}

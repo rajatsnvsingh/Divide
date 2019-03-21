@@ -16,7 +16,7 @@ const ExpenseSchema = new Schema({
     min: 0.01,
     required: true
   },
-  owner: {
+  ownerId: {
     type: Schema.ObjectId,
     ref: 'User',
     required: true

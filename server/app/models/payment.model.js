@@ -7,12 +7,12 @@ const PaymentSchema = new Schema({
     default: Date.now(),
     required: true
   },
-  payer: {
+  payerId: {
     type: Schema.ObjectId,
     ref: 'User',
     required: true
   },
-  payee: {
+  payeeId: {
     type: Schema.ObjectId,
     ref: 'User',
     required: true

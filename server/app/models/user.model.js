@@ -11,7 +11,7 @@ const UserSchema = new Schema({
   },
   picture: {
     type: String
-
+    // default ... TODO: assign default user picture
   },
   expenseId: {
     type: [Schema.ObjectId],
@@ -23,4 +23,4 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);

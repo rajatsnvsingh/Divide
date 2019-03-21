@@ -1,35 +1,67 @@
 const mongoose = require('mongoose');
-const User = require('../models/user.model');
 
-exports.user_list = function() {
-    return mongoose.model('User').find(function(err, users) {
-       if (err) {
-           console.error(err);
-       } else {
-           console.log(users);
-           return users;
-       }
-    });
-};
-
-exports.user_detail = function(id) {
-  return mongoose.model('User').find({userId: id}, function(err, user) {
-     if (err) {
-         console.error(err);
-     } else {
-         console.log(user);
-         return user;
-     }
+exports.createUser = function(user) {
+  return user.save(function(err) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(user);
+      return user;
+    }
   });
 };
 
-exports.new_user = function(user) {
-  return user.save(function(err) {
+exports.getUsers = function() {
+  return mongoose.model('User').find(function(err, users) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(users);
+      return users;
+    }
+  });
+};
+
+exports.getUser = function(id) {
+  return mongoose.model('User').find(
+    { _id: id },
+    function(err, user) {
       if (err) {
-          console.error(err);
+        console.error(err);
       } else {
-          console.log(user);
-          return user;
+        console.log(user);
+        return user;
       }
-  })
+    }
+  );
+};
+
+exports.updateUser = function(user, updateParams) {
+  return mongoose.model('User').findOneAndUpdate(
+    user,
+    { $set: updateParams },
+    {},
+    function(err, result) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(result);
+        return result;
+      }
+    }
+    );
+};
+
+exports.deleteUser = function(user) {
+  return mongoose.model('User').findOneAndDelete(
+    user,
+    function(err, deletedUser) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(deletedUser);
+        return deletedUser;
+      }
+    }
+  );
 };

@@ -39,10 +39,10 @@ exports.getPaymentsByPayer = function(id) {
   );
 };
 
-exports.updatePayment = function(payment, updateParams) {
-  return mongoose.model('Payment').findOneAndUpdate(
+exports.updatePayment = function(payment) {
+  return mongoose.model('Payment').findByIdAndUpdate(
+    payment._id,
     payment,
-    { $set: updateParams },
     function(err, result) {
       if (err) {
         console.error(err);

@@ -39,10 +39,10 @@ exports.getTransaction = function(id) {
   );
 };
 
-exports.updateTransaction = function(transaction, updateParams) {
-  return mongoose.model('Transaction').findOneAndUpdate(
+exports.updateTransaction = function(transaction) {
+  return mongoose.model('Transaction').findByIdAndUpdate(
+    transaction._id,
     transaction,
-    { $set: updateParams },
     {},
     function(err, result) {
       if (err) {

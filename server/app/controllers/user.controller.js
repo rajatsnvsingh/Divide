@@ -36,10 +36,10 @@ exports.getUser = function(id) {
   );
 };
 
-exports.updateUser = function(user, updateParams) {
-  return mongoose.model('User').findOneAndUpdate(
+exports.updateUser = function(user) {
+  return mongoose.model('User').findByIdAndUpdate(
+    user._id,
     user,
-    { $set: updateParams },
     {},
     function(err, result) {
       if (err) {

@@ -11,6 +11,20 @@ exports.createExpense = function(expense) {
   });
 };
 
+exports.getAllExpenses = function() {
+  return mongoose.model('Expense').find(
+    {},
+    function(err, expenses) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(expenses);
+        return expenses;
+      }
+    }
+  );
+};
+
 exports.getExpenses = function(id) {
   return mongoose.model('Expense').find(
     { ownerId: id },
@@ -39,10 +53,10 @@ exports.getExpense = function(id) {
   );
 };
 
-exports.updateExpense = function(expense, updateParams) {
-  return mongoose.model('Expense').findOneAndUpdate(
+exports.updateExpense = function(expense) {
+  return mongoose.model('Expense').findByIdAndUpdate(
+    expense._id,
     expense,
-    { $set: updateParams },
     {},
     function(err, result) {
       if (err) {

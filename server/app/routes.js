@@ -14,12 +14,13 @@ module.exports = function(app, router, passport) {
 
   app.get(
     "/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/", session: false }),
-    function(req, res) {
-      var token = req.user.token;
-      res.redirect("http://localhost:8080/?token=" + token);
-    }
+    passport.authenticate("google", { failureRedirect: "http://localhost:8080/login", successRedirect: "http://localhost:8080/" })
   );
+
+  app.get('/auth/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
 
   app.get(
     "/",
@@ -30,7 +31,7 @@ module.exports = function(app, router, passport) {
 
   // Database Routes =============================================================
   // this method fetches all available data in our database
-  router.get("/getData", (req, res) => {
+  router.get("/getData", ensureAuthenticated, (req, res) => {
     data = {
       info: "jeez"
     };
@@ -40,6 +41,18 @@ module.exports = function(app, router, passport) {
     //     return res.json({ success: true, data: data });
     //   });
   });
+
+  // Simple route middleware to ensure user is authenticated.
+  //   Use this route middleware on any resource that needs to be protected.  If
+  //   the request is authenticated (typically via a persistent login session),
+  //   the request will proceed.  Otherwise, the user will be redirected to the
+  //   login page.
+  function ensureAuthenticated(req, res, next) {
+    let val = req.isAuthenticated();
+    console.log(val);
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('http://localhost:8080/login');
+  }
 
   // this is our update method
   // this method overwrites existing data in our database

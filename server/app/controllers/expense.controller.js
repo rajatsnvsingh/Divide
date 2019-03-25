@@ -1,84 +1,73 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 exports.createExpense = function(expense) {
   return expense.save(function(err) {
     if (err) {
       console.error(err);
     } else {
-      console.log(expense);
+      //console.log(expense);
       return expense;
     }
   });
 };
 
 exports.getAllExpenses = function() {
-  return mongoose.model('Expense').find(
-    {},
-    function(err, expenses) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(expenses);
-        return expenses;
-      }
+  return mongoose.model("Expense").find({}, function(err, expenses) {
+    if (err) {
+      console.error(err);
+    } else {
+      // console.log(expenses);
+      return expenses;
     }
-  );
+  });
 };
 
 exports.getExpenses = function(id) {
-  return mongoose.model('Expense').find(
-    { ownerId: id },
-    function(err, expenses) {
+  return mongoose
+    .model("Expense")
+    .find({ ownerId: id }, function(err, expenses) {
       if (err) {
         console.error(err);
       } else {
-        console.log(expenses);
+        //console.log(expenses);
         return expenses;
       }
-    }
-  );
+    });
 };
 
 exports.getExpense = function(id) {
-  return mongoose.model('Expense').find(
-    { _id: id },
-    function(err, expense) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(expense);
-        return expense;
-      }
+  return mongoose.model("Expense").find({ _id: id }, function(err, expense) {
+    if (err) {
+      console.error(err);
+    } else {
+      //console.log(expense);
+      return expense;
     }
-  );
+  });
 };
 
 exports.updateExpense = function(expense) {
-  return mongoose.model('Expense').findByIdAndUpdate(
-    expense._id,
-    expense,
-    {},
-    function(err, result) {
+  return mongoose
+    .model("Expense")
+    .findByIdAndUpdate(expense._id, expense, {}, function(err, result) {
       if (err) {
         console.error(err);
       } else {
-        console.log(result);
+        //console.log(result);
         return result;
       }
-    }
-  );
+    });
 };
 
 exports.deleteExpense = function(expense) {
-  return mongoose.model('Expense').findOneAndDelete(
-    expense,
-    function(err, deletedExpense) {
+  return mongoose
+    .model("Expense")
+    .findOneAndDelete(expense, function(err, deletedExpense) {
       if (err) {
         console.error(err);
       } else {
-        console.log(deletedExpense);
+        //console.log(deletedExpense);
         return deletedExpense;
       }
-    }
-  );
+    });
 };

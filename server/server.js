@@ -12,12 +12,14 @@ const fs = require("fs");
 // Database Configuration ======================================================
 require("./config/database");
 
-fs.readdirSync(__dirname + '/app/models').forEach(function(filename) {
-  if (~filename.indexOf('.model.js')) require(__dirname + '/app/models/' + filename)
+fs.readdirSync(__dirname + "/app/models").forEach(function(filename) {
+  if (~filename.indexOf(".model.js"))
+    require(__dirname + "/app/models/" + filename);
 });
 
-fs.readdirSync(__dirname + '/app/routes').forEach(function(filename) {
-  if (~filename.indexOf('.route.js')) require(__dirname + '/app/routes/' + filename)(drouter)
+fs.readdirSync(__dirname + "/app/routes").forEach(function(filename) {
+  if (~filename.indexOf(".route.js"))
+    require(__dirname + "/app/routes/" + filename)(router);
 });
 
 // Other Configuration =========================================================
@@ -30,10 +32,9 @@ app.use(passport.initialize());
 require("./config/passport");
 
 // routes ======================================================================
-app.use('/api', router);
+app.use("/api", router);
 // load our routes and pass in our app and fully configured passport
 require("./app/routes.js")(app, router, passport);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-

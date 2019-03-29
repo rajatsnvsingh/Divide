@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormContainer from "./FormContainer.jsx";
+import NavigationHeader from "./NavigationHeader/NavigationHeader.jsx";
 
 class Home extends Component {
 
@@ -14,6 +15,7 @@ class Home extends Component {
         <hr/>
         <p>This form will send info through an authenticated socket:</p>
         <FormContainer/>
+        <NavigationHeader />
       </div>
     );
   }

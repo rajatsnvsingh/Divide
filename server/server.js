@@ -51,7 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes ======================================================================
-app.use("/api", router);
+app.use('/api', router);
 // load our routes and pass in our app and fully configured passport
 require("./app/routes.js")(app, router, passport);
 

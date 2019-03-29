@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 exports.createTransaction = function(transaction) {
-  return transaction.save(function(err) {
+  return transaction.save(function(err, newTransaction) {
     if (err) {
       console.error(err);
     } else {
-      //console.log(transaction);
-      return transaction;
+      //console.log(newTransaction);
+      return newTransaction;
     }
   });
 };

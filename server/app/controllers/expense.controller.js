@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 exports.createExpense = function(expense) {
-  return expense.save(function(err) {
+  return expense.save(function(err, newExpense) {
     if (err) {
       console.error(err);
     } else {
       //console.log(expense);
-      return expense;
+      return newExpense;
     }
   });
 };
@@ -22,7 +22,7 @@ exports.getAllExpenses = function() {
   });
 };
 
-exports.getExpenses = function(id) {
+exports.getExpensesByOwnerId = function(id) {
   return mongoose
     .model("Expense")
     .find({ ownerId: id }, function(err, expenses) {

@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 exports.createNotification = function(notification) {
-  return notification.save(function(err) {
+  return notification.save(function(err, newNotification) {
     if (err) {
       console.error(err);
     } else {
       //console.log(notification);
-      return notification;
+      return newNotification;
     }
   });
 };
 
-exports.getNotifications = function(id) {
+exports.getNotificationsByUserId = function(id) {
   return mongoose
     .model("Notification")
     .find({ targetId: id }, function(err, notifications) {

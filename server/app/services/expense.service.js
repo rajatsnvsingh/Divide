@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const expenseController = require('../controllers/expense.controller');
 const transactionController = require('../controllers/transaction.controller');
+const notificationController = require('../controllers/notification.controller');
 const Expense = mongoose.model('Expense');
 const Transaction = mongoose.model('Transaction');
+const Notification = mongoose.model('Notification');
 
 exports.createExpense = function(jsonObj) {
   let expense = jsonObj;
@@ -12,6 +14,21 @@ exports.createExpense = function(jsonObj) {
     let newTransaction = new Transaction(transaction);
     transactionController.createTransaction(newTransaction);
     transactionIds.push(newTransaction._id);
+    Transaction.populate(
+      newTransaction,
+      {
+        path: 'ownerId',
+        model: 'User'
+      })
+      .then(populatedTransaction => {
+        let expenseNotif = new Notification({
+          targetId: newTransaction.userId,
+          type: 'Added Expense',
+          message: populatedTransaction.ownerId.name + ' has added you to an expense. You owe ' + populatedTransaction.ownerId.name + ' $' + populatedTransaction.amtOwing,
+          expenseId: expense._id
+        });
+        notificationController.createNotification(expenseNotif);
+      });
   }
 
   expense.transactions = transactionIds;

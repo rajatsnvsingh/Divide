@@ -17,7 +17,7 @@ const TransactionSchema = new Schema({
     min: 0,
     required: true
   },
-  amtPayed: {
+  amtPaid: {
     type: Number,
     min: 0,
     required: true

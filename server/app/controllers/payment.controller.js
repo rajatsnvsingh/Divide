@@ -1,14 +1,31 @@
 const mongoose = require("mongoose");
 
 exports.createPayment = function(payment) {
-  return payment.save(function(err) {
-    if (err) {
-      console.error(err);
-    } else {
-      //console.log(payment);
-      return payment;
-    }
-  });
+  return new Promise((resolve, reject) => {
+    payment.save(function(err, savedPayment) {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        // console.log(savedPayment);
+        resolve(savedPayment);
+      }
+    });
+  })
+
+};
+
+exports.getAllPayments = function() {
+  return mongoose
+    .model('Payment')
+    .find({}, function(err, payments) {
+      if (err) {
+        console.error(err);
+      } else {
+        // console.log(payments);
+        return payments;
+      }
+    });
 };
 
 exports.getPaymentsByPayee = function(id) {

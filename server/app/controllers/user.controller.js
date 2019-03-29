@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 exports.createUser = function(user) {
-  return user.save(function(err) {
+  return user.save(function(err, newUser) {
     if (err) {
       console.error(err);
     } else {
       //console.log(user);
-      return user;
+      return newUser;
     }
   });
 };

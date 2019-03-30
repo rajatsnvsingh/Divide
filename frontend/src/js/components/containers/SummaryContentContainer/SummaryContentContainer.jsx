@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SummaryContentList from "../SummaryContentList/SummaryContentList.jsx";
+import './SummaryContentContainer.css';
 
 class SummaryContentContainer extends Component {
     constructor(props){

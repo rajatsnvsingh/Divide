@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProfileContainer from "../ProfileContainer/ProfileContainer.jsx"
 import SummaryContentContainer from "../SummaryContentContainer/SummaryContentContainer.jsx";
+import './SummaryContainer.css';
 
 class SummaryContainer extends Component {
     constructor(props){
@@ -9,7 +10,7 @@ class SummaryContainer extends Component {
 
     render() {
         return (
-            <div className="sidebar">
+            <div className="sidenav">
                 <ProfileContainer />
                 <SummaryContentContainer />
             </div>

@@ -7,7 +7,6 @@
     left: 0;
     background-color: #f1f1f1;
     overflow-x: hidden;
-    padding-top: 20px;
 }
 
 @media screen and (max-height: 450px) {

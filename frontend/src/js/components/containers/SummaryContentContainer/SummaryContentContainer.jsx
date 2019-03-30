@@ -11,7 +11,7 @@ class SummaryContentContainer extends Component {
         return (
             <div>
                 <h1>Owings</h1>
-                <a href="#" className="closebtn">&times;</a>
+                {/* <a href="#" className="closebtn">&times;</a> */}
                 <SummaryContentList />
             </div>
         );

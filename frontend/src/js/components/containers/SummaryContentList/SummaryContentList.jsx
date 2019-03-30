@@ -9,9 +9,9 @@ class SummaryContentList extends Component {
     render() {
         return (
             <div>
-                <SummaryOwingsCard content="card1" />
-                <SummaryOwingsCard content="card2" />
-                <SummaryOwingsCard content="card3" />
+                <SummaryOwingsCard name="Rajat" amount={24} isOwed={true} />
+                <SummaryOwingsCard name="Ruble" amount={42} isOwed={false} />
+                <SummaryOwingsCard name="Rajat" amount={10} isOwed={true} />
             </div>
         );
     }

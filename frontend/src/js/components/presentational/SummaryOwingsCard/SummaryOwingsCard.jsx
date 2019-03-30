@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './SummaryOwingsCard.css';
+import '../../../../css/styles.css';
 
 class SummaryOwingsCard extends Component {
     constructor(props){
@@ -8,7 +8,7 @@ class SummaryOwingsCard extends Component {
 
     render() {
         return (
-            <div className="card">
+            <div className="divide-card">
                 {this.props.content}
             </div>
         );

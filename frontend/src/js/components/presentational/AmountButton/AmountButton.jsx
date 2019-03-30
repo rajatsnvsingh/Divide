@@ -6,10 +6,10 @@ class AmountButton extends Component {
     }
 
     render() {
+        const style = this.props.style === "owing" ? "btn btn-success" : "btn btn-danger";
+
         return (
-            <div className="card">
-                {this.props.amount}
-            </div>
+            <button type="button" className={style}>{"$" + this.props.amount}</button>
         );
     }
 }

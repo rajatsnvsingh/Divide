@@ -12,12 +12,14 @@ class ProfileContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mb-4">
                 <SignOutButton />
                 <NotificationButton numNotifications="3" />
                 <ProfileInfo name="Rajat Singh" />
-                <AmountButton amount="50" />
-                <AmountButton amount="42" />
+                <div class="btn-group" role="group">
+                    <AmountButton style="owing" amount="50" />
+                    <AmountButton style="owed" amount="42" />
+                </div>
             </div>
         );
     }

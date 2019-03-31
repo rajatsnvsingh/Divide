@@ -12,7 +12,7 @@ class SummaryContentContainer extends Component {
             <div>
                 <h1>Owings</h1>
                 {/* <a href="#" className="closebtn">&times;</a> */}
-                <SummaryContentList />
+                <SummaryContentList isSummaryList={true} />
             </div>
         );
     }

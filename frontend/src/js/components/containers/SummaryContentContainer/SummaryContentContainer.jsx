@@ -10,8 +10,9 @@ class SummaryContentContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Owings</h1>
-                {/* <a href="#" className="closebtn">&times;</a> */}
+                <h1 className="float-left">Owings</h1>
+                <button type="button" className="close float-right"><span><h1>&times;</h1></span></button>
+                <div className="clearfix mb-2"></div>
                 <SummaryContentList isSummaryList={true} />
             </div>
         );

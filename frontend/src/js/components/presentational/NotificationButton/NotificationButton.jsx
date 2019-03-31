@@ -9,8 +9,8 @@ class NotificationButton extends Component {
     render() {
         return (
             <div className="row">
-                <button type="button" class="btn btn-secondary notification-button">
-                    Notifications <span class="badge badge-light">{this.props.badge}</span>
+                <button type="button" className="btn btn-secondary notification-button">
+                    Notifications <span className="badge badge-light">{this.props.badge}</span>
                 </button>
             </div>
         );

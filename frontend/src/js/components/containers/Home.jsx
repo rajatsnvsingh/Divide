@@ -28,8 +28,9 @@ class Home extends Component {
       // </div>
       <div className="row">
         <SummaryContainer />
-        <div className="col-md-10">
-          hello2
+        <div className="col-md-10 p-0">
+          <NavigationHeader />
+          <MainContentContainer viewIndex={viewIndexEnum.expenses}/>
         </div>
       </div>
     );

@@ -1,27 +1,24 @@
 import React, { Component } from "react";
 
 class ExpensePaymentToggle extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
     render() {
-        if(this.props.expenseToggled === true){
-            return (
-                <div className="ExpensePaymentToggleContainer">
-                    <button className="ExpenseToggle btn-secondary">Expenses</button>
-                    <button className="PaymentToggle btn-outline-secondary">Payments</button>
-                </div>
-            );
+        let expenseButtonStyle = "btn-secondary";
+        let paymentButtonStyle = "btn-outline-secondary";
+        if (this.props.expenseToggled === true) {
+            expenseButtonStyle = "btn-outline-secondary";
+            paymentButtonStyle = "btn-secondary";
         }
-        else {
-            return (
-                <div className="ExpensePaymentToggleContainer">
-                    <button className="ExpenseToggle btn-outline-secondary">Expenses</button>
-                    <button className="PaymentToggle btn-secondary">Payments</button>
-                </div>
-            );
-        }
+
+        return (
+            <div className="ExpensePaymentToggleContainer btn-group" role="group">
+                <button className={"ExpenseToggle btn " + expenseButtonStyle}>Expenses</button>
+                <button className={"PaymentToggle btn " + paymentButtonStyle}>Payments</button>
+            </div>
+        );
     }
 }
 export default ExpensePaymentToggle;

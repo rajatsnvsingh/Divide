@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ExpensePaymentToggle from "./ExpensePaymentToggle.jsx";
+import "./ExpenseInputContainer.css";
 
 class ExpenseInputContainer extends Component {
     constructor(props) {
@@ -15,9 +16,23 @@ class ExpenseInputContainer extends Component {
                         <button className="btn btn-primary">Search</button>
                     </div>
                 </div>
+                <div class="container">
+                    <p>Filter By:</p>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Filter</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" />&nbsp;Option 1</a></li>
+                            <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option 2</a></li>
+                            <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option 3</a></li>
+                            <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option 4</a></li>
+                            <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option 5</a></li>
+                            <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option 6</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <div className="dropdown">
-                    <h2>Sort By:</h2>
-                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <p>Sort By:</p>
+                    <button className="btn btn-normal dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select Sort Type
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">

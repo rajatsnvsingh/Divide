@@ -48,7 +48,11 @@ class ExpenseInputContainer extends Component {
                             <a className="dropdown-item" href="#">Oldest</a>
                         </div>
                     </div>
-                    <ExpensePaymentToggle className="col" expenseToggled={true} />
+                    <div className="col">
+                        <ExpensePaymentToggle expenseToggled={true} />
+                    </div>
+
+                    
                 </div>
 
 

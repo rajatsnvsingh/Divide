@@ -25,21 +25,33 @@ class MainContentContainer extends Component {
                                 </button>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
         }
-        else if (this.props.viewIndex === viewIndexEnum.payments) {
+        else {
             return (
                 <div className="MainPaymentContainer">
-
+                    {/* <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-10 removePadding">
+                                <ExpenseInputContainer />
+                            </div>
+                            <div className="col-2 removePadding">
+                                <button className="btn-dark newExpenseBtn">
+                                    <span className="additionSymbol">&#43;</span>
+                                    New Expense
+                                </button>
+                            </div>
+                        </div>
+                    </div> */}
                 </div>
             );
-        }
-        else {
-            return <div className="MainExpenseContainer">
-
-            </div>
         }
     }
 }

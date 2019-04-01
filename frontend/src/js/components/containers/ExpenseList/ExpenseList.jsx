@@ -31,13 +31,11 @@ class ExpenseList extends Component {
             }
         ];
         const expenseComponents = expenseList.map((expense) => 
-            <li key={expense.id}>
-                <ExpenseCard expense={expense} />
-            </li>
+            <ExpenseCard expense={expense} />
         );
 
         return (
-            <ul>{expenseComponents}</ul>
+            <div className="ExpenseList">{expenseComponents}</div>
         );
     }
 

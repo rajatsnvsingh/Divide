@@ -13,8 +13,6 @@ class SummaryContentList extends Component {
                 <SummaryOwingsCard name="Rajat" amount={24} isOwed={true} />
                 <SummaryOwingsCard name="Ruble" amount={42} isOwed={false} />
                 <SummaryOwingsCard name="Rajat" amount={10} isOwed={true} />
-                <SummaryOwingsCard name="Rajat" amount={10} isOwed={true} />
-                <SummaryOwingsCard name="Rajat" amount={10} isOwed={true} />
             </div>
         );
     }

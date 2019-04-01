@@ -11,10 +11,10 @@ class SummaryOwingsCard extends Component {
         let content;
 
         if (isOwed) {
-            content = <p>{this.props.name} owes you<br /><h4 className="text-success">${this.props.amount}</h4></p>;
+            content = <div>{this.props.name} owes you<br /><h4 className="text-success">${this.props.amount}</h4></div>;
         }
         else {
-            content = <p>You owe {this.props.name}<br /><h4 className="text-danger">${this.props.amount}</h4></p>;
+            content = <div>You owe {this.props.name}<br /><h4 className="text-danger">${this.props.amount}</h4></div>;
         }
 
         return (

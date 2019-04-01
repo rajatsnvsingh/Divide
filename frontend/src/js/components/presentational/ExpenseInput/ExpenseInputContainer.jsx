@@ -9,9 +9,9 @@ class ExpenseInputContainer extends Component {
 
     render() {
         return (
-            <div className="ExpenseInput container-fluid">
+            <div className="ExpenseInput">
                 <div className="row">
-                    <div className="input-group mb-3 col">
+                    <div className="input-group col">
                         <input className="form-control" type="text" placeholder="Search" aria-label="Search"></input>
                         <div className="input-group-append">
                             <button className="btn btn-primary">Search</button>
@@ -20,17 +20,17 @@ class ExpenseInputContainer extends Component {
                 </div>
 
                 <div className="row">
-                    <div class="container col">
+                    <div className="col">
                         <p>Filter By:</p>
-                        <div class="button-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Filter</button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" />&nbsp;Option 1</a></li>
-                                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option 2</a></li>
-                                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option 3</a></li>
-                                <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option 4</a></li>
-                                <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option 5</a></li>
-                                <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option 6</a></li>
+                        <div className="button-group">
+                            <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Filter</button>
+                            <ul className="dropdown-menu">
+                                <li><a href="#" className="small" data-value="option1" tabIndex="-1"><input type="checkbox" />&nbsp;Option 1</a></li>
+                                <li><a href="#" className="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option 2</a></li>
+                                <li><a href="#" className="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option 3</a></li>
+                                <li><a href="#" className="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option 4</a></li>
+                                <li><a href="#" className="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option 5</a></li>
+                                <li><a href="#" className="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option 6</a></li>
                             </ul>
                         </div>
                     </div>

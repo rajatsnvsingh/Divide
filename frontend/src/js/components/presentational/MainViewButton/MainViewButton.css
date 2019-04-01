@@ -1,12 +1,3 @@
 h2.MainViewButton {
     color: gray;
-    margin-top: 40px;
-}
-
-.MainViewButton {
-    margin-top: 38px;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
 }

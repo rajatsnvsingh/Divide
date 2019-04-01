@@ -9,18 +9,14 @@ class NavigationHeader extends Component {
 
     render() {
         return (
-            <div className="NavigationHeader">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-2 MainCol">
-                            <MainViewButton buttonName="Expenses" selected={true} />
-                        </div>
-                        <div className="col-2 MainCol">
-                            <MainViewButton buttonName="Payments" selected={false} />
-                        </div>
-                        <div className="col-8"></div>
+            <div className="NavigationHeader row">
+                    <div className="col-2 MainCol">
+                        <MainViewButton buttonName="Expenses" selected={true} />
                     </div>
-                </div>
+                    <div className="col-2 MainCol">
+                        <MainViewButton buttonName="Payments" selected={false} />
+                    </div>
+                    <div className="col-8"></div>
             </div>
 
         );

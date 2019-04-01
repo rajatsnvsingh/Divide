@@ -28,7 +28,7 @@ class Home extends Component {
       // </div>
       <div className="row">
         <SummaryContainer />
-        <div className="col-md-10 p-0">
+        <div className="col-md-10">
           <NavigationHeader />
           <MainContentContainer viewIndex={viewIndexEnum.expenses}/>
         </div>

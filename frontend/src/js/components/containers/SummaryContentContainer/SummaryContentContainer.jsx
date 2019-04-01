@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SummaryContentList from "../SummaryContentList/SummaryContentList.jsx";
-import './SummaryContentContainer.css';
+import NotificationContentList from "../NotificationContentList/NotificationContentList.jsx";
 
 class SummaryContentContainer extends Component {
     constructor(props){
@@ -8,12 +8,13 @@ class SummaryContentContainer extends Component {
     }
 
     render() {
+        const isSummaryList = true;
         return (
             <div>
                 <h1 className="float-left">Owings</h1>
                 <button type="button" className="close float-right"><span><h1>&times;</h1></span></button>
                 <div className="clearfix mb-2"></div>
-                <SummaryContentList isSummaryList={true} />
+                { isSummaryList ? <SummaryContentList /> : <NotificationContentList /> }
             </div>
         );
     }

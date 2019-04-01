@@ -1,0 +1,13 @@
+.removePadding {
+    margin: 0px;
+    padding: 0px;
+}
+
+.newExpenseBtn {
+    height: 100%;
+    width: 100%;
+}
+
+.additionSymbol {
+    font-size: 400%;
+}

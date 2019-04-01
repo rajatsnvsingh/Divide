@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { viewIndexEnum } from "../Home.jsx";
 import ExpenseInputContainer from "../../presentational/ExpenseInput/ExpenseInputContainer.jsx";
 import SummaryContentList from "../SummaryContentList/SummaryContentList.jsx";
+import "./MainContentContainer.css";
 
 class MainContentContainer extends Component {
     constructor(props) {
@@ -12,15 +13,15 @@ class MainContentContainer extends Component {
         if (this.props.viewIndex === viewIndexEnum.expenses) {
             return (
                 <div className="MainExpenseContainer">
-                    <div className="container">
+                    <div className="container-fluid">
                         <div className="row">
-                            <div className="col-10">
+                            <div className="col-10 removePadding">
                                 <ExpenseInputContainer />
                             </div>
-                            <div className="col-2">
-                                <button className="btn btn-lg btn-dark">
-                                    <span>&#43;</span>
-                                    <h3>New Expense</h3>
+                            <div className="col-2 removePadding">
+                                <button className="btn-dark newExpenseBtn">
+                                    <span className="additionSymbol">&#43;</span>
+                                    New Expense
                                 </button>
                             </div>
                         </div>

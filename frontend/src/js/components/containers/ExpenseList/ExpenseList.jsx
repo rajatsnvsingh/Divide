@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ExpenseCard from "../../presentational/ExpenseCard/ExpenseCard.jsx";
 import "./ExpenseList.css";
+import ExpenseCardExpanded, {splitTypeEnum, expenseStatusType} from "../../presentational/ExpenseCard/ExpenseCardExpanded.jsx";
 
 class ExpenseList extends Component {
     constructor(props){
@@ -11,7 +12,7 @@ class ExpenseList extends Component {
         const expenseList = [
             {
                 id: 1, 
-                name: "Pizza", 
+                title: "Pizza", 
                 date: new Date(), 
                 imageURL: "https://www.w3schools.com/bootstrap4/img_avatar3.png",
                 isOwed: false,
@@ -21,7 +22,7 @@ class ExpenseList extends Component {
             },
             {
                 id: 2, 
-                name: "Sandwich", 
+                title: "Sandwich", 
                 date: new Date(), 
                 imageURL: "https://www.w3schools.com/bootstrap4/img_avatar3.png",
                 isOwed: true,
@@ -31,13 +32,13 @@ class ExpenseList extends Component {
             }
         ];
         const expenseComponents = expenseList.map((expense) => 
-        <li key={expense.id}>
-            <ExpenseCard expense={expense} />
-        </li>
+            <li key={expense.id}>
+                <ExpenseCard expense={expense} />
+            </li>
         );
 
         return (
-            <div className="ExpenseList">{expenseComponents}</div>
+            <ul>{expenseComponents}</ul>
         );
     }
 

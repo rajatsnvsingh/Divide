@@ -1,3 +1,5 @@
-.ExpenseList {
-    padding-top: 15px;
+ul {
+    margin-top: 17px;
+    padding: 0px;
+    list-style-type: none;
 }

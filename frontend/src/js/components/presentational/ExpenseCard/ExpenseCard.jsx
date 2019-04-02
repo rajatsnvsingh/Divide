@@ -5,23 +5,41 @@ class ExpenseCard extends Component {
         super(props);
     }
 
-    render() {
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-        ];
-        const expense = this.props.expense;
-
-        let content;
-
+    generateExpenseMessage(expense) {
         if (expense.isOwed) {
-            content = <p>You are owed <h4 className="text-success">${expense.totalAmount}</h4></p>;
+            if (expense.owee.length === 1) {
+                return <p>{expense.owee[0].name} owes you <span className="text-success">${expense.totalAmount}</span></p>;
+            }
+            else if (expense.owee.length <= 2) {
+                return <p>{expense.owee[0].name} and {expense.owee[1].name} owe you <span className="text-success">${expense.totalAmount}</span></p>;
+            }
+            else {
+                return <p>{expense.owee[0].name}, {expense.owee[1].name}, and {expense.owee.length - 2} other(s) owe you <span className="text-success">${expense.totalAmount}</span></p>;
+            }
         }
         else {
-            content = <p>You owe {expense.owner}<h4 className="text-danger">${expense.totalAmount}</h4></p>;
+            let amount = 0;
+            for(let user of expense.owee){
+                if(user.id === this.props.myId){
+                    amount = user.amount;
+                }
+            }
+            return <p>You owe {expense.owner} <span className="text-danger">${amount}</span></p>;
         }
+    }
 
-        let monthName = monthNames[expense.date.getMonth()];
-        console.log(monthName);
+    generateMonthName(expense){
+        // Get Month Name from Date
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[expense.date.getMonth()];
+    }
+
+    render() {
+        const expense = this.props.expense;
+        let content = this.generateExpenseMessage(expense);
+        let monthName = this.generateMonthName(expense);
 
         return (
             <div className="card mb-3">
@@ -45,12 +63,3 @@ class ExpenseCard extends Component {
 }
 
 export default ExpenseCard;
-
-                // id = 1, 
-                // name = "Pizza", 
-                // date = new Date(), 
-                // imageURL = "https://www.w3schools.com/bootstrap4/img_avatar3.png",
-                // isOwed = false,
-                // owner = "Rajat",
-                // owee = ["Aidan"],
-                // totalAmount = 50

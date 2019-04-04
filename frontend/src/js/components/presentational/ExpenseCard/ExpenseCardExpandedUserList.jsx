@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ExpenseCardExpandedUserEntry from './ExpenseCardExpandedUserEntry.jsx';
 
 class ExpenseCardExpandedUserList extends Component {
     constructor(props) {
@@ -6,6 +7,11 @@ class ExpenseCardExpandedUserList extends Component {
     }
 
     render() {
+        const userList = this.props.owees;
+        const userListEntries = userList.map((user, index) => 
+            <ExpenseCardExpandedUserEntry key={index} rowIndex={index} user={user} />
+        );
+
         return (
             <div className="col">
                 <div className="row">
@@ -17,7 +23,7 @@ class ExpenseCardExpandedUserList extends Component {
                         <h5>Split</h5>
                         <button className="btn btn-normal dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select Split Type
-                    </button>
+                        </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a className="dropdown-item" href="#">fraction</a>
                         </div>
@@ -41,6 +47,9 @@ class ExpenseCardExpandedUserList extends Component {
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                {userListEntries}
+                            </tbody>
                         </table>
                     </div>
                 </div>

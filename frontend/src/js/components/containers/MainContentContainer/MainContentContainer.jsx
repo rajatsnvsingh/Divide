@@ -35,20 +35,28 @@ class MainContentContainer extends Component {
         }
         else {
             return (
-                <div className="MainPaymentContainer">
-                    {/* <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-10 removePadding">
-                                <ExpenseInputContainer />
-                            </div>
-                            <div className="col-2 removePadding">
-                                <button className="btn-dark newExpenseBtn">
-                                    <span className="additionSymbol">&#43;</span>
-                                    New Expense
-                                </button>
+                <div class="row p-2 payment-container">
+                    <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">Search</button>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control">
+                            <option>Status...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control">
+                            <option>Sort By...</option>
+                        </select>
+                    </div>
+                    <div className="col">
+                        <button type="button" class="btn btn-primary w-100">Enter a Payment</button>
+                    </div>
                 </div>
             );
         }

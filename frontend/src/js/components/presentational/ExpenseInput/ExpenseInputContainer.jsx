@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ExpensePaymentToggle from "./ExpensePaymentToggle.jsx";
+import OpenClosedToggle from "./OpenClosedToggle.jsx";
 import "./ExpenseInputContainer.css";
 
 class ExpenseInputContainer extends Component {
@@ -49,7 +49,7 @@ class ExpenseInputContainer extends Component {
                         </div>
                     </div>
                     <div className="col">
-                        <ExpensePaymentToggle expenseToggled={true} />
+                        <OpenClosedToggle expenseToggled={true} />
                     </div>
 
                     

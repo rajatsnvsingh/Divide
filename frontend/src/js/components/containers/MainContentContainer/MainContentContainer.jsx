@@ -37,7 +37,7 @@ class MainContentContainer extends Component {
         else {
             return (
                 <div>
-                    <div class="row p-2 payment-container">
+                    <div class="row mt-3">
                         <div class="col-md-4">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Search" />

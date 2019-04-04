@@ -10,13 +10,12 @@ class NavigationHeader extends Component {
     render() {
         return (
             <div className="NavigationHeader row">
-                    <div className="col-2 MainCol">
+                    <div className="col-md-2">
                         <MainViewButton buttonName="Expenses" selected={true} />
                     </div>
-                    <div className="col-2 MainCol">
+                    <div className="col-md-10">
                         <MainViewButton buttonName="Payments" selected={false} />
                     </div>
-                    <div className="col-8"></div>
             </div>
 
         );

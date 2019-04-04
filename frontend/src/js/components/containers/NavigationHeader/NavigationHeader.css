@@ -1,6 +1,7 @@
 .NavigationHeader {
     height: 85px;
     background: rgb(229, 228, 235);
-    padding: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 

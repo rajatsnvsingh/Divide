@@ -21,9 +21,8 @@ class ExpenseInputContainer extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <p>Filter By:</p>
                         <div className="button-group">
-                            <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Filter</button>
+                            <button type="button" className="btn btn-default dropdown-toggle btn-block text-left sfbtn" data-toggle="dropdown">Filter</button>
                             <ul className="dropdown-menu">
                                 <li><a href="#" className="small" data-value="option1" tabIndex="-1"><input type="checkbox" />&nbsp;Option 1</a></li>
                                 <li><a href="#" className="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option 2</a></li>
@@ -35,9 +34,8 @@ class ExpenseInputContainer extends Component {
                         </div>
                     </div>
                     <div className="dropdown col">
-                        <p>Sort By:</p>
-                        <button className="btn btn-normal dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select Sort Type
+                        <button className="btn btn-default dropdown-toggle btn-block text-left sfbtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a className="dropdown-item" href="#">Title-Ascending</a>

@@ -6,8 +6,10 @@
 .newExpenseBtn {
     height: 100%;
     width: 100%;
+    border: none;
 }
 
 .additionSymbol {
-    font-size: 400%;
+    font-size: 200%;
+    font-weight: bold;
 }

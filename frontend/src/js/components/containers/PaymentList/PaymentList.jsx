@@ -5,6 +5,9 @@ import PaymentConfirmationCard from "../../presentational/PaymentConfirmationCar
 class PaymentList extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            payments: []
+        };
     }
 
     render() {

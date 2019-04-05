@@ -10,7 +10,7 @@ class SummaryContainer extends Component {
 
     render() {
         return (
-            <div className="col-md-2 sidenav">
+            <div className={this.props.className}>
                 <ProfileContainer />
                 <SummaryContentContainer />
             </div>

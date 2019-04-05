@@ -12,8 +12,8 @@ class Home extends Component {
   render() {
     return (
       <div className="row">
-        <SummaryContainer />
-        <MainContentContainer viewIndex={viewIndexEnum.payments} />
+        <SummaryContainer className="col-md-2 sidenav" />
+        <MainContentContainer className="col-md-10" viewIndex={viewIndexEnum.payments} />
       </div>
     );
   }

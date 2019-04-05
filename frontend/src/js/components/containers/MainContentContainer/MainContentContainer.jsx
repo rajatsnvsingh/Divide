@@ -14,7 +14,7 @@ class MainContentContainer extends Component {
     render() {
         if (this.props.viewIndex === viewIndexEnum.expenses) {
             return (
-                <div className="col-md-10">
+                <div className={this.props.className}>
                     <NavigationHeader />
                     <div className="row">
                         <div className="col-10 removePadding">
@@ -36,7 +36,7 @@ class MainContentContainer extends Component {
         }
         else {
             return (
-                <div className="col-md-10">
+                <div className={this.props.className}>
                     <NavigationHeader />
                     <div className="row mt-3">
                         <div className="col-md-4">

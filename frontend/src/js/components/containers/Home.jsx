@@ -15,8 +15,8 @@ class Home extends Component {
   render() {
     return (
       <div className="row">
-        <SummaryContainer myId={this.state.myId}/>
-        <MainContentContainer myId={this.state.myId} viewIndex={viewIndexEnum.expenses} />
+        <SummaryContainer className="col-md-2 sidenav" myId={this.state.myId}/>
+        <MainContentContainer className="col-md-10" myId={this.state.myId} />
       </div>
     );
   }

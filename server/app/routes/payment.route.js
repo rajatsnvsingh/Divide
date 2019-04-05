@@ -14,4 +14,10 @@ module.exports = function(router) {
       res.send(payments);
     });
   });
+
+  router.get('/payment/:userId', (req, res) => {
+    paymentService.getPaymentsByUserId(req.params.userId).exec(function(err, payments) {
+      res.send(payments);
+    })
+  });
 };

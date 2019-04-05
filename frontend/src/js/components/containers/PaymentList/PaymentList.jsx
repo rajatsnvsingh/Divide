@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PaymentCard from "../../presentational/PaymentCard/PaymentCard.jsx";
+import PaymentConfirmationCard from "../../presentational/PaymentConfirmationCard/PaymentConfirmationCard.jsx";
 
 class PaymentList extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class PaymentList extends Component {
        return (
            <div>
                <PaymentCard />
-               <PaymentCard />
+               <PaymentConfirmationCard />
                <PaymentCard />
            </div>
        );

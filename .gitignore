@@ -1,5 +1,6 @@
 node_modules
 dist
+.idea
 server/connection.js
 server/config/authKey.js
 server/config/databaseKey.js

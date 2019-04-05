@@ -12,7 +12,7 @@ exports.createExpense = function(jsonObj) {
 
   for (let transaction of expense.transactions) {
     let newTransaction = new Transaction(transaction);
-    transactionController.createTransaction(newTransaction);
+    transactionController.createTransaction(newTransaction); // TODO: promise
     transactionIds.push(newTransaction._id);
     Transaction.populate(
       newTransaction,
@@ -37,11 +37,36 @@ exports.createExpense = function(jsonObj) {
   return expenseController.createExpense(newExpense);
 };
 
-exports.getExpenses = function() {
-  return expenseController.getAllExpenses().populate({
-    path: 'transactions',
-    model: 'Transaction'
+exports.getExpensesByUserId = function(id, callback) {
+  transactionController.getTransactionsConcernedWith(id).then(function(transactions) {
+    expenseController.getExpensesByTransactions(transactions).then(expenses => {
+      Expense.populate(
+        expenses,
+        [
+          {
+            path: 'ownerId',
+            model: 'User'
+          },
+          {
+            path: 'transactions',
+            model: 'Transaction'
+          }
+        ]).then(populatedExpenses => {
+        callback(populatedExpenses);
+      });
+    });
   });
+};
+
+exports.getExpenses = function() {
+  return expenseController.getAllExpenses()
+    .populate({
+      path: 'transactions',
+      model: 'Transaction'
+    }).populate({
+      path: 'ownerId',
+      model: 'User'
+    });
 };
 
 exports.getExpense = function(id) {

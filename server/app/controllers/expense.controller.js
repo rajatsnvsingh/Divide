@@ -22,14 +22,15 @@ exports.getAllExpenses = function() {
   });
 };
 
-exports.getExpensesByOwnerId = function(id) {
+exports.getExpensesByTransactions = function(userTransactions) {
   return mongoose
-    .model("Expense")
-    .find({ ownerId: id }, function(err, expenses) {
+    .model('Expense')
+    .find({
+      transactions: { $in : userTransactions }
+    }, function(err, expenses) {
       if (err) {
         console.error(err);
       } else {
-        //console.log(expenses);
         return expenses;
       }
     });

@@ -5,6 +5,9 @@ import './NotificationContentList.css';
 class NotificationContentList extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            notifications: []
+        };
     }
 
     render() {

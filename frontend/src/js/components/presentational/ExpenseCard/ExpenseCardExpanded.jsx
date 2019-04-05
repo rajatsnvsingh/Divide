@@ -8,6 +8,16 @@ const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 }
 class ExpenseCardExpanded extends Component {
     constructor(props) {
         super(props);
+
+        let expense = this.props.expense;
+        this.state = {
+            title: expense.title,
+            date: expense.date,
+            status: expense.status,
+            totalAmount: expense.totalAmount,
+            owner: expense.owner,
+            transactions: expense.owee
+        };
     }
 
     render() {

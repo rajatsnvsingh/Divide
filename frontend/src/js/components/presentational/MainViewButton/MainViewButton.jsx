@@ -9,14 +9,14 @@ class MainViewButton extends Component {
     render(){
         if(this.props.selected === true){
             return (
-                <h1>
+                <h1 className= "sbutt">
                     {this.props.buttonName}
                 </h1>
             );
         }
         else{
             return (
-                <h1 className="selected-button">
+                <h1 className="selected-button ubutt">
                     {this.props.buttonName}
                 </h1>
             );

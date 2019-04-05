@@ -6,9 +6,10 @@ const Expense = mongoose.model('Expense');
 const Transaction = mongoose.model('Transaction');
 const Notification = mongoose.model('Notification');
 
-exports.createExpense = function(jsonObj, callback) {
-  let expense = jsonObj;
+exports.createExpense = function(expenseJSON, callback) {
+  let expense = expenseJSON;
   let transactionIds = [];
+  let count = 0;
 
   for (let transaction of expense.transactions) {
     let newTransaction = new Transaction(transaction);
@@ -22,16 +23,19 @@ exports.createExpense = function(jsonObj, callback) {
         expenseId: expense._id
       });
       notificationController.createNotification(expenseNotif);
+
+      count++;
+      if (count === expense.transactions.length) {
+        expense.transactions = transactionIds;
+        let newExpense = new Expense(expense);
+        expenseController
+          .createExpense(newExpense)
+          .then(function(createdExpense) {
+            callback(createdExpense);
+          });
+      }
     });
   }
-
-  expense.transactions = transactionIds;
-  let newExpense = new Expense(expense);
-  expenseController
-    .createExpense(newExpense)
-    .then(function(createdExpense) {
-      callback(createdExpense);
-  });
 };
 
 exports.getExpensesByUserId = function(id, callback) {

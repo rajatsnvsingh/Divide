@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Notification = mongoose.model('Notification');
 
 exports.createNotification = function(notification) {
   return notification.save(function(err, newNotification) {
@@ -24,15 +25,29 @@ exports.getNotificationsByUserId = function(id) {
     });
 };
 
-exports.deleteNotifications = function(notification) {
-  return mongoose
-    .model("Notification")
-    .findOneAndDelete(notification, function(err, deletedNotif) {
+exports.getNotification = function(id) {
+  return new Promise((resolve, reject) => {
+    mongoose
+      .model('Notification')
+      .find({ _id: id }, function(err, notification) {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          resolve(notification);
+        }
+      });
+  });
+};
+
+exports.deleteNotification = function(id) {
+  return Notification.findOneAndDelete(
+    { _id: id },
+    function(err, deletedNotification) {
       if (err) {
         console.error(err);
       } else {
-        //console.log(deletedNotif);
-        return deletedNotif;
+        return deletedNotification;
       }
     });
 };

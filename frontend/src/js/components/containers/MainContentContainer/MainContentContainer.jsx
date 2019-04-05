@@ -20,9 +20,8 @@ class MainContentContainer extends Component {
                             <ExpenseInputContainer />
                         </div>
                         <div className="col-2 removePadding">
-                            <button className="btn-dark newExpenseBtn">
+                            <button className="btn-dark newExpenseBtn removePadding text-center">
                                 <span className="additionSymbol">&#43;</span>
-                                New Expense
                                 </button>
                         </div>
                     </div>

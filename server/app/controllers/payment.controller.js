@@ -28,27 +28,13 @@ exports.getAllPayments = function() {
     });
 };
 
-exports.getPaymentsByPayee = function(id) {
+exports.getPaymentByUserId = function(id) {
   return mongoose
-    .model("Payment")
-    .find({ payeeId: id }, function(err, payments) {
+    .model('Payment')
+    .find({ $or: [{ payeeId: id }, { payerId: id }] }, function(err, payments) {
       if (err) {
         console.error(err);
       } else {
-        //console.log(payments);
-        return payments;
-      }
-    });
-};
-
-exports.getPaymentsByPayer = function(id) {
-  return mongoose
-    .model("Payment")
-    .find({ payerId: id }, function(err, payments) {
-      if (err) {
-        console.error(err);
-      } else {
-        //console.log(payments);
         return payments;
       }
     });

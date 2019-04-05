@@ -1,3 +1,17 @@
-h2 {
-    margin-bottom: 3%
+.excard {
+    text-align: center;
 }
+
+.exinf{
+    text-align: left;
+}
+.excard:hover { 
+    background-color: lightgray;
+  }
+  .tsex {
+    font-weight: bold;
+  }
+
+  .tdex {
+      font-weight: bold;
+  }

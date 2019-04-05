@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./ExpenseCard.css";
 class ExpenseCard extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +47,7 @@ class ExpenseCard extends Component {
                     <div className="row align-items-center">
                         <div className="col-2">
                             <h4>{monthName}</h4>
-                            <h4>{expense.date.getDate()}</h4>
+                            <h5>{expense.date.getDate()}</h5>
                         </div>
                         <div className="col-md-8">
                             <h2>{expense.title}</h2>{content}

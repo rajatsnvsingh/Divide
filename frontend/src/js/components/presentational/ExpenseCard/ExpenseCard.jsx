@@ -8,13 +8,13 @@ class ExpenseCard extends Component {
     generateExpenseMessage(expense) {
         if (expense.isOwed) {
             if (expense.owee.length === 1) {
-                return <p>{expense.owee[0].name} owes you <span className="text-success">${expense.totalAmount}</span></p>;
+                return <p>{expense.owee[0].name} owes you <span className="text-success tsex">${expense.totalAmount}</span></p>;
             }
             else if (expense.owee.length <= 2) {
-                return <p>{expense.owee[0].name} and {expense.owee[1].name} owe you <span className="text-success">${expense.totalAmount}</span></p>;
+                return <p>{expense.owee[0].name} and {expense.owee[1].name} owe you <span className="text-success tsex">${expense.totalAmount}</span></p>;
             }
             else {
-                return <p>{expense.owee[0].name}, {expense.owee[1].name}, and {expense.owee.length - 2} other(s) owe you <span className="text-success">${expense.totalAmount}</span></p>;
+                return <p>{expense.owee[0].name}, {expense.owee[1].name}, and {expense.owee.length - 2} other(s) owe you <span className="text-success tsex">${expense.totalAmount}</span></p>;
             }
         }
         else {
@@ -24,7 +24,7 @@ class ExpenseCard extends Component {
                     amount = user.amount;
                 }
             }
-            return <p>You owe {expense.owner} <span className="text-danger">${amount}</span></p>;
+            return <p>You owe {expense.owner} <span className="text-danger tdex">${amount}</span></p>;
         }
     }
 
@@ -42,7 +42,7 @@ class ExpenseCard extends Component {
         let monthName = this.generateMonthName(expense);
 
         return (
-            <div className="card mb-3">
+            <div className="card mb-3 excard">
                 <div className="card-body p-0">
                     <div className="row align-items-center">
                         <div className="col-2">

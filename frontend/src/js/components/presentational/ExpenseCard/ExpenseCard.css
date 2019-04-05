@@ -1,21 +1,17 @@
-.card {
+.excard {
     text-align: center;
 }
 
 .exinf{
     text-align: left;
 }
-.card:hover { 
+.excard:hover { 
     background-color: lightgray;
   }
-  .text-success {
+  .tsex {
     font-weight: bold;
   }
 
-  .text-danger {
+  .tdex {
       font-weight: bold;
   }
-
-  h2{
-      margin-bottom: 3%;
-  } 

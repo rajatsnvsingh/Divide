@@ -9,13 +9,16 @@ import "./MainContentContainer.css";
 class MainContentContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            viewIndex: viewIndexEnum.expenses
+        }
     }
 
     render() {
-        if (this.props.viewIndex === viewIndexEnum.expenses) {
+        if (this.state.viewIndex === viewIndexEnum.expenses) {
             return (
                 <div className="col-md-10">
-                    <NavigationHeader />
+                    <NavigationHeader viewIndex={this.state.viewIndex}/>
                     <div className="row">
                         <div className="col-10 removePadding">
                             <ExpenseInputContainer />
@@ -37,7 +40,7 @@ class MainContentContainer extends Component {
         else {
             return (
                 <div className="col-md-10">
-                    <NavigationHeader />
+                    <NavigationHeader viewIndex={this.state.viewIndex}/>
                     <div className="row mt-3">
                         <div className="col-md-4">
                             <div className="input-group mb-3">

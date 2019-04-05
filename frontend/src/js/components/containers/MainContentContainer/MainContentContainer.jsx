@@ -4,6 +4,7 @@ import ExpenseInputContainer from "../../presentational/ExpenseInput/ExpenseInpu
 import SummaryContentList from "../SummaryContentList/SummaryContentList.jsx";
 import "./MainContentContainer.css";
 import ExpenseList from "../ExpenseList/ExpenseList.jsx";
+import PaymentList from "../PaymentList/PaymentList.jsx";
 
 class MainContentContainer extends Component {
     constructor(props) {
@@ -35,20 +36,31 @@ class MainContentContainer extends Component {
         }
         else {
             return (
-                <div className="MainPaymentContainer">
-                    {/* <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-10 removePadding">
-                                <ExpenseInputContainer />
-                            </div>
-                            <div className="col-2 removePadding">
-                                <button className="btn-dark newExpenseBtn">
-                                    <span className="additionSymbol">&#43;</span>
-                                    New Expense
-                                </button>
+                <div>
+                    <div className="row mt-3">
+                        <div className="col-md-4">
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control" placeholder="Search" />
+                                <div className="input-group-append">
+                                    <button className="btn btn-primary" type="button">Search</button>
+                                </div>
                             </div>
                         </div>
-                    </div> */}
+                        <div className="col-md-2">
+                            <select className="form-control">
+                                <option>Status...</option>
+                            </select>
+                        </div>
+                        <div className="col-md-2">
+                            <select className="form-control">
+                                <option>Sort By...</option>
+                            </select>
+                        </div>
+                        <div className="col">
+                            <button type="button" className="btn btn-primary w-100">Enter a Payment</button>
+                        </div>
+                    </div>
+                    <PaymentList />
                 </div>
             );
         }

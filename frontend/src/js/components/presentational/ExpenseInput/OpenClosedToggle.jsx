@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ExpensePaymentToggle extends Component {
+class OpenClosedToggle extends Component {
     constructor(props) {
         super(props);
     }
@@ -8,17 +8,17 @@ class ExpensePaymentToggle extends Component {
     render() {
         let expenseButtonStyle = "btn-secondary";
         let paymentButtonStyle = "btn-outline-secondary";
-        if (this.props.expenseToggled === true) {
+        if (this.props.expenseToggled === false) {
             expenseButtonStyle = "btn-outline-secondary";
             paymentButtonStyle = "btn-secondary";
         }
 
         return (
             <div className="ExpensePaymentToggleContainer btn-group" role="group">
-                <button className={"ExpenseToggle btn " + expenseButtonStyle}>Expenses</button>
-                <button className={"PaymentToggle btn " + paymentButtonStyle}>Payments</button>
+                <button className={"ExpenseToggle btn " + expenseButtonStyle}>Open</button>
+                <button className={"PaymentToggle btn " + paymentButtonStyle}>Closed</button>
             </div>
         );
     }
 }
-export default ExpensePaymentToggle;
+export default OpenClosedToggle;

@@ -17,7 +17,7 @@ class ExpenseList extends Component {
                 imageURL: "https://www.w3schools.com/bootstrap4/img_avatar3.png",
                 isOwed: false,
                 owner: "Rajat",
-                owee: [{userId: 1, name: "Aidan", amount: 50}],
+                owee: [{userId: 1, name: "Aidan", amount: 50, splitType: splitTypeEnum.fraction}],
                 totalAmount: 50
             },
             {
@@ -27,7 +27,10 @@ class ExpenseList extends Component {
                 imageURL: "https://www.w3schools.com/bootstrap4/img_avatar3.png",
                 isOwed: true,
                 owner: "Aidan",
-                owee: [{userId: 2, name: "Rajat", amount: 13}, {userId: 3, name: "Tommy", amount: 17}, {userId: 4, name: "Cheech", amount: 17}],
+                owee: [
+                    {userId: 2, name: "Rajat", amount: 13, splitType: splitTypeEnum.fraction}, 
+                    {userId: 3, name: "Tommy", amount: 17, splitType: splitTypeEnum.fraction}, 
+                    {userId: 4, name: "Cheech", amount: 17, splitType: splitTypeEnum.fraction}],
                 totalAmount: 13
             }
         ];

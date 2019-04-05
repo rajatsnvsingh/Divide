@@ -25,7 +25,7 @@ class ExpenseCardExpanded extends Component {
             <div className="card mb-3">
                 <div className="card-body p-0">
                     <ExpanseCardExpandedInput title={title} date={date} totalAmount={totalAmount} owner={owner}/>
-                    <ExpenseCardExpandedUserList />
+                    <ExpenseCardExpandedUserList owees={expense.owee}/>
                     <div className="row">
                         <div className="col btn-group">
                             <button className="btn btn-secondary">Cancel</button>

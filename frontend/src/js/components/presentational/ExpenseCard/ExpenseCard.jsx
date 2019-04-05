@@ -49,8 +49,11 @@ class ExpenseCard extends Component {
                             <h4>{monthName}</h4>
                             <h5>{expense.date.getDate()}</h5>
                         </div>
-                        <div className="col-md-8">
-                            <h2>{expense.title}</h2>{content}
+                        <div className="col-md-3 extit">
+                            <h2>{expense.title}</h2>
+                        </div>
+                        <div className="col-md-5 exinf">
+                            {content}
                         </div>
                         <div className="col-2">
                             <img className="card-img-top" src={expense.imageURL}></img>

@@ -14,23 +14,14 @@ class MainContentContainer extends Component {
     }
 
     render() {
-        if (this.state.viewIndex === viewIndexEnum.expenses) {
-            return (
-                <div className={this.props.className}>
-                    <NavigationHeader viewIndex={this.state.viewIndex} />
-                    <ExpenseContainer />
-                </div>
-            );
-        }
+        const viewIndex = this.state.viewIndex;
 
-        else {
-            return (
-                <div className={this.props.className}>
-                    <NavigationHeader viewIndex={this.state.viewIndex} />
-                    <PaymentContainer />
-               </div>
-            );
-        }
+        return (
+            <div className={this.props.className}>
+                <NavigationHeader viewIndex={this.state.viewIndex} />
+                {viewIndex === viewIndexEnum.expenses ? <ExpenseContainer /> : <PaymentContainer />}
+            </div>
+        );
     }
 }
 export { MainContentContainer };

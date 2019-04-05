@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { viewIndexEnum } from "../Home.jsx";
 import ExpenseInputContainer from "../../presentational/ExpenseInput/ExpenseInputContainer.jsx";
-import SummaryContentList from "../SummaryContentList/SummaryContentList.jsx";
-import "./MainContentContainer.css";
 import ExpenseList from "../ExpenseList/ExpenseList.jsx";
 import PaymentList from "../PaymentList/PaymentList.jsx";
+import NavigationHeader from "../NavigationHeader/NavigationHeader.jsx";
+import "./MainContentContainer.css";
 
 class MainContentContainer extends Component {
     constructor(props) {
@@ -14,7 +14,8 @@ class MainContentContainer extends Component {
     render() {
         if (this.props.viewIndex === viewIndexEnum.expenses) {
             return (
-                <div className="MainExpenseContainer">
+                <div className="col-md-10">
+                    <NavigationHeader />
                     <div className="row">
                         <div className="col-10 removePadding">
                             <ExpenseInputContainer />
@@ -22,7 +23,7 @@ class MainContentContainer extends Component {
                         <div className="col-2 removePadding">
                             <button className="btn-dark newExpenseBtn removePadding text-center">
                                 <span className="additionSymbol">&#43;</span>
-                                </button>
+                            </button>
                         </div>
                     </div>
                     <div className="row">
@@ -35,7 +36,8 @@ class MainContentContainer extends Component {
         }
         else {
             return (
-                <div>
+                <div className="col-md-10">
+                    <NavigationHeader />
                     <div className="row mt-3">
                         <div className="col-md-4">
                             <div className="input-group mb-3">

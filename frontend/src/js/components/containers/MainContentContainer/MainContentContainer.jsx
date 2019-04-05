@@ -8,13 +8,16 @@ import "./MainContentContainer.css";
 class MainContentContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            viewIndex: viewIndexEnum.payments
+        }
     }
 
     render() {
-        if (this.props.viewIndex === viewIndexEnum.expenses) {
+        if (this.state.viewIndex === viewIndexEnum.expenses) {
             return (
                 <div className={this.props.className}>
-                    <NavigationHeader />
+                    <NavigationHeader viewIndex={this.state.viewIndex} />
                     <ExpenseContainer />
                 </div>
             );
@@ -23,7 +26,7 @@ class MainContentContainer extends Component {
         else {
             return (
                 <div className={this.props.className}>
-                    <NavigationHeader />
+                    <NavigationHeader viewIndex={this.state.viewIndex} />
                     <PaymentContainer />
                </div>
             );

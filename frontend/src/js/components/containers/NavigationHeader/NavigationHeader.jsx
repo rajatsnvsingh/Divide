@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./NavigationHeader.css";
 import {viewIndexEnum} from "../Home.jsx";
+import "./NavigationHeader.css";
 
 class NavigationHeader extends Component {
     constructor(props) {
@@ -9,8 +9,8 @@ class NavigationHeader extends Component {
 
     render() {
         return (
-            <div className="NavigationHeader row">
-                <h1 className={(this.props.viewIndex === viewIndexEnum.expenses) ? "" : "selected-button"}>
+            <div className="navigation-header row">
+                <h1 className={(this.props.viewIndex === viewIndexEnum.expenses) ? "mr-3" : "selected-button mr-3"}>
                     Expenses
                 </h1>
                 <h1 className={(this.props.viewIndex === viewIndexEnum.payments) ? "" : "selected-button"}>

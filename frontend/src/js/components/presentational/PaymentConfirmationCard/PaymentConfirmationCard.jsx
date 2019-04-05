@@ -18,8 +18,8 @@ class PaymentConfirmationCard extends Component {
                         </div>
                         <div className="col-md-3">
                            <h2>Pending Confirmation</h2> 
-                           <button className="btn btn-secondary mr-2">Dispute</button>
-                           <button type="button" className="btn btn-primary">Confirm</button>
+                           <button className="btn btn-secondary btn-lg mr-2">Dispute</button>
+                           <button type="button" className="btn btn-primary btn-lg">Confirm</button>
                         </div>
                     </div>
                 </div>

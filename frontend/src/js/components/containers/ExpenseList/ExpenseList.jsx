@@ -6,6 +6,9 @@ import ExpenseCardExpanded, {splitTypeEnum, expenseStatusType} from "../../prese
 class ExpenseList extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            expenses: []
+        };
     }
     
     render(){
@@ -36,7 +39,7 @@ class ExpenseList extends Component {
         ];
         const expenseComponents = expenseList.map((expense) => 
             <li key={expense.id}>
-                <ExpenseCard expense={expense} />
+                <ExpenseCardExpanded expense={expense} />
             </li>
         );
 

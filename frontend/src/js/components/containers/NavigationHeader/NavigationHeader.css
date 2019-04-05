@@ -5,3 +5,7 @@
     padding-bottom: 15px;
 }
 
+.selected-button {
+    color: gray;
+}
+

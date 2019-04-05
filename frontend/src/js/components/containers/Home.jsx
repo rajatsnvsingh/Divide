@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import FormContainer from "./FormContainer.jsx";
 import NavigationHeader from "./NavigationHeader/NavigationHeader.jsx";
 import { MainContentContainer } from "./MainContentContainer/MainContentContainer.jsx";
 import SummaryContainer from "./SummaryContainer/SummaryContainer.jsx"
@@ -29,7 +28,7 @@ class Home extends Component {
       <div className="row">
         <SummaryContainer />
         <div className="col-md-10">
-          <NavigationHeader />
+          <NavigationHeader viewIndex={viewIndexEnum.expenses}/>
           <MainContentContainer viewIndex={viewIndexEnum.expenses}/>
         </div>
       </div>

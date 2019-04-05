@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ExpenseInputContainer from "../../presentational/ExpenseInput/ExpenseInputContainer.jsx";
 import ExpenseList from "../ExpenseList/ExpenseList.jsx";
+import "./ExpenseContainer.css";
 
 class ExpenseContainer extends Component {
     constructor(props) {

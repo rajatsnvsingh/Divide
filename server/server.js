@@ -13,6 +13,7 @@ var io = require('socket.io')(http);
 io.origins('*:*');
 const router = express.Router();
 const mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
 const fs = require("fs");
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);

@@ -11,10 +11,6 @@ const NotificationSchema = new Schema({
     type: String,
     required: true
   },
-  message: {
-    type: String,
-    required: true
-  },
   expenseId: {  // Populated if notification associated w/ an expense
     type: Schema.ObjectId,
     ref: 'Expense'

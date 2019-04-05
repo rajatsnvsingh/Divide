@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
+const Expense = mongoose.model('Expense');
 
 exports.createExpense = function(expense) {
-  return expense.save(function(err, newExpense) {
-    if (err) {
-      console.error(err);
-    } else {
-      //console.log(expense);
-      return newExpense;
-    }
+  return new Promise((resolve, reject) => {
+    expense.save(function(err, newExpense) {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        //console.log(expense);
+        resolve(newExpense);
+      }
+    });
   });
 };
 
@@ -48,9 +52,7 @@ exports.getExpense = function(id) {
 };
 
 exports.updateExpense = function(expense) {
-  return mongoose
-    .model("Expense")
-    .findByIdAndUpdate(expense._id, expense, {}, function(err, result) {
+  return Expense.findOneAndUpdate({ _id: expense._id }, expense, { new: true }, function(err, result) {
       if (err) {
         console.error(err);
       } else {

@@ -4,25 +4,18 @@ const notificationController = require('../controllers/notification.controller')
 const Payment = mongoose.model('Payment');
 const Notification = mongoose.model('Notification');
 
-exports.createPayment = function (jsonObj,) {
+exports.createPayment = function (jsonObj, callback) {
   let payment = new Payment(jsonObj);
   paymentController
     .createPayment(payment)
     .then(function(savedPayment) {
-      Payment.populate(
-        savedPayment,
-        {
-          path: 'payerId',
-          model: 'User'
-        }).then(populatedPmt => {
-          let payeeNotification = new Notification({
-            targetId: populatedPmt.payeeId,
-            type: "New Payment",
-            message: populatedPmt.payerId.name + ' has payed you $' + populatedPmt.amt,
-            paymentId: populatedPmt._id
-          });
-          notificationController.createNotification(payeeNotification);
+      let payeeNotification = new Notification({
+        targetId: savedPayment.payeeId,
+        type: "New Payment",
+        paymentId: savedPayment._id
       });
+      notificationController.createNotification(payeeNotification);
+      callback(savedPayment);
     });
 };
 

@@ -18,12 +18,11 @@ module.exports = function(router) {
     });
   });
 
-  router.get("/expense/:expenseId", (req, res) => {
+  router.get("/expense/:userId", (req, res) => {
     expenseService
-      .getExpense(req.params.expenseId)
-      .exec(function(err, expense) {
-        res.send(expense);
-      });
+      .getExpensesByUserId(req.params.userId, function(expenses) {
+        res.send(expenses);
+      })
   });
 
   router.put("/expense", (req, res) => {

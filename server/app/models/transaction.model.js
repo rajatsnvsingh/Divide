@@ -22,7 +22,10 @@ const TransactionSchema = new Schema({
     min: 0,
     required: true
   },
-  split: String,
+  split: {
+    type: String,
+    required: true
+  },
   status: String
 });
 

@@ -26,14 +26,29 @@ exports.createPayment = function (jsonObj,) {
     });
 };
 
+exports.getPaymentsByUserId = function(id) {
+  return paymentController.getPaymentByUserId(id)
+    .populate({
+      path: 'payerId',
+      model: 'User'
+    }).populate({
+      path: 'payeeId',
+      model: 'User'
+    });
+};
+
 exports.getPayments = function() {
   return paymentController.getAllPayments()
     .populate({
       path: 'payerId',
-      model: 'User'})
-    .populate({
+      model: 'User'
+    }).populate({
       path: 'payeeId',
-      model: 'User'});
+      model: 'User'
+    }).populate({
+      path: 'expenses',
+      model: 'Expense'
+    });
 };
 
 exports.acceptPayment = function() {

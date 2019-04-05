@@ -1,9 +1,3 @@
-.sbutt {
-    
-    font-size: 3vw;
-}
-
-.ubutt {
+.selected-button {
     color: gray;
-    font-size: 3vw;
 }

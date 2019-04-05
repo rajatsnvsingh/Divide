@@ -7,9 +7,9 @@
     height: 100%;
     width: 100%;
     border: none;
+    font-size: 3vw;
 }
 
 .additionSymbol {
-    font-size: 200%;
     font-weight: bold;
 }

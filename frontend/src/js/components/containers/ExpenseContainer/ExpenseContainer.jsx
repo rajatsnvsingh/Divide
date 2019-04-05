@@ -5,6 +5,12 @@ import ExpenseList from "../ExpenseList/ExpenseList.jsx";
 class ExpenseContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            searchTerm: "",
+            filterType: 1, // Probably create an enum for this later
+            sortType: 1, // Probably create an enum for this later
+            viewClosedExpenses: false
+        };
     }
 
     render() {

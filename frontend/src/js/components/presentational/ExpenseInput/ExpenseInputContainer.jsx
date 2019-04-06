@@ -5,6 +5,33 @@ import "./ExpenseInputContainer.css";
 class ExpenseInputContainer extends Component {
     constructor(props) {
         super(props);
+        this.onInternalSearchTermChange = this.onInternalSearchTermChange.bind(this);
+        this.onSearchTermChanged = this.onSearchTermChanged.bind(this);
+        this.onFilterTypeChanged = this.onFilterTypeChanged.bind(this);
+        this.onSortTypeChanged = this.onSortTypeChanged.bind(this);
+        this.onViewClosedExpensesChanged = this.onViewClosedExpensesChanged.bind(this);
+        this.state = { internalSearchTerm: this.props.searchTerm };
+    }
+
+    onInternalSearchTermChange(event) {
+        this.setState({ internalSearchTerm: event.target.value });
+    }
+
+    onSearchTermChanged() {
+        let newSearchTerm = this.state.internalSearchTerm;
+        this.props.onSearchTermChanged(newSearchTerm);
+    }
+
+    onFilterTypeChanged() {
+
+    }
+
+    onSortTypeChanged() {
+
+    }
+
+    onViewClosedExpensesChanged() {
+
     }
 
     render() {
@@ -12,9 +39,9 @@ class ExpenseInputContainer extends Component {
             <div className="ExpenseInput">
                 <div className="row">
                     <div className="input-group col">
-                        <input className="form-control" type="text" placeholder="Search" aria-label="Search"></input>
+                        <input className="form-control" type="text" placeholder="Search" aria-label="Search" value={this.state.internalSearchTerm} onChange={this.onInternalSearchTermChange}></input>
                         <div className="input-group-append">
-                            <button className="btn btn-primary">Search</button>
+                            <button className="btn btn-primary" onClick={this.onSearchTermChanged}>Search</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +77,7 @@ class ExpenseInputContainer extends Component {
                         <OpenClosedToggle expenseToggled={true} />
                     </div>
 
-                    
+
                 </div>
 
 

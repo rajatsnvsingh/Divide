@@ -17,6 +17,7 @@ mongoose.set('useFindAndModify', false);
 const fs = require("fs");
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const path = require('path');
 
 // Database Configuration ======================================================
 var {db} = require("./config/database");
@@ -55,6 +56,17 @@ app.use(passport.session());
 app.use('/api', router);
 // load our routes and pass in our app and fully configured passport
 require("./app/routes.js")(app, router, passport);
+
+//FOR PRODUCTION BUILDS, SET TO TRUE
+if(false) {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'app/public/build')));
+  // Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'app/public/build', 'index.html'));
+  });
+}
+
 
 io.use(passportSocketIo.authorize({
   key: 'connect.sid',

@@ -4,7 +4,15 @@
     padding-bottom: 15px;
 }
 
-.selected-button {
+.unselected {
     color: gray;
+}
+
+.unselected:hover {
+    cursor: pointer;
+}
+
+.selected:hover {
+    cursor: default;
 }
 

@@ -5,9 +5,6 @@ import NotificationContentList from "../NotificationContentList/NotificationCont
 class SummaryContentContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            owings: []
-        };
     }
 
     render() {

@@ -13,14 +13,11 @@ class ExpenseCardExpandedUserList extends Component {
         );
 
         return (
-            <div className="col">
+            <div className="col text-center">
+                <div className="row"><h4>&nbsp;</h4></div>
                 <div className="row">
-                    <div className="col-md-6">
-                        <h4>Share With</h4>
-                        <input type="text" className="form-control-text" placeholder="Enter a name..." />
-                    </div>
-                    <div className="col-md-3">
-                        <h5>Split</h5>
+                <div className="col-md-3">
+                        <h4>Split</h4>
                         <button className="btn btn-normal dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select Split Type
                         </button>
@@ -29,9 +26,18 @@ class ExpenseCardExpandedUserList extends Component {
                         </div>
                     </div>
                     <div className="col-md-3">
+                        <h4>Share With</h4>
+                        <input type="text" className="form-control-text" placeholder="Enter a name..." />
+                    </div>
+                    <div className="col-md-3"></div>
+                    <div className="col-md-3">
+                        <h4>&nbsp;</h4>
                         <button className="btn btn-dark">Add Person</button>
                     </div>
                 </div>
+
+                <div className="row"><h4>&nbsp;</h4></div>
+
                 <div className="row">
                     <div className="col">
                         <table className="table table-striped">

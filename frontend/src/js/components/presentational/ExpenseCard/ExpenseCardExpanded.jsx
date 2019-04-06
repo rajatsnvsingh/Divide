@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ExpanseCardExpandedInput from "./ExpenseCardExpandedInput.jsx";
 import ExpenseCardExpandedUserList from "./ExpenseCardExpandedUserList.jsx";
-
+import "./ExpenseCardExpanded.css";
 const splitTypeEnum = Object.freeze({ "fraction": 1 });
 const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
 
@@ -37,7 +37,7 @@ class ExpenseCardExpanded extends Component {
                     <ExpanseCardExpandedInput title={title} date={date} totalAmount={totalAmount} owner={owner}/>
                     <ExpenseCardExpandedUserList owees={expense.owee}/>
                     <div className="row">
-                        <div className="col btn-group">
+                        <div className="col btn-group csbtns">
                             <button className="btn btn-secondary">Cancel</button>
                             <button className="btn btn-primary">Save</button>
                         </div>

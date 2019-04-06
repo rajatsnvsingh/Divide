@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./ExpenseCardExpandedInput.css";
 class ExpanseCardExpandedInput extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +8,7 @@ class ExpanseCardExpandedInput extends Component {
     render() {
         const date = this.props.date;
         return (
-            <div className="row align-items-center">
+            <div className="row text-center">
                 <div className="col-md-3">
                     <h4>Title</h4>
                     <input type="text" className="form-control-text" defaultValue={this.props.title} placeholder="Enter a title..."/>

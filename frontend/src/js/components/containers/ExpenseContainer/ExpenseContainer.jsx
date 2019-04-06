@@ -19,7 +19,6 @@ class ExpenseContainer extends Component {
     }
 
     onSearchTermChanged(term){
-        console.log("Received Search Term: " + term);
         this.setState({searchTerm: term});
     }
 
@@ -32,6 +31,7 @@ class ExpenseContainer extends Component {
     }
 
     onViewClosedExpensesChanged(isClosedExpenses){
+        console.log("Command to view closed expenses received: " + isClosedExpenses);
         this.setState({viewClosedExpenses: isClosedExpenses});
     }
     

@@ -2,14 +2,17 @@ const mongoose = require("mongoose");
 const Notification = mongoose.model('Notification');
 
 exports.createNotification = function(notification) {
-  return notification.save(function(err, newNotification) {
-    if (err) {
-      console.error(err);
-    } else {
-      //console.log(notification);
-      return newNotification;
-    }
-  });
+  return new Promise((resolve, reject) => {
+    notification.save(function(err, newNotification) {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        //console.log(notification);
+        resolve(newNotification);
+      }
+    });
+  })
 };
 
 exports.getNotificationsByUserId = function(id) {

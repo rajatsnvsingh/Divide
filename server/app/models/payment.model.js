@@ -25,8 +25,7 @@ const PaymentSchema = new Schema({
   status: String,
   expenses: {
     type: [Schema.ObjectId],
-    ref: 'Expense',
-    required: true
+    ref: 'Expense'
   }
 });
 

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Payment = mongoose.model('Payment');
 
 exports.createPayment = function(payment) {
   return new Promise((resolve, reject) => {
@@ -28,6 +29,21 @@ exports.getAllPayments = function() {
     });
 };
 
+exports.getSinglePayment = function(id) {
+  return mongoose
+    .model('Payment')
+    .findOne(
+      { _id: id },
+      function(err, payments) {
+        if (err) {
+          console.error(err);
+        } else {
+          // console.log(payments);
+          return payments;
+        }
+      });
+};
+
 exports.getPaymentByUserId = function(id) {
   return mongoose
     .model('Payment')
@@ -41,9 +57,10 @@ exports.getPaymentByUserId = function(id) {
 };
 
 exports.updatePayment = function(payment) {
-  return mongoose
-    .model("Payment")
-    .findByIdAndUpdate(payment._id, payment, function(err, result) {
+  return Payment.findOneAndUpdate(
+    { _id: payment._id },
+    payment,
+    function(err, result) {
       if (err) {
         console.error(err);
       } else {
@@ -53,15 +70,18 @@ exports.updatePayment = function(payment) {
     });
 };
 
-exports.deletePayment = function(payment) {
-  return mongoose
-    .model("Payment")
-    .findOneAndDelete(payment, function(err, deletedPayment) {
-      if (err) {
-        console.error(err);
-      } else {
-        //console.log(deletedPayment);
-        return deletedPayment;
-      }
-    });
+exports.deletePayment = function(id) {
+  return new Promise((resolve, reject) => {
+    Payment.findOneAndDelete(
+      { _id: id },
+      function(err, deletedPayment) {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          // console.log(deletedPayment);
+          resolve(deletedPayment)
+        }
+      });
+  });
 };

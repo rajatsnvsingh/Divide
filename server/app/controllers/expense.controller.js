@@ -52,25 +52,32 @@ exports.getExpense = function(id) {
 };
 
 exports.updateExpense = function(expense) {
-  return Expense.findOneAndUpdate({ _id: expense._id }, expense, { new: true }, function(err, result) {
+  return Expense.findOneAndUpdate(
+    { _id: expense._id },
+    expense,
+    { new: true },
+    function(err, updatedExpense) {
       if (err) {
         console.error(err);
       } else {
         //console.log(result);
-        return result;
+        return updatedExpense;
       }
     });
 };
 
-exports.deleteExpense = function(expense) {
-  return mongoose
-    .model("Expense")
-    .findOneAndDelete(expense, function(err, deletedExpense) {
-      if (err) {
-        console.error(err);
-      } else {
-        //console.log(deletedExpense);
-        return deletedExpense;
-      }
+exports.deleteExpense = function(id) {
+  return new Promise ((resolve, reject) => {
+    Expense.findOneAndDelete(
+      { _id: id },
+      function(err, deletedExpense) {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          //console.log(deletedExpense);
+          resolve(deletedExpense);
+        }
     });
+  });
 };

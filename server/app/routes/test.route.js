@@ -29,6 +29,12 @@ module.exports = function(router) {
     });
   });
 
+  router.delete('/expense/:expenseId', (req, res) => {
+    expenseService.deleteExpense(req.params.expenseId, function(deletedExpense) {
+      res.send(deletedExpense);
+    });
+  });
+
   router.get("/summary/:userId", (req, res) => {
     summaryService.getSummary(req.params.userId, function(result) {
       res.send(result);
@@ -63,5 +69,17 @@ module.exports = function(router) {
     paymentService.getPaymentsByUserId(req.params.userId).exec(function(err, payments) {
       res.send(payments);
     })
+  });
+
+  router.get('/payment/accept/:paymentId', (req, res) => {
+    paymentService.acceptPayment(req.params.paymentId, function(acceptedPmt, updatedTransactions) {
+      res.send([acceptedPmt, updatedTransactions]);
+    })
+  });
+
+  router.delete('/payment/:paymentId', (req, res) => {
+    paymentService.declinePayment(req.params.paymentId, function(deletedPmt) {
+      res.send(deletedPmt);
+    });
   });
 };

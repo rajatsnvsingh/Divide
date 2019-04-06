@@ -10,8 +10,6 @@ class SummaryContainer extends Component {
         super(props);
         this.state = {
             viewNotification: false,
-            amountOwed: 0,
-            amountOwing: 0,
             numNotifications: 0,
             owingsFilter: owingsFilterEnum.noFilter
         };

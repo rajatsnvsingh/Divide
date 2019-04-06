@@ -6,6 +6,9 @@ import NewPaymentCard from "../../presentational/NewPaymentCard/NewPaymentCard.j
 class PaymentList extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            payments: []
+        };
     }
 
     render() {

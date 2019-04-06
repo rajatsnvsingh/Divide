@@ -8,9 +8,14 @@ import "./MainContentContainer.css";
 class MainContentContainer extends Component {
     constructor(props) {
         super(props);
+        this.onNavigationButtonClick = this.onNavigationButtonClick.bind(this);
         this.state = {
             viewIndex: viewIndexEnum.payments
         }
+    }
+
+    onNavigationButtonClick(newViewIndex) {
+        this.setState({viewIndex: newViewIndex});
     }
 
     render() {
@@ -18,8 +23,8 @@ class MainContentContainer extends Component {
 
         return (
             <div className={this.props.className}>
-                <NavigationHeader viewIndex={this.state.viewIndex} />
-                {viewIndex === viewIndexEnum.expenses ? <ExpenseContainer /> : <PaymentContainer />}
+                <NavigationHeader viewIndex={viewIndex} onNavigationButtonClick={this.onNavigationButtonClick} />
+                {viewIndex === viewIndexEnum.expenses ? <ExpenseContainer myId={this.props.myId}/> : <PaymentContainer myId={this.props.myId}/>}
             </div>
         );
     }

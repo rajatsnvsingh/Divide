@@ -5,6 +5,11 @@ import PaymentInputContainer from "../PaymentInputContainer/PaymentInputContaine
 class PaymentContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            searchTerm: "",
+            filterType: 1, // Create an enum for this probably
+            sortType: 1 // Create an enum for this probably
+        };
     }
 
     render() {

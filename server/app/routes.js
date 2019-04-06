@@ -22,13 +22,6 @@ module.exports = function(app, router, passport) {
     res.redirect('/');
   });
 
-  app.get(
-    "/",
-    function(req, res) {
-      res.send('Hello World!');
-    }
-  );
-
   // Database Routes =============================================================
   // this method fetches all available data in our database
   router.get("/getData", ensureAuthenticated, (req, res) => {

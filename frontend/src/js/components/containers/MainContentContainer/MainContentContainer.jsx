@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import ExpenseContainer from "../ExpenseContainer/ExpenseContainer.jsx";
 import PaymentContainer from "../PaymentContainer/PaymentContainer.jsx";
-import NavigationHeader, {viewIndexEnum} from "../NavigationHeader/NavigationHeader.jsx";
+import NavigationHeader from "../NavigationHeader/NavigationHeader.jsx";
 import "./MainContentContainer.css";
+
+let viewIndexEnum = Object.freeze({ "expenses": 1, "payments": 2 });
 
 class MainContentContainer extends Component {
     constructor(props) {

@@ -37,4 +37,3 @@ class NavigationHeader extends Component {
     }
 }
 export default NavigationHeader;
-export {viewIndexEnum};

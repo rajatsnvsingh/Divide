@@ -50,6 +50,4 @@ class ExpenseCardExpanded extends Component {
 
 }
 
-export { expenseStatusType };
-export { splitTypeEnum };
 export default ExpenseCardExpanded;

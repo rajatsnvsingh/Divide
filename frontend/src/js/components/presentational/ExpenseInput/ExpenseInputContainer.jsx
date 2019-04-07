@@ -9,9 +9,8 @@ class ExpenseInputContainer extends Component {
         this.onFilterClick = this.onFilterClick.bind(this);
         this.onSortClick = this.onSortClick.bind(this);
         this.onSearchTermChanged = this.onSearchTermChanged.bind(this);
-        this.onFilterTypeChanged = this.onFilterTypeChanged.bind(this);
-        this.onSortTypeChanged = this.onSortTypeChanged.bind(this);
-        this.onViewClosedExpensesChanged = this.onViewClosedExpensesChanged.bind(this);
+        this.onFilterTypeClicked = this.onFilterTypeClicked.bind(this);
+        this.onSortTypeClicked = this.onSortTypeClicked.bind(this);
         this.state = {
             internalSearchTerm: this.props.searchTerm,
             filterDropdown: false,
@@ -38,15 +37,12 @@ class ExpenseInputContainer extends Component {
         this.props.onSearchTermChanged(newSearchTerm);
     }
 
-    onFilterTypeChanged() {
+    onFilterTypeClicked() {
+        
 
     }
 
-    onSortTypeChanged() {
-
-    }
-
-    onViewClosedExpensesChanged() {
+    onSortTypeClicked() {
 
     }
 

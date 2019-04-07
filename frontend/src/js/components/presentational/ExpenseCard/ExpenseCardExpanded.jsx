@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ExpanseCardExpandedInput from "./ExpenseCardExpandedInput.jsx";
 import ExpenseCardExpandedUserList from "./ExpenseCardExpandedUserList.jsx";
 import "./ExpenseCardExpanded.css";
+
 const splitTypeEnum = Object.freeze({ "fraction": 1 });
 const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
 

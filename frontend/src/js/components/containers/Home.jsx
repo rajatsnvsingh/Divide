@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { MainContentContainer } from "./MainContentContainer/MainContentContainer.jsx";
 import SummaryContainer from "./SummaryContainer/SummaryContainer.jsx"
 
-let viewIndexEnum = Object.freeze({ "expenses": 1, "payments": 2 });
-
 class Home extends Component {
   constructor() {
     super();
@@ -23,4 +21,3 @@ class Home extends Component {
 }
 
 export { Home };
-export { viewIndexEnum };

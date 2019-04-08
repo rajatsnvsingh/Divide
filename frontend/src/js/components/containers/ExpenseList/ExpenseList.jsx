@@ -9,8 +9,11 @@ const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 }
 class ExpenseList extends Component {
     constructor(props) {
         super(props);
+        this.onCardClick = this.onCardClick.bind(this);
+
         this.state = {
-            expenses: []
+            expenses: [],
+            expandedCardId: -1
         };
     }
 
@@ -44,10 +47,10 @@ class ExpenseList extends Component {
                                 "__v": 0
                             },
                             "amtOwing": 50.14,
-                            "amtPaid": 0,
+                            "amtPaid": 0.0,
                             "split": "50/50",
                             "status": "Pending",
-                            "__v": 0            
+                            "__v": 0
                         }
                     ]
                 },
@@ -78,10 +81,10 @@ class ExpenseList extends Component {
                                 "__v": 0
                             },
                             "amtOwing": 6.25,
-                            "amtPaid": 0,
+                            "amtPaid": 0.0,
                             "split": "50/50",
                             "status": "Pending",
-                            "__v": 0            
+                            "__v": 0
                         },
                         {
                             "_id": "3",
@@ -95,10 +98,10 @@ class ExpenseList extends Component {
                                 "__v": 0
                             },
                             "amtOwing": 6.34,
-                            "amtPaid": 0,
+                            "amtPaid": 0.0,
                             "split": "50/50",
                             "status": "Pending",
-                            "__v": 0            
+                            "__v": 0
                         }
                     ]
                 }
@@ -110,11 +113,29 @@ class ExpenseList extends Component {
 
     }
 
-    render() {
-        const expenseComponents = this.state.expenses.map((expense) =>
-            <li key={expense.id}>
-                <ExpenseCard expense={expense} />
+    onCardClick(expenseId){
+        console.log("ID of clicked expense: " + expenseId);
+        //this.setState({ expandedCardId: expenseId });
+    }
+
+    getExpenseCard(expense){
+        if (expense._id === this.state.expandedCardId) {
+            return (
+                <li key={expense._id}>
+                    <ExpenseCardExpanded myId={this.props.myId} expense={expense} />
+                </li>
+            );
+        }
+        return (
+            <li key={expense._id}>
+                <ExpenseCard myId={this.props.myId} expense={expense} onCardClick={this.onCardClick} />
             </li>
+        );
+    }
+
+    render() {
+        const expenseComponents = this.state.expenses.map((expense) => 
+               this.getExpenseCard(expense)
         );
 
         return (

@@ -6,7 +6,7 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      myId: ""
+      myId: "2" // Aidan Bailey id is 2
     };
   }
 

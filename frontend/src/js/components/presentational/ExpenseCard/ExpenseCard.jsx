@@ -3,28 +3,33 @@ import "./ExpenseCard.css";
 class ExpenseCard extends Component {
     constructor(props) {
         super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(){
+        this.props.onCardClick(this.props.expense._id);
     }
 
     generateExpenseMessage(expense) {
-        if (expense.isOwed) {
-            if (expense.owee.length === 1) {
-                return <p>{expense.owee[0].name} owes you <span className="text-success tsex">${expense.totalAmount}</span></p>;
+        if (this.props.myId === expense.ownerId._id) {
+            if (expense.transactions.length === 1) {
+                return <p>{expense.transactions[0].userId.name} owes you <span className="text-success tsex">${expense.totalAmt}</span></p>;
             }
-            else if (expense.owee.length <= 2) {
-                return <p>{expense.owee[0].name} and {expense.owee[1].name} owe you <span className="text-success tsex">${expense.totalAmount}</span></p>;
+            else if (expense.transactions.length <= 2) {
+                return <p>{expense.transactions[0].userId.name} and {expense.transactions[1].userId.name} owe you <span className="text-success tsex">${expense.totalAmt}</span></p>;
             }
             else {
-                return <p>{expense.owee[0].name}, {expense.owee[1].name}, and {expense.owee.length - 2} other(s) owe you <span className="text-success tsex">${expense.totalAmount}</span></p>;
+                return <p>{expense.transactions[0].userId.name}, {expense.transactions[1].userId.name}, and {expense.transactions.length - 2} other(s) owe you <span className="text-success tsex">${expense.totalAmt}</span></p>;
             }
         }
         else {
             let amount = 0;
-            for(let user of expense.owee){
-                if(user.id === this.props.myId){
-                    amount = user.amount;
+            for(let transaction of expense.transactions){
+                if(transaction.userId._id === this.props.myId){
+                    amount = transaction.amtOwing - transaction.amtPaid;
                 }
             }
-            return <p>You owe {expense.owner} <span className="text-danger tdex">${amount}</span></p>;
+            return <p>You owe {expense.ownerId.name} <span className="text-danger tdex">${amount}</span></p>;
         }
     }
 
@@ -42,7 +47,7 @@ class ExpenseCard extends Component {
         let monthName = this.generateMonthName(expense);
 
         return (
-            <div className="card mb-3 excard">
+            <div className="card mb-3 excard" onClick={this.onClick}>
                 <div className="card-body p-0">
                     <div className="row align-items-center">
                         <div className="col-2">
@@ -56,7 +61,7 @@ class ExpenseCard extends Component {
                             {content}
                         </div>
                         <div className="col-2">
-                            <img className="card-img-top" src={expense.imageURL}></img>
+                            <img className="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>
                         </div>
                     </div>
                 </div>

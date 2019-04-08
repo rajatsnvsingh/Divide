@@ -64,6 +64,7 @@ class ExpenseContainer extends Component {
                 <div className="row">
                     <div className="col">
                         <ExpenseList 
+                            myId={this.props.myId}
                             searchTerm={this.state.searchTerm}
                             filterType={this.state.filterType} 
                             sortType={this.state.sortType} 

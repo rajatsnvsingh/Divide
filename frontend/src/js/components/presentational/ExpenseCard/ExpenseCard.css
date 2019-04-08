@@ -7,7 +7,9 @@
 }
 .excard:hover { 
     background-color: lightgray;
+    cursor: pointer;
   }
+  
   .tsex {
     font-weight: bold;
   }

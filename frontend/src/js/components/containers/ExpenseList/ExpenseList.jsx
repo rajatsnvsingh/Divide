@@ -10,6 +10,7 @@ class ExpenseList extends Component {
     constructor(props) {
         super(props);
         this.onCardClick = this.onCardClick.bind(this);
+        this.onExpandedCardClose = this.onExpandedCardClose.bind(this);
 
         this.state = {
             expenses: [],
@@ -116,12 +117,16 @@ class ExpenseList extends Component {
     onCardClick(expenseId){
         this.setState({ expandedCardId: expenseId });
     }
+    
+    onExpandedCardClose(){
+        this.setState({ expandedCardId: -1});
+    }
 
     getExpenseCard(expense){
         if (expense._id === this.state.expandedCardId) {
             return (
                 <li key={expense._id}>
-                    <ExpenseCardExpanded myId={this.props.myId} expense={expense} />
+                    <ExpenseCardExpanded myId={this.props.myId} expense={expense} onClose={this.onExpandedCardClose}/>
                 </li>
             );
         }

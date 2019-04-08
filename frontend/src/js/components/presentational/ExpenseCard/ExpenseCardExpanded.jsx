@@ -9,6 +9,8 @@ const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 }
 class ExpenseCardExpanded extends Component {
     constructor(props) {
         super(props);
+        this.onCancelButtonClick = this.onCancelButtonClick.bind(this);
+        this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
 
         let expense = this.props.expense;
         this.state = {
@@ -29,8 +31,13 @@ class ExpenseCardExpanded extends Component {
     //      an ExpenseList Event Handler that takes ExpenseCardExpanded's state 
     //      variables as input and updates the entry in the list
 
-    // TODO Pass an event handler from ExpenseList that "collapses" the expanded card
-    //      when a cancel or save button is clicked.
+    onCancelButtonClick() {
+        this.props.onClose();
+    }
+
+    onSaveButtonClick(){
+        this.props.onClose();
+    }
 
     render() {
         return (
@@ -44,8 +51,8 @@ class ExpenseCardExpanded extends Component {
                     <ExpenseCardExpandedUserList transactions={this.state.transactions}/>
                     <div className="row">
                         <div className="col btn-group csbtns">
-                            <button className="btn btn-secondary">Cancel</button>
-                            <button className="btn btn-primary">Save</button>
+                            <button className="btn btn-secondary" onClick={this.onCancelButtonClick}>Cancel</button>
+                            <button className="btn btn-primary" onClick={this.onSaveButtonClick}>Save</button>
                         </div>
                     </div>
                 </div>

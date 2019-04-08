@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { viewIndexEnum } from "../Home.jsx";
 import "./NavigationHeader.css";
+
+let viewIndexEnum = Object.freeze({ "expenses": 1, "payments": 2 });
 
 class NavigationHeader extends Component {
     constructor(props) {

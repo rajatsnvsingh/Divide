@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import ExpenseCard from "../../presentational/ExpenseCard/ExpenseCard.jsx";
 import "./ExpenseList.css";
-import ExpenseCardExpanded, {splitTypeEnum, expenseStatusType} from "../../presentational/ExpenseCard/ExpenseCardExpanded.jsx";
+import ExpenseCardExpanded from "../../presentational/ExpenseCard/ExpenseCardExpanded.jsx";
+
+const splitTypeEnum = Object.freeze({ "fraction": 1 });
+const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
 
 class ExpenseList extends Component {
     constructor(props){

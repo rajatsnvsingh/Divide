@@ -24,7 +24,7 @@ class ExpanseCardExpandedInput extends Component {
                 </div>
                 <div className="col-md-3">
                     <h4>Owner</h4>
-                    <input type="text" className="form-control-text" defaultValue={this.props.owner} readOnly />
+                    <input type="text" className="form-control-text" defaultValue={this.props.owner.name} readOnly />
                 </div>
             </div>
         );

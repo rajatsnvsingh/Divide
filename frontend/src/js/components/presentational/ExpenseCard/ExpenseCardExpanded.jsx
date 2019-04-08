@@ -15,28 +15,33 @@ class ExpenseCardExpanded extends Component {
             title: expense.title,
             date: expense.date,
             status: expense.status,
-            totalAmount: expense.totalAmount,
-            owner: expense.owner,
-            transactions: expense.owee
+            totalAmount: expense.totalAmt,
+            owner: expense.ownerId,
+            transactions: expense.transactions
         };
     }
 
+    // TODO Create Event Handlers that are passed to EventCardExpanded's children 
+    //      so that when the state of the forms is updated, the state variables of 
+    //      ExpenseCardExpanded are updated.
+
+    // TODO (but maybe not?) Create an Event Handler for the save button that calls
+    //      an ExpenseList Event Handler that takes ExpenseCardExpanded's state 
+    //      variables as input and updates the entry in the list
+
+    // TODO Pass an event handler from ExpenseList that "collapses" the expanded card
+    //      when a cancel or save button is clicked.
+
     render() {
-        const expense = this.props.expense;
-
-        // Expense Data
-        const title = expense.title;
-        const date = expense.date;
-        const status = expense.status;
-        const totalAmount = expense.totalAmount;
-        const owner = expense.owner;
-        const owee = expense.owee;
-
         return (
             <div className="card mb-3">
                 <div className="card-body p-0">
-                    <ExpanseCardExpandedInput title={title} date={date} totalAmount={totalAmount} owner={owner}/>
-                    <ExpenseCardExpandedUserList owees={expense.owee}/>
+                    <ExpanseCardExpandedInput 
+                        title={this.state.title} 
+                        date={this.state.date} 
+                        totalAmount={this.state.totalAmt} 
+                        owner={this.state.owner}/>
+                    <ExpenseCardExpandedUserList transactions={this.state.transactions}/>
                     <div className="row">
                         <div className="col btn-group csbtns">
                             <button className="btn btn-secondary">Cancel</button>

@@ -7,9 +7,9 @@ class ExpenseCardExpandedUserList extends Component {
     }
 
     render() {
-        const userList = this.props.owees;
-        const userListEntries = userList.map((user, index) => 
-            <ExpenseCardExpandedUserEntry key={index} rowIndex={index} user={user} />
+        const transcationsList = this.props.transactions;
+        const userListEntries = transcationsList.map((transaction, index) => 
+            <ExpenseCardExpandedUserEntry key={index} rowIndex={index} transaction={transaction} />
         );
 
         return (
@@ -45,7 +45,7 @@ class ExpenseCardExpandedUserList extends Component {
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Split Type</th>
                                     <th scope="col">Payment Amount</th>
                                     <th scope="col">Payment Status</th>

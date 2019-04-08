@@ -114,8 +114,7 @@ class ExpenseList extends Component {
     }
 
     onCardClick(expenseId){
-        console.log("ID of clicked expense: " + expenseId);
-        //this.setState({ expandedCardId: expenseId });
+        this.setState({ expandedCardId: expenseId });
     }
 
     getExpenseCard(expense){

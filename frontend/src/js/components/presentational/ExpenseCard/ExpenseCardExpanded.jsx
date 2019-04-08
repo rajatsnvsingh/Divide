@@ -43,6 +43,10 @@ class ExpenseCardExpanded extends Component {
         this.setState({totalAmount: newAmount});
     }
 
+    onTransactionListChange(){
+        
+    }
+
     // TODO (but maybe not?) Create an Event Handler for the save button that calls
     //      an ExpenseList Event Handler that takes ExpenseCardExpanded's state 
     //      variables as input and updates the entry in the list

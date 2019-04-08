@@ -38,6 +38,7 @@ class ExpanseCardExpandedInput extends Component {
                     <DatePicker selected={this.props.date} onChange={this.onDateChange}/>
                 </div>
                 
+                
                 <div className="col-md-3">
                     <h4>Account</h4>
                     <input type="text" className="form-control-text" value={this.props.totalAmount} placeholder="Enter an amount ($)"

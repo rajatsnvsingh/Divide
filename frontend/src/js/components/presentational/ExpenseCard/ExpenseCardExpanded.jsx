@@ -9,8 +9,12 @@ const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 }
 class ExpenseCardExpanded extends Component {
     constructor(props) {
         super(props);
+        this.onTitleChange = this.onTitleChange.bind(this);
+        this.onDateChange = this.onDateChange.bind(this);
+        this.onAmountChange = this.onAmountChange.bind(this);
         this.onCancelButtonClick = this.onCancelButtonClick.bind(this);
         this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+        
 
         let expense = this.props.expense;
         this.state = {
@@ -27,6 +31,18 @@ class ExpenseCardExpanded extends Component {
     //      so that when the state of the forms is updated, the state variables of 
     //      ExpenseCardExpanded are updated.
 
+    onTitleChange(newTitle) {
+        this.setState({title: newTitle});
+    }
+
+    onDateChange(newDate){
+        this.setState({date: newDate});
+    }
+
+    onAmountChange(newAmount){
+        this.setState({totalAmount: newAmount});
+    }
+
     // TODO (but maybe not?) Create an Event Handler for the save button that calls
     //      an ExpenseList Event Handler that takes ExpenseCardExpanded's state 
     //      variables as input and updates the entry in the list
@@ -36,6 +52,8 @@ class ExpenseCardExpanded extends Component {
     }
 
     onSaveButtonClick(){
+        // TODO verify that everything in the new expense is acceptable
+        // TODO use a web socket to send the new expense
         this.props.onClose();
     }
 
@@ -46,8 +64,12 @@ class ExpenseCardExpanded extends Component {
                     <ExpanseCardExpandedInput 
                         title={this.state.title} 
                         date={this.state.date} 
-                        totalAmount={this.state.totalAmt} 
-                        owner={this.state.owner}/>
+                        totalAmount={this.state.totalAmount} 
+                        owner={this.state.owner}
+                        onTitleChange={this.onTitleChange}
+                        onDateChange={this.onDateChange}
+                        onAmountChange={this.onAmountChange}
+                        />
                     <ExpenseCardExpandedUserList transactions={this.state.transactions}/>
                     <div className="row">
                         <div className="col btn-group csbtns">

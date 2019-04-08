@@ -63,7 +63,12 @@ class ExpenseContainer extends Component {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <ExpenseList />
+                        <ExpenseList 
+                            searchTerm={this.state.searchTerm}
+                            filterType={this.state.filterType} 
+                            sortType={this.state.sortType} 
+                            viewClosedExpenses={this.state.viewClosedExpenses}
+                        />
                     </div>
                 </div>
             </div>

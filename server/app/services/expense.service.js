@@ -60,7 +60,11 @@ exports.getExpensesByUserId = function(id, callback) {
           },
           {
             path: 'transactions',
-            model: 'Transaction'
+            model: 'Transaction',
+            populate: {
+              path: 'userId',
+              model: 'User'
+            }
           }
         ]).then(populatedExpenses => {
           callback(populatedExpenses);

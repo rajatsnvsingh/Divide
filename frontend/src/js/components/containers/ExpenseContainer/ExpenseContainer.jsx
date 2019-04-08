@@ -3,6 +3,9 @@ import ExpenseInputContainer from "../../presentational/ExpenseInput/ExpenseInpu
 import ExpenseList from "../ExpenseList/ExpenseList.jsx";
 import "./ExpenseContainer.css";
 
+const filterTypeEnum = Object.freeze({ noFilter: 1, myExpenses: 2, otherExpenses: 3 });
+const sortTypeEnum = Object.freeze({ titleAsc: 1, titleDesc: 2, priceHigh: 3, priceLow: 4, latest: 5, oldest: 6 });
+
 class ExpenseContainer extends Component {
     constructor(props) {
         super(props);
@@ -13,8 +16,8 @@ class ExpenseContainer extends Component {
 
         this.state = {
             searchTerm: "",
-            filterType: 1, // Probably create an enum for this later
-            sortType: 1, // Probably create an enum for this later
+            filterType: filterTypeEnum.noFilter, // Probably create an enum for this later
+            sortType: sortTypeEnum.latest, // Probably create an enum for this later
             viewClosedExpenses: false
         };
     }

@@ -26,7 +26,11 @@ exports.createExpense = function(expenseJSON, callback) {
             createdExpense,
             {
               path: 'transactions',
-              model: 'Transaction'
+              model: 'Transaction',
+              populate: {
+                path: 'userId',
+                model: 'User'
+              }
             }).then(function(populatedExpense) {
               for (let createdTransaction of populatedExpense.transactions) {
                 let expenseNotif = new Notification({

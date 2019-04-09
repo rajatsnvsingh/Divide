@@ -121,7 +121,12 @@ class ExpenseCardExpandedUserList extends Component {
         // Render list of transactions
         const transcationsList = this.props.transactions;
         const userListEntries = transcationsList.map((transaction, index) =>
-            <ExpenseCardExpandedUserEntry key={index} rowIndex={index} transaction={transaction} onRemoveTransaction={this.props.onRemoveTransaction} />
+            (<ExpenseCardExpandedUserEntry 
+                key={index} 
+                rowIndex={index} 
+                transaction={transaction} 
+                onRemoveTransaction={this.props.onRemoveTransaction}
+                onVoidTransaction={this.props.onVoidTransaction} />)
         );
 
         // Filter list of users to show in dropdown
@@ -131,10 +136,10 @@ class ExpenseCardExpandedUserList extends Component {
 
         // Render list of users to show in dropdown
         const userOptions = searchUsers.map((userOption) =>
-            <a key={userOption._id} id={userOption._id} className="dropdown-item" href="#" onClick={this.onUserOptionClicked}>
+            (<a key={userOption._id} id={userOption._id} className="dropdown-item" href="#" onClick={this.onUserOptionClicked}>
                 <span className="font-weight-bold">{userOption.name} </span>
                 <span className="text-secondary">({userOption.email})</span>
-            </a>
+            </a>)
         );
 
         return (

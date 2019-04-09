@@ -14,6 +14,7 @@ class ExpenseCardExpanded extends Component {
         this.onAmountChange = this.onAmountChange.bind(this);
         this.onAddNewTransaction = this.onAddNewTransaction.bind(this);
         this.onRemoveTransaction = this.onRemoveTransaction.bind(this);
+        this.onVoidTransaction = this.onVoidTransaction.bind(this);
         this.onCancelButtonClick = this.onCancelButtonClick.bind(this);
         this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
 
@@ -101,6 +102,14 @@ class ExpenseCardExpanded extends Component {
         this.setState({transactions: modifiedTrans});
     }
 
+    // TODO add an onVoidTransaction handler to set the paid == to owed
+    onVoidTransaction(transactionIndex) {
+        console.log("Made it here, TransactionIndex: " + transactionIndex);
+        let modifiedTransactionsList = this.state.transactions;
+        modifiedTransactionsList[transactionIndex].amtPaid = modifiedTransactionsList[transactionIndex].amtOwing;
+        this.setState({transactions: modifiedTransactionsList});
+    }
+
     // TODO (but maybe not?) Create an Event Handler for the save button that calls
     //      an ExpenseList Event Handler that takes ExpenseCardExpanded's state 
     //      variables as input and updates the entry in the list
@@ -132,6 +141,7 @@ class ExpenseCardExpanded extends Component {
                         transactions={this.state.transactions} 
                         onAddNewTransaction={this.onAddNewTransaction}
                         onRemoveTransaction={this.onRemoveTransaction}
+                        onVoidTransaction={this.onVoidTransaction}
                         />
                     <div className="row">
                         <div className="col btn-group csbtns">

@@ -6,6 +6,7 @@ class ExpenseCardExpandedUserEntry extends Component {
     constructor(props) {
         super(props);
         this.onRemoveButtonClick = this.onRemoveButtonClick.bind(this);
+        this.onVoidButtonClick = this.onVoidButtonClick.bind(this);
     }
 
     onRemoveButtonClick() { 
@@ -22,11 +23,17 @@ class ExpenseCardExpandedUserEntry extends Component {
         }
     }
 
+    onVoidButtonClick(){
+        let rowIndex = this.props.rowIndex;
+        this.props.onVoidTransaction(rowIndex);
+    }
+
     render() {
         let transaction = this.props.transaction;
         let splitType = this.getStringFromSplitType(transaction.split);
         let expenseStatusType = "Open";
-        if(transaction.amtOwing - transaction.amtPaid <= 0)
+        let remainingAmount = transaction.amtOwing - transaction.amtPaid;
+        if(remainingAmount <= 0)
             expenseStatusType = "Closed";
         
         
@@ -36,9 +43,9 @@ class ExpenseCardExpandedUserEntry extends Component {
                 <td>{transaction.userId.name}</td>
                 <td>{transaction.userId.email}</td>
                 <td>{splitType}</td>
-                <td>{transaction.amtOwing - transaction.amtPaid}</td>
+                <td>{remainingAmount}</td>
                 <td>{expenseStatusType}</td>
-                <td><button className="btn btn-normal">Void</button></td>
+                <td><button className="btn btn-normal" onClick={this.onVoidButtonClick}>Void</button></td>
                 <td><button className="close" aria-label="Close" onClick={this.onRemoveButtonClick}><span aria-hidden="true">&times;</span></button></td>
             </tr>
         );

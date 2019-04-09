@@ -5,6 +5,7 @@ import "./ExpenseList.css";
 
 const splitTypeEnum = Object.freeze({ "fraction": 1 });
 const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
+const filterTypeEnum = Object.freeze({ noFilter: 1, myExpenses: 2, otherExpenses: 3 });
 
 class ExpenseList extends Component {
     constructor(props) {
@@ -67,7 +68,7 @@ class ExpenseList extends Component {
                         "name": "Aidan Bailey",
                         "__v": 0
                     },
-                    status: expenseStatusType.open,
+                    status: expenseStatusType.closed,
                     date: new Date(),
                     transactions: [
                         {
@@ -137,8 +138,36 @@ class ExpenseList extends Component {
         );
     }
 
+    filterExpense(expense) {
+        // Check if Expense Title starts with search term
+        if(!expense.title.toLowerCase().startsWith(this.props.searchTerm.toLowerCase()))
+            return false;
+
+        // Check if Expense Status type matches the filter being applied
+        if(expense.status === expenseStatusType.open && this.props.viewClosedExpenses)
+            return false;
+        else if (expense.status === expenseStatusType.closed && !this.props.viewClosedExpenses)
+            return false;
+        else if (expense.status === expenseStatusType.pending)
+            return false;
+        
+        // Check if Expense owner matches filter being applied
+        if(expense.ownerId._id === this.props.myId && this.props.filterType === filterTypeEnum.otherExpenses){
+            return false;
+        }
+        if(expense.ownerId._id !== this.props.myId && this.props.filterType === filterTypeEnum.myExpenses){
+            return false;
+        }
+
+        return true;
+    }
+
     render() {
-        const expenseComponents = this.state.expenses.map((expense) => 
+        let filteredExpenses = this.state.expenses.filter((expense) =>
+            this.filterExpense(expense)
+        );
+
+        const expenseComponents = filteredExpenses.map((expense) => 
             this.getExpenseCard(expense)
         );
 

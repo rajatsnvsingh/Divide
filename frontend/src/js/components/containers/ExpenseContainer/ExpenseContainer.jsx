@@ -35,7 +35,6 @@ class ExpenseContainer extends Component {
     }
 
     onViewClosedExpensesChanged(isClosedExpenses){
-        console.log("Command to view closed expenses received: " + isClosedExpenses);
         this.setState({viewClosedExpenses: isClosedExpenses});
     }
     

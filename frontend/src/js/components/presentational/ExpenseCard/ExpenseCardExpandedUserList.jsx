@@ -11,6 +11,7 @@ class ExpenseCardExpandedUserList extends Component {
         this.onSplitButtonClicked = this.onSplitButtonClicked.bind(this);
         this.onSplitOptionClicked = this.onSplitOptionClicked.bind(this);
         this.onUserOptionClicked = this.onUserOptionClicked.bind(this);
+        this.onAddPersonButtonClicked = this.onAddPersonButtonClicked.bind(this);
         this.state = {
             searchText: "",
             searchDropdown: "",
@@ -23,40 +24,42 @@ class ExpenseCardExpandedUserList extends Component {
 
     componentDidMount() {
         // TODO Replace with socket call later on 
-        this.setState({ searchUsers: [ 
-            {
-                "expenseId": [],
-                "notifications": [],
-                "_id": "10",
-                "email": "sack@sack.com",
-                "name": "Cardi Blue",
-                "__v": 0
-            },
-            {
-                "expenseId": [],
-                "notifications": [],
-                "_id": "11",
-                "email": "test2@gmail.com",
-                "name": "Carson Swammy",
-                "__v": 0
-            },
-            {
-                "expenseId": [],
-                "notifications": [],
-                "_id": "12",
-                "email": "test3@gmail.com",
-                "name": "AI Bob",
-                "__v": 0
-            },
-            {
-                "expenseId": [],
-                "notifications": [],
-                "_id": "1",
-                "email": "buddyBoi@buddyBoi",
-                "name": "Dalvin Lau",
-                "__v": 0
-            }
-        ]});
+        this.setState({
+            searchUsers: [
+                {
+                    "expenseId": [],
+                    "notifications": [],
+                    "_id": "10",
+                    "email": "sack@sack.com",
+                    "name": "Cardi Blue",
+                    "__v": 0
+                },
+                {
+                    "expenseId": [],
+                    "notifications": [],
+                    "_id": "11",
+                    "email": "test2@gmail.com",
+                    "name": "Carson Swammy",
+                    "__v": 0
+                },
+                {
+                    "expenseId": [],
+                    "notifications": [],
+                    "_id": "12",
+                    "email": "test3@gmail.com",
+                    "name": "AI Bob",
+                    "__v": 0
+                },
+                {
+                    "expenseId": [],
+                    "notifications": [],
+                    "_id": "1",
+                    "email": "buddyBoi@buddyBoi",
+                    "name": "Dalvin Lau",
+                    "__v": 0
+                }
+            ]
+        });
     }
 
     onSearchTextChanged(event) {
@@ -83,16 +86,16 @@ class ExpenseCardExpandedUserList extends Component {
 
     onSplitOptionClicked(event) {
         if (event.target.id === "fraction-split") {
-            this.setState({ 
-                splitSelection: splitTypeEnum.fraction ,
+            this.setState({
+                splitSelection: splitTypeEnum.fraction,
                 splitDropdown: ""
             });
         }
     }
 
-    onUserOptionClicked(event){
-        for(let user of this.state.searchUsers){
-            if(user._id === event.currentTarget.id){
+    onUserOptionClicked(event) {
+        for (let user of this.state.searchUsers) {
+            if (user._id === event.currentTarget.id) {
                 this.setState({
                     selectedUser: user,
                     searchDropdown: ""
@@ -101,8 +104,15 @@ class ExpenseCardExpandedUserList extends Component {
         }
     }
 
-    getStringFromSplitType(splitType){
-        if(splitType === splitTypeEnum.fraction){
+    onAddPersonButtonClicked() {
+        if(this.state.selectedUser === null) return;
+        let user = this.state.selectedUser;
+        let split = this.state.splitSelection;
+        this.props.onAddNewTransaction(user, split);
+    }
+
+    getStringFromSplitType(splitType) {
+        if (splitType === splitTypeEnum.fraction) {
             return "Fraction";
         }
     }
@@ -111,7 +121,7 @@ class ExpenseCardExpandedUserList extends Component {
         // Render list of transactions
         const transcationsList = this.props.transactions;
         const userListEntries = transcationsList.map((transaction, index) =>
-            <ExpenseCardExpandedUserEntry key={transaction._id} rowIndex={index} transaction={transaction} />
+            <ExpenseCardExpandedUserEntry key={index} rowIndex={index} transaction={transaction} onRemoveTransaction={this.props.onRemoveTransaction} />
         );
 
         // Filter list of users to show in dropdown
@@ -120,7 +130,7 @@ class ExpenseCardExpandedUserList extends Component {
         );
 
         // Render list of users to show in dropdown
-        const userOptions = searchUsers.map((userOption) => 
+        const userOptions = searchUsers.map((userOption) =>
             <a key={userOption._id} id={userOption._id} className="dropdown-item" href="#" onClick={this.onUserOptionClicked}>
                 <span className="font-weight-bold">{userOption.name} </span>
                 <span className="text-secondary">({userOption.email})</span>
@@ -159,7 +169,7 @@ class ExpenseCardExpandedUserList extends Component {
                     <div className="col-md-3"></div>
                     <div className="col-md-3">
                         <h4>&nbsp;</h4>
-                        <button className="btn btn-dark">Add Person</button>
+                        <button className="btn btn-dark" onClick={this.onAddPersonButtonClicked}>Add Person</button>
                     </div>
                 </div>
 

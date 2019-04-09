@@ -139,7 +139,7 @@ class ExpenseList extends Component {
 
     render() {
         const expenseComponents = this.state.expenses.map((expense) => 
-               this.getExpenseCard(expense)
+            this.getExpenseCard(expense)
         );
 
         return (

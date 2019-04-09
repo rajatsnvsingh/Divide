@@ -12,18 +12,34 @@ class ExpenseCardExpanded extends Component {
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onDateChange = this.onDateChange.bind(this);
         this.onAmountChange = this.onAmountChange.bind(this);
+        this.onAddNewTransaction = this.onAddNewTransaction.bind(this);
+        this.onRemoveTransaction = this.onRemoveTransaction.bind(this);
         this.onCancelButtonClick = this.onCancelButtonClick.bind(this);
         this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
-        
 
         let expense = this.props.expense;
+        let clonedTransactions = [];
+        for(let trans of expense.transactions){
+            let clonedTrans = {
+                "_id": trans._id,
+                "ownerId": trans.ownerId,
+                "userId": trans.userId,
+                "amtOwing": trans.amtOwing,
+                "amtPaid": trans.amtPaid,
+                "split": trans.split,
+                "status": trans.status,
+                "__v": trans._v
+            };
+            clonedTransactions.push(clonedTrans);
+        }
+         
         this.state = {
             title: expense.title,
             date: expense.date,
             status: expense.status,
             totalAmount: expense.totalAmt,
             owner: expense.ownerId,
-            transactions: expense.transactions
+            transactions: clonedTransactions
         };
     }
 
@@ -43,8 +59,46 @@ class ExpenseCardExpanded extends Component {
         this.setState({totalAmount: newAmount});
     }
 
-    onTransactionListChange(){
-        
+    onAddNewTransaction(newUser, splitSelection){
+        // TODO Gonna have to make this logic a little more elaborate to deal 
+        // with cases in which users are being added after other have already 
+        // paid
+        let amountOwed = this.state.totalAmount / (this.state.transactions.length + 1);
+        let modifiedTrans = this.state.transactions.map((trans) => {
+            trans.amtOwing = amountOwed;
+            return trans;
+        });
+
+        let newTransaction = {
+            _id: "",
+            "ownerId": this.props.myId,
+            "userId": newUser,
+            "amtOwing": amountOwed,
+            "amtPaid": 0.0,
+            "split": splitSelection,
+            "status": expenseStatusType.pending,
+            "__v": 0
+        };
+
+        modifiedTrans.push(newTransaction);
+        this.setState({transactions: modifiedTrans});
+    }
+
+    onRemoveTransaction(transactionIndex){
+        let modifiedTrans = [];
+        for(let i = 0; i <= this.state.transactions.length - 1; i++){
+            if(i !== transactionIndex){
+                modifiedTrans.push(this.state.transactions[i]);
+            }
+        }
+
+        let amountOwed = this.state.totalAmount / modifiedTrans.length;
+        modifiedTrans = modifiedTrans.map((trans) => {
+            trans.amtOwing = amountOwed;
+            return trans;
+        });
+
+        this.setState({transactions: modifiedTrans});
     }
 
     // TODO (but maybe not?) Create an Event Handler for the save button that calls
@@ -74,7 +128,11 @@ class ExpenseCardExpanded extends Component {
                         onDateChange={this.onDateChange}
                         onAmountChange={this.onAmountChange}
                         />
-                    <ExpenseCardExpandedUserList transactions={this.state.transactions}/>
+                    <ExpenseCardExpandedUserList 
+                        transactions={this.state.transactions} 
+                        onAddNewTransaction={this.onAddNewTransaction}
+                        onRemoveTransaction={this.onRemoveTransaction}
+                        />
                     <div className="row">
                         <div className="col btn-group csbtns">
                             <button className="btn btn-secondary" onClick={this.onCancelButtonClick}>Cancel</button>

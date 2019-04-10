@@ -125,7 +125,7 @@ class ExpenseCardExpanded extends Component {
 
     render() {
         return (
-            <div className="card mb-3">
+            <div className="card mb-3 card-exp">
                 <div className="card-body p-0">
                     <ExpanseCardExpandedInput 
                         myId={this.props.myId}

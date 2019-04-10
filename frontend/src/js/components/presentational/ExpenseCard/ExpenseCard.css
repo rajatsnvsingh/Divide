@@ -1,6 +1,6 @@
 .excard {
     text-align: center;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .exinf{
@@ -8,7 +8,7 @@
 }
 
 .excard:hover { 
-    background-color: lightgray;
+    background-color: whitesmoke;
     cursor: pointer;
 }
   

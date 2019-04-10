@@ -10,3 +10,10 @@
     background-color: lightgray;
 }
 
+#bottom-input-row {
+    padding-top: 15px;
+}
+
+.open-closed-toggle {
+    padding: 0;
+}

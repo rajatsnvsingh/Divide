@@ -1,14 +1,16 @@
 .excard {
     text-align: center;
+    background-color: whitesmoke;
 }
 
 .exinf{
     text-align: left;
 }
+
 .excard:hover { 
     background-color: lightgray;
     cursor: pointer;
-  }
+}
   
   .tsex {
     font-weight: bold;

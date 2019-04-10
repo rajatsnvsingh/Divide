@@ -21,7 +21,7 @@ class NavigationHeader extends Component {
     render() {
         return (
             <div className="navigation-header row">
-                <div className="col-md-5 row">
+                <div className="col-md-10 row">
                     <h1 className={(this.props.viewIndex === viewIndexEnum.expenses) ? "mr-4 selected" : "unselected mr-4"} onClick={this.onExpenseButtonClick}>
                         Expenses
                     </h1>

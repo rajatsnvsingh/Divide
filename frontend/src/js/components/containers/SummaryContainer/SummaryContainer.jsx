@@ -3,13 +3,14 @@ import ProfileContainer from "../ProfileContainer/ProfileContainer.jsx"
 import SummaryContentContainer from "../SummaryContentContainer/SummaryContentContainer.jsx";
 import './SummaryContainer.css';
 
-let owingsFilterEnum = Object.freeze({"noFilter": 1, "oweFilter": 2, "owedFilter": 3});
+export const owingsFilterEnum = Object.freeze({"noFilter": 1, "oweFilter": 2, "owedFilter": 3});
+export const viewStateEnum = Object.freeze({"summary": 1, "notifications": 2});
 
 class SummaryContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            viewNotification: false,
+            viewState: viewStateEnum.summary,
             numNotifications: 0,
             owingsFilter: owingsFilterEnum.noFilter
         };
@@ -19,7 +20,7 @@ class SummaryContainer extends Component {
         return (
             <div className={this.props.className}>
                 <ProfileContainer />
-                <SummaryContentContainer />
+                <SummaryContentContainer viewState={this.state.viewState} />
             </div>
         );
     }

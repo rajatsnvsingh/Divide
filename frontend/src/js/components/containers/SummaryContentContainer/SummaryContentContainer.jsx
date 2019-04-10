@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SummaryContentList from "../SummaryContentList/SummaryContentList.jsx";
 import NotificationContentList from "../NotificationContentList/NotificationContentList.jsx";
+import { viewStateEnum } from "../SummaryContainer/SummaryContainer.jsx";
 
 class SummaryContentContainer extends Component {
     constructor(props) {
@@ -8,8 +9,9 @@ class SummaryContentContainer extends Component {
     }
 
     render() {
-        const isSummaryList = true;
-        if (isSummaryList) {
+        const viewState = this.props.viewState;
+
+        if (viewState === viewStateEnum.summary) {
             return (
                 <div>
                     <h1 className="float-left">Owings</h1>

@@ -18,6 +18,7 @@ class ExpenseContainer extends Component {
         this.onAddNewExpense = this.onAddNewExpense.bind(this);
         this.onCardClick = this.onCardClick.bind(this);
         this.onExpandedCardClose = this.onExpandedCardClose.bind(this);
+        this.onNewCardClose = this.onNewCardClose.bind(this);
 
         this.state = {
             searchTerm: "",
@@ -25,7 +26,8 @@ class ExpenseContainer extends Component {
             sortType: sortTypeEnum.latest, // Probably create an enum for this later
             viewClosedExpenses: false,
             expenses: [],
-            expandedCardId: ""
+            expandedCardId: "",
+            newExpenses:[] 
         };
     }
 
@@ -121,6 +123,8 @@ class ExpenseContainer extends Component {
         });
     }
 
+    // Expense List Filters and Sort
+
     onSearchTermChanged(term) {
         this.setState({ searchTerm: term });
     }
@@ -137,34 +141,48 @@ class ExpenseContainer extends Component {
         this.setState({ viewClosedExpenses: isClosedExpenses });
     }
 
-    onAddNewExpense() {
-        // let newExpense = {
-        //     _id: "-1",
-        //     title: "",
-        //     totalAmt: 0.0,
-        //     ownerId: {
-        //         "expenseId": [],
-        //         "notifications": [],
-        //         "_id": this.props.myId,
-        //         "email": "",
-        //         "name": "",
-        //         "__v": 0
-        //     },
-        //     status: expenseStatusType.pending,
-        //     date: new Date(),
-        //     transactions: []
-        // };
-        // expenses.push(newExpense);
-        // this.setState({expenses: expenses }); // Need to set expandedCardId somehow
-
-    }
-
+    // Edit Card Event Handlers
     onCardClick(expenseId){
         this.setState({ expandedCardId: expenseId });
     }
     
     onExpandedCardClose(){
-        this.setState({ expandedCardId: -1});
+        this.setState({ expandedCardId: "-1"});
+    }
+
+    // New Card Event Handlers
+
+    onAddNewExpense() {
+        if(this.state.newExpenses.length === 1) // Only allow one new expense at a time
+            return;
+        
+        let newExpense = {
+            _id: "-1",
+            title: "",
+            totalAmt: 0.0,
+            ownerId: {
+                "expenseId": [],
+                "notifications": [],
+                "_id": this.props.myId,
+                "email": "",
+                "name": "",
+                "__v": 0
+            },
+            status: expenseStatusType.pending,
+            date: new Date(),
+            transactions: []
+        };
+        let newExpenses = this.state.newExpenses;
+        newExpenses.push(newExpense);
+        this.setState({newExpense: newExpenses});
+    }
+
+    onNewCardClose(){
+        // TODO This only works because there can only be 1 new expense at a time
+        // Otherwise, must add logic to identify which card closed
+        let newExpenses = this.state.newExpenses;
+        newExpenses.pop();
+        this.setState({newExpense: newExpenses});
     }
 
     filterExpense(expense) {
@@ -221,8 +239,10 @@ class ExpenseContainer extends Component {
                             myId={this.props.myId}
                             expenses={filteredExpenses}
                             expandedCardId={this.state.expandedCardId}
+                            newExpenses={this.state.newExpenses}
                             onCardClick={this.onCardClick}
                             onExpandedCardClose={this.onExpandedCardClose}
+                            onNewCardClose={this.onNewCardClose}
                         />
                     </div>
                 </div>

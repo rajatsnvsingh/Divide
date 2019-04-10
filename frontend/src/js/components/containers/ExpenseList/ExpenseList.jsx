@@ -28,8 +28,18 @@ class ExpenseList extends Component {
             this.getExpenseCard(expense)
         );
 
+        const newExpenseComponents = this.props.newExpenses.map((newExpense, index) =>
+            (<li key={index}>
+                <ExpenseCardExpanded myId={this.props.myId} expense={newExpense} onClose={this.props.onNewCardClose}/>
+            </li>)
+        );
+
         return (
-            <ul>{expenseComponents}</ul>
+            <div>
+                <ul>{newExpenseComponents}</ul>
+                <ul>{expenseComponents}</ul>
+            </div>
+            
         );
     }
 

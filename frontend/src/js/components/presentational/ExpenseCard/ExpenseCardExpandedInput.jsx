@@ -40,14 +40,14 @@ class ExpanseCardExpandedInput extends Component {
                 
                 
                 <div className="col-md-3">
-                    <h4>Account</h4>
+                    <h4>Amount</h4>
                     <input type="text" className="form-control-text" value={this.props.totalAmount} placeholder="Enter an amount ($)"
                         onChange={this.onAmountChange}
                     />
                 </div>
                 <div className="col-md-3">
                     <h4>Owner</h4>
-                    <input type="text" className="form-control" value={this.props.owner.name} readOnly />
+                    <input type="text" className="form-control" value={(this.props.myId === this.props.owner._id) ? "You" : this.props.owner.name} readOnly />
                 </div>
             </div>
         );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../../../../css/styles.css'; 
 
 class PaymentConfirmationCard extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class PaymentConfirmationCard extends Component {
     render() {
         return (
             <div className="card mb-3">
-                <div className="card-body">
+                <div className="card-body card-shadow">
                     <div className="row align-items-center">
                         <div className="col-md-3">
                             <img className="card-img w-50 ml-4" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>

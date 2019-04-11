@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PaymentCard from "../../presentational/PaymentCard/PaymentCard.jsx";
-import PaymentConfirmationCard from "../../presentational/PaymentConfirmationCard/PaymentConfirmationCard.jsx";
 import NewPaymentCard from "../../presentational/NewPaymentCard/NewPaymentCard.jsx";
 
 class PaymentList extends Component {
@@ -15,8 +14,8 @@ class PaymentList extends Component {
        return (
            <div>
                <NewPaymentCard />
-               <PaymentCard />
-               <PaymentConfirmationCard />
+               <PaymentCard name="Alex" amount={40} isConfirmation={false} />
+               <PaymentCard name="Eric" amount={73} isConfirmation={true} />
            </div>
        );
     }

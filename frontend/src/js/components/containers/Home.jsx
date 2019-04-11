@@ -10,16 +10,19 @@ class Home extends Component {
       myId: "2", // Aidan Bailey id is 2
       summaryList: [
         {
+          id: 1,
           name: "Ruble",
           amount: 24,
           isOwed: true
         },
         {
+          id: 2,
           name: "Aidan",
           amount: 12,
           isOwed: false 
         },
         {
+          id: 3,
           name: "Alex",
           amount: 15,
           isOwed: true 

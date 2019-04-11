@@ -9,6 +9,7 @@ export const viewStateEnum = Object.freeze({"summary": 1, "notifications": 2});
 class SummaryContainer extends Component {
     constructor(props){
         super(props);
+        this.onSummaryFilterChange = this.onSummaryFilterChange.bind(this);
         this.onViewStateChange = this.onViewStateChange.bind(this);
         this.toggleViewState = this.toggleViewState.bind(this);
         this.state = {
@@ -16,6 +17,10 @@ class SummaryContainer extends Component {
             numNotifications: 0,
             summaryFilter: summaryFilterEnum.none
         };
+    }
+
+    onSummaryFilterChange(newFilter) {
+        this.setState({summaryFilter: newFilter});
     }
 
     onViewStateChange(newViewState) {
@@ -35,7 +40,7 @@ class SummaryContainer extends Component {
     render() {
         return (
             <div className={this.props.className}>
-                <ProfileContainer toggleViewState={this.toggleViewState} />
+                <ProfileContainer toggleViewState={this.toggleViewState} onSummaryFilterChange={this.onSummaryFilterChange} />
                 <SummaryContentContainer viewState={this.state.viewState} onViewStateChange={this.onViewStateChange} summaryFilter={this.state.summaryFilter} />
             </div>
         );

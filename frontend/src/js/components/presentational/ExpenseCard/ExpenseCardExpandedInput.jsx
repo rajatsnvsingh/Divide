@@ -26,7 +26,6 @@ class ExpanseCardExpandedInput extends Component {
     }
     
     render() {
-        const date = this.props.date;
         return (
             <form className="input-section">
             <div className="form-row">
@@ -37,6 +36,7 @@ class ExpanseCardExpandedInput extends Component {
                     <label for="inputAmount" className="col-form-label">Amount</label>
                     <input type="text" id="inputAmount" className="form-control" value={this.props.totalAmount} placeholder="Enter Price"
                         onChange={this.onAmountChange}
+                        readOnly={this.props.readonly}
                     />
                 </div>
                 
@@ -45,7 +45,7 @@ class ExpanseCardExpandedInput extends Component {
                     <input id="inputOwner" type="text" className="form-control" value={(this.props.myId === this.props.owner._id) ? "You" : this.props.owner.name} readOnly />
 
                     <label for="inputdate" className="col-form-label">Date</label><br/>
-                    <DatePicker className="form-control w-100" selected={this.props.date} onChange={this.onDateChange}/>
+                    <DatePicker className="form-control w-100" selected={this.props.date} onChange={this.onDateChange} readOnly={this.props.readonly}/>
                 </div>
             </div>
         </form>

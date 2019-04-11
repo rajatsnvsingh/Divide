@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-const splitTypeEnum = Object.freeze({ "fraction": 1 })
+const splitTypeEnum = Object.freeze({ "fraction": 1 });
+const expenseStatusTypeEnum = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
 
 class ExpenseCardExpandedUserEntry extends Component {
     constructor(props) {
@@ -36,8 +37,8 @@ class ExpenseCardExpandedUserEntry extends Component {
         if(remainingAmount <= 0)
             expenseStatusType = "Closed";
         
-        
         return (
+            
             <tr>
                 <th scope="row">{this.props.rowIndex}</th>
                 <td>{transaction.userId.name}</td>
@@ -45,8 +46,8 @@ class ExpenseCardExpandedUserEntry extends Component {
                 <td>{splitType}</td>
                 <td>{remainingAmount}</td>
                 <td>{expenseStatusType}</td>
-                <td><button className="btn btn-normal" onClick={this.onVoidButtonClick}>Void</button></td>
-                <td><button className="close" aria-label="Close" onClick={this.onRemoveButtonClick}><span aria-hidden="true">&times;</span></button></td>
+                <td>{(!this.props.readonly && this.props.status === expenseStatusTypeEnum.open) ? <button className="btn btn-normal" onClick={this.onVoidButtonClick}>Void</button> : ""}</td>
+                <td>{(!this.props.readonly && this.props.status === expenseStatusTypeEnum.pending) ? <button className="close" aria-label="Close" onClick={this.onRemoveButtonClick}><span aria-hidden="true">&times;</span></button> : ""}</td>
             </tr>
         );
     }

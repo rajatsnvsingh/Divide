@@ -3,6 +3,7 @@ import ExpenseCardExpandedUserEntry from './ExpenseCardExpandedUserEntry.jsx';
 import './ExpenseCardUserList.css';
 
 const splitTypeEnum = Object.freeze({ "fraction": 1 });
+const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
 
 class ExpenseCardExpandedUserList extends Component {
     constructor(props) {
@@ -106,7 +107,7 @@ class ExpenseCardExpandedUserList extends Component {
     }
 
     onAddPersonButtonClicked() {
-        if(this.state.selectedUser === null) return;
+        if (this.state.selectedUser === null) return;
         let user = this.state.selectedUser;
         let split = this.state.splitSelection;
         this.props.onAddNewTransaction(user, split);
@@ -122,12 +123,14 @@ class ExpenseCardExpandedUserList extends Component {
         // Render list of transactions
         const transcationsList = this.props.transactions;
         const userListEntries = transcationsList.map((transaction, index) =>
-            (<ExpenseCardExpandedUserEntry 
-                key={index} 
-                rowIndex={index} 
-                transaction={transaction} 
+            (<ExpenseCardExpandedUserEntry
+                key={index}
+                rowIndex={index}
+                transaction={transaction}
                 onRemoveTransaction={this.props.onRemoveTransaction}
-                onVoidTransaction={this.props.onVoidTransaction} />)
+                onVoidTransaction={this.props.onVoidTransaction} 
+                readonly={this.props.readonly} status={this.props.status}
+                />)
         );
 
         // Filter list of users to show in dropdown
@@ -145,35 +148,37 @@ class ExpenseCardExpandedUserList extends Component {
 
         return (
             <div className="col">
-                <div className="form-row">
-                    <div className="form-group col-md-2">
-                        <label className="col-form-label">Split Method</label>
-                        <select id="inputState" className="form-control">
-                            <option value>{this.getStringFromSplitType(this.state.splitSelection)}</option>
-                        </select>
-                    </div>
-                    <div className="form-group col-md-2">
-                        <label className="col-form-label">Split With:</label>
-                        <button type="button"
-                            id="splitbutton"
-                            className="btn btn-default dropdown-toggle btn-block text-left sfbtn"
-                            type="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            onClick={this.onSearchButtonClicked}>
-                            {(this.state.selectedUser !== null) ? this.state.selectedUser.name : "Select User"}
-                        </button>
-                        <div className={"dropdown-menu " + this.state.searchDropdown} aria-labelledby="dropdownMenuButton">
-                            <input type="text" className="form-control-text ml-1 mr-1" placeholder="Enter a name..." value={this.state.searchText} onChange={this.onSearchTextChanged} />
-                            {userOptions}
+                {(this.props.status === expenseStatusType.pending) &&
+                    (<div className="form-row">
+                        <div className="form-group col-md-2">
+                            <label className="col-form-label">Split Method</label>
+                            <select id="inputState" className="form-control">
+                                <option value>{this.getStringFromSplitType(this.state.splitSelection)}</option>
+                            </select>
                         </div>
-                    </div>
-                    <div className="form-group col-md-2 split-button">
-                    <button className="btn btn-success" onClick={this.onAddPersonButtonClicked}>Split</button>
-                    </div>
-                </div>
 
+                        <div className="form-group col-md-2">
+                            <label className="col-form-label">Split With:</label>
+                            <button type="button"
+                                id="splitbutton"
+                                className="btn btn-default dropdown-toggle btn-block text-left sfbtn"
+                                type="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                onClick={this.onSearchButtonClicked}>
+                                {(this.state.selectedUser !== null) ? this.state.selectedUser.name : "Select User"}
+                            </button>
+                            <div className={"dropdown-menu " + this.state.searchDropdown} aria-labelledby="dropdownMenuButton">
+                                <input type="text" className="form-control-text ml-1 mr-1" placeholder="Enter a name..." value={this.state.searchText} onChange={this.onSearchTextChanged} />
+                                {userOptions}
+                            </div>
+                        </div>
+                        <div className="form-group col-md-2 split-button">
+                            <button className="btn btn-success" onClick={this.onAddPersonButtonClicked}>Split</button>
+                        </div>
+                    </div>)
+                }
 
                 <div className="row">
                     <div className="col">

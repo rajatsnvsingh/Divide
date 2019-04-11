@@ -31,10 +31,11 @@ class ExpanseCardExpandedInput extends Component {
             <div className="row text-center">
                 <div className="col-md-3">
                     <h4>Title</h4>
-                    <input type="text" className="form-control-text" value={this.props.title} placeholder="Enter a title..." onChange={this.onTitleChange}/>
+                    <input type="text" className="form-control" value={this.props.title} placeholder="Enter a title..." onChange={this.onTitleChange} readOnly={this.props.readonly}/>
                 </div>
                 <div className="col-md-3">
                     <h4>Date</h4>
+                    {/* {(this.props.readonly) ? <input type="text" className="form-control" } */}
                     <DatePicker selected={this.props.date} onChange={this.onDateChange}/>
                 </div>
                 

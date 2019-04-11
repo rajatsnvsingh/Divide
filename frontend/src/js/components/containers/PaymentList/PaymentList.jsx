@@ -6,18 +6,35 @@ class PaymentList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            payments: []
+            list: [
+                {
+                    key: 1,
+                    name: "Alex",
+                    amount: 40,
+                    isConfirmation: false
+                },
+                {
+                    key: 2,
+                    name: "Eric",
+                    amount: 73,
+                    isConfirmation: true
+                }
+            ]
         };
     }
 
     render() {
-       return (
-           <div>
-               <NewPaymentCard />
-               <PaymentCard name="Alex" amount={40} isConfirmation={false} />
-               <PaymentCard name="Eric" amount={73} isConfirmation={true} />
-           </div>
-       );
+        const list = this.state.list;
+        const content = list.map((x) =>
+            <PaymentCard key={x.key} name={x.name} amount={x.amount} isConfirmation={x.isConfirmation} />
+        );
+
+        return (
+            <div>
+                <NewPaymentCard />
+                {content}
+            </div>
+        );
     }
 }
 

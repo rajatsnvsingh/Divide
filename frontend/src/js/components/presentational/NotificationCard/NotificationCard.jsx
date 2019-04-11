@@ -6,13 +6,22 @@ class NotificationCard extends Component {
     }
 
     render() {
-        const isPayment = this.props.isPayment;
-        const content = this.props.content;
+        let header;
+        let content;
+
+        if (this.props.isPayment) {
+            header = "Payment";
+            content = <p>{this.props.name} has payed you <b className="text-success">${this.props.amount}</b></p>
+        }
+        else {
+            header = "Expense";
+            content = <p>You owe {this.props.name} <b className="text-danger">${this.props.amount}</b></p>
+        }
 
         return (
             <div className="card mb-3">
                 <div className="card-header p-2">
-                    <h6 className="float-left">{isPayment ? "Payment" : "Expense"}</h6>
+                    <h6 className="float-left">{header}</h6>
                 </div>
                 <div className="card-body p-3">
                     {content}

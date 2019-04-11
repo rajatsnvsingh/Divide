@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../../../../css/styles.css'; 
 
 class NewPaymentCard extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class NewPaymentCard extends Component {
     render() {
         return (
             <div className="card mb-3">
-                <div className="card-body">
+                <div className="card-body card-shadow">
                     <h2 className="card-title">Add a New Payment</h2>
                     <div className="form-inline">
                         <h2 className="mx-auto">

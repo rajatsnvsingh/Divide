@@ -3,20 +3,39 @@ import NotificationCard from "../../presentational/NotificationCard/Notification
 import './NotificationContentList.css';
 
 class NotificationContentList extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            notifications: []
+            list: [
+                {
+                    name: "Alex",
+                    amount: 10,
+                    isPayment: true
+                },
+                {
+                    name: "Sarah",
+                    amount: 15,
+                    isPayment: false
+                },
+                {
+                    name: "Eric",
+                    amount: 12,
+                    isPayment: 12
+                }
+            ]
         };
     }
 
     render() {
+        const list = this.state.list;
+        const content = list.map((x) =>
+            <NotificationCard name={x.name} amount={x.amount} isPayment={x.isPayment} />
+        );
+
         return (
             <div className="content-container">
-                <NotificationCard isPayment={true} content="Alex has payed you $50." />
-                <NotificationCard isPayment={false} content="Sarah has added you to an Expense. You owe Sarah $17." />
-                <NotificationCard isPayment={false} content="Eric has accepted your payment of $73." />
-            </div>
+                {content}
+           </div>
         );
     }
 }

@@ -23,12 +23,12 @@ class SummaryContentContainer extends Component {
 
             return (
                 <div>
-                    <h1 className="float-left">Owings</h1>
+                    <h1 className="float-left text-white">Owings</h1>
                     <button type="button" className={closeButtonStyle} onClick={this.closeButtonOnClick}>
                         <span><h1>&times;</h1></span>
                     </button>
                     <div className="clearfix mb-2"></div>
-                    <SummaryContentList filter={this.props.summaryFilter} />
+                    <SummaryContentList list={this.props.summaryList} filter={this.props.summaryFilter} />
                 </div>
             );
         }
@@ -36,7 +36,7 @@ class SummaryContentContainer extends Component {
         else {
             return (
                 <div>
-                    <h1 className="float-left">Notifications</h1>
+                    <h1 className="float-left text-white">Notifications</h1>
                     <button type="button" className="close float-right" onClick={this.closeButtonOnClick}>
                         <span><h1>&times;</h1></span>
                     </button>

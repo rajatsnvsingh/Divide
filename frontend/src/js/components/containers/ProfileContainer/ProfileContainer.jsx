@@ -6,17 +6,12 @@ import ProfileInfo from "../../presentational/ProfileInfo/ProfileInfo.jsx";
 class ProfileContainer extends Component {
     constructor(props) {
         super(props);
-        this.onViewStateChange = this.onViewStateChange.bind(this);
-    }
-
-    onViewStateChange(newViewState) {
-        this.props.onViewStateChange(newViewState)
     }
 
     render() {
         return (
             <div className="mb-4 text-center">
-                <NotificationButton badge={3} onViewStateChange={this.onViewStateChange} />
+                <NotificationButton badge={3} toggleViewState={this.props.toggleViewState} />
                 <ProfileInfo name="Rajat Singh" />
                 <div className="btn-group btn-group-lg" role="group">
                     <AmountButton style="owing" amount="50" />

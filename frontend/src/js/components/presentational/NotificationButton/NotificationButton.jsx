@@ -9,7 +9,7 @@ class NotificationButton extends Component {
     }
 
     onNotificationButtonClick() {
-        this.props.onViewStateChange(viewStateEnum.notifications);
+        this.props.toggleViewState();
     }
 
     render() {

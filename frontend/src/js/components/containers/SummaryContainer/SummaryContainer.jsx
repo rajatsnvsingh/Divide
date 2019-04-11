@@ -10,6 +10,7 @@ class SummaryContainer extends Component {
     constructor(props){
         super(props);
         this.onViewStateChange = this.onViewStateChange.bind(this);
+        this.toggleViewState = this.toggleViewState.bind(this);
         this.state = {
             viewState: viewStateEnum.summary,
             numNotifications: 0,
@@ -21,10 +22,20 @@ class SummaryContainer extends Component {
         this.setState({viewState: newViewState});
     }
 
+    toggleViewState() {
+        if (this.state.viewState === viewStateEnum.summary) {
+            this.setState({viewState: viewStateEnum.notifications});
+        }
+
+        else {
+            this.setState({viewState: viewStateEnum.summary});
+        }
+    }
+
     render() {
         return (
             <div className={this.props.className}>
-                <ProfileContainer onViewStateChange={this.onViewStateChange} />
+                <ProfileContainer toggleViewState={this.toggleViewState} />
                 <SummaryContentContainer viewState={this.state.viewState} />
             </div>
         );

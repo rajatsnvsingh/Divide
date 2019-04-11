@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ExpenseCardExpandedUserEntry from './ExpenseCardExpandedUserEntry.jsx';
+import './ExpenseCardUserList.css';
 
 const splitTypeEnum = Object.freeze({ "fraction": 1 });
 
@@ -143,21 +144,18 @@ class ExpenseCardExpandedUserList extends Component {
         );
 
         return (
-            <div className="col text-center">
-                <div className="row"><h4>&nbsp;</h4></div>
-                <div className="row">
-                    <div className="col-md-3">
-                        <h4>Split</h4>
-                        <button className="btn btn-default dropdown-toggle sfbtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.onSplitButtonClicked}>
-                            {this.getStringFromSplitType(this.state.splitSelection)}
-                        </button>
-                        <div className={"dropdown-menu " + this.state.splitDropdown} aria-labelledby="dropdownMenuButton">
-                            <a id="fraction-split" className="dropdown-item" href="#" onClick={this.onSplitOptionClicked}>Fraction</a>
-                        </div>
+            <div className="col">
+                <div className="form-row">
+                    <div className="form-group col-md-2">
+                        <label className="col-form-label" for="inputState">Split Method</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>{this.getStringFromSplitType(this.state.splitSelection)}</option>
+                        </select>
                     </div>
-                    <div className="col-md-3">
-                        <h4>Share With</h4>
+                    <div className="form-group col-md-2">
+                        <label className="col-form-label" for="splitbutton">Split With:</label>
                         <button type="button"
+                            id="splitbutton"
                             className="btn btn-default dropdown-toggle btn-block text-left sfbtn"
                             type="button"
                             data-toggle="dropdown"
@@ -171,14 +169,11 @@ class ExpenseCardExpandedUserList extends Component {
                             {userOptions}
                         </div>
                     </div>
-                    <div className="col-md-3"></div>
-                    <div className="col-md-3">
-                        <h4>&nbsp;</h4>
-                        <button className="btn btn-dark" onClick={this.onAddPersonButtonClicked}>Add Person</button>
+                    <div className="form-group col-md-2 split-button">
+                    <button className="btn btn-success" onClick={this.onAddPersonButtonClicked}>Split</button>
                     </div>
                 </div>
 
-                <div className="row"><h4>&nbsp;</h4></div>
 
                 <div className="row">
                     <div className="col">

@@ -31,20 +31,21 @@ class ExpanseCardExpandedInput extends Component {
             <form className="input-section">
             <div className="form-row">
                 <div className="form-group col-md-6">
-                    <label className="col-form-label">Title</label>
+                    <label for="inputTitle" className="col-form-label">Title</label>
                     <input type="text" id="inputTitle" className="form-control" value={this.props.title} placeholder="Enter a title.." onChange={this.onTitleChange} readOnly={this.props.readonly}/>
                     
-                    <label className="col-form-label">Amount</label>
+                    <label for="inputAmount" className="col-form-label">Amount</label>
                     <input type="text" id="inputAmount" className="form-control" value={this.props.totalAmount} placeholder="Enter Price"
                         onChange={this.onAmountChange}
                     />
                 </div>
                 
                 <div className="form-group col-md-6">
-                    <label className="col-form-label">Owner</label>
+                    <label for="inputOwner" className="col-form-label">Owner</label>
                     <input id="inputOwner" type="text" className="form-control" value={(this.props.myId === this.props.owner._id) ? "You" : this.props.owner.name} readOnly />
-                    <label className="col-form-label">Date</label>
-                    <input className="form-control" type="date" id="inputdate" value={this.props.date} onChange={this.onDateChange} />
+
+                    <label for="inputdate" className="col-form-label">Date</label><br/>
+                    <DatePicker className="form-control w-100" selected={this.props.date} onChange={this.onDateChange}/>
                 </div>
             </div>
         </form>

@@ -22,7 +22,7 @@ class SummaryContentContainer extends Component {
                 <div>
                     <h1 className="float-left">Owings</h1>
                     <div className="clearfix mb-2"></div>
-                    <SummaryContentList />
+                    <SummaryContentList filter={this.props.summaryFilter} />
                 </div>
             );
         }

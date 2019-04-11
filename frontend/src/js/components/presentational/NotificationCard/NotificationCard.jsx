@@ -13,7 +13,6 @@ class NotificationCard extends Component {
             <div className="card mb-3">
                 <div className="card-header p-2">
                     <h6 className="float-left">{isPayment ? "Payment" : "Expense"}</h6>
-                    <button type="button" className="close float-right"><span>&times;</span></button>
                 </div>
                 <div className="card-body p-3">
                     {content}

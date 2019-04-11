@@ -28,28 +28,27 @@ class ExpanseCardExpandedInput extends Component {
     render() {
         const date = this.props.date;
         return (
-            <div className="row text-center">
-                <div className="col-md-3">
-                    <h4>Title</h4>
-                    <input type="text" className="form-control-text" value={this.props.title} placeholder="Enter a title..." onChange={this.onTitleChange}/>
-                </div>
-                <div className="col-md-3">
-                    <h4>Date</h4>
-                    <DatePicker selected={this.props.date} onChange={this.onDateChange}/>
-                </div>
-                
-                
-                <div className="col-md-3">
-                    <h4>Amount</h4>
-                    <input type="text" className="form-control-text" value={this.props.totalAmount} placeholder="Enter an amount ($)"
+            <form className="input-section">
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label for="inputTitle" className="col-form-label">Title</label>
+                    <input type="text" id="inputTitle" className="form-control" value={this.props.title} placeholder="Expense Name" onChange={this.onTitleChange}/>
+                    
+                    <label for="inputAmount" className="col-form-label">Amount</label>
+                    <input type="text" id="inputAmount" className="form-control" value={this.props.totalAmount} placeholder="Enter Price"
                         onChange={this.onAmountChange}
                     />
                 </div>
-                <div className="col-md-3">
-                    <h4>Owner</h4>
-                    <input type="text" className="form-control" value={(this.props.myId === this.props.owner._id) ? "You" : this.props.owner.name} readOnly />
+                
+                <div className="form-group col-md-6">
+                    <label for="inputOwner" className="col-form-label">Owner</label>
+                    <input id="inputOwner" type="text" className="form-control" value={(this.props.myId === this.props.owner._id) ? "You" : this.props.owner.name} readOnly />
+
+                    <label for="inputdate" className="col-form-label">Date</label>
+                    <input className="form-control" type="date" id="inputdate"/>
                 </div>
             </div>
+        </form>
         );
 
 

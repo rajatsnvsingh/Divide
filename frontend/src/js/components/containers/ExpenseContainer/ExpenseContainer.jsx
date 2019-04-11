@@ -229,7 +229,7 @@ class ExpenseContainer extends Component {
                     </div>
                     <div className="col-2 center-col-items">
                         <button className="btn btn-success newExpenseBtn text-center" onClick={this.onAddNewExpense}>
-                            <span className="additionSymbol">&#43;</span>
+                            Add New
                         </button>
                     </div>
                 </div>

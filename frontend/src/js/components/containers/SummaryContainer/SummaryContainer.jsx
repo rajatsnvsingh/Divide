@@ -36,7 +36,7 @@ class SummaryContainer extends Component {
         return (
             <div className={this.props.className}>
                 <ProfileContainer toggleViewState={this.toggleViewState} />
-                <SummaryContentContainer viewState={this.state.viewState} />
+                <SummaryContentContainer viewState={this.state.viewState} onViewStateChange={this.onViewStateChange} />
             </div>
         );
     }

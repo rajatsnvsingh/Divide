@@ -147,13 +147,13 @@ class ExpenseCardExpandedUserList extends Component {
             <div className="col">
                 <div className="form-row">
                     <div className="form-group col-md-2">
-                        <label className="col-form-label" for="inputState">Split Method</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>{this.getStringFromSplitType(this.state.splitSelection)}</option>
+                        <label className="col-form-label">Split Method</label>
+                        <select id="inputState" className="form-control">
+                            <option value>{this.getStringFromSplitType(this.state.splitSelection)}</option>
                         </select>
                     </div>
                     <div className="form-group col-md-2">
-                        <label className="col-form-label" for="splitbutton">Split With:</label>
+                        <label className="col-form-label">Split With:</label>
                         <button type="button"
                             id="splitbutton"
                             className="btn btn-default dropdown-toggle btn-block text-left sfbtn"

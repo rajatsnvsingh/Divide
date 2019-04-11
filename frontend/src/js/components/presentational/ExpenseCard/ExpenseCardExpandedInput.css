@@ -9,3 +9,11 @@
 .input-section {
     padding: 20px;
 }
+
+.react-datepicker__input-container {
+    width: inherit;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}

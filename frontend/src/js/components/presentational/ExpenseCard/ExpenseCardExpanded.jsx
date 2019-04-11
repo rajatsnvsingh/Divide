@@ -124,6 +124,9 @@ class ExpenseCardExpanded extends Component {
     }
 
     render() {
+        // TODO fix the rest of the conditional stuff! (Also make sure to do CSS for readonly as well)
+        // May have to conditionally render entire datepicker in order to disable it?
+        let readonly = this.props.myId !== this.state.owner._id;
         return (
             <div className="card mb-3 card-exp">
                 <div className="card-body p-0">
@@ -136,6 +139,7 @@ class ExpenseCardExpanded extends Component {
                         onTitleChange={this.onTitleChange}
                         onDateChange={this.onDateChange}
                         onAmountChange={this.onAmountChange}
+                        readonly={readonly}
                         />
                     <ExpenseCardExpandedUserList
                         myId={this.props.myId} 
@@ -143,6 +147,7 @@ class ExpenseCardExpanded extends Component {
                         onAddNewTransaction={this.onAddNewTransaction}
                         onRemoveTransaction={this.onRemoveTransaction}
                         onVoidTransaction={this.onVoidTransaction}
+                        readonly={readonly}
                         />
                     <div className="row">
                         <div className="col btn-group csbtns">

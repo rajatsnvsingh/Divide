@@ -28,7 +28,7 @@ class SummaryContentContainer extends Component {
                         <span><h1>&times;</h1></span>
                     </button>
                     <div className="clearfix mb-2"></div>
-                    <SummaryContentList filter={this.props.summaryFilter} />
+                    <SummaryContentList list={this.props.summaryList} filter={this.props.summaryFilter} />
                 </div>
             );
         }

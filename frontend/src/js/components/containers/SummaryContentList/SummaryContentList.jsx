@@ -1,35 +1,36 @@
 import React, { Component } from "react";
 import SummaryOwingsCard from "../../presentational/SummaryOwingsCard/SummaryOwingsCard.jsx";
-import './SummaryContentList.css';
 import { summaryFilterEnum } from "../SummaryContainer/SummaryContainer.jsx";
+import './SummaryContentList.css';
 
 class SummaryContentList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            list: [
-                <SummaryOwingsCard name="Rajat" amount={24} isOwed={true} />,
-                <SummaryOwingsCard name="Ruble" amount={42} isOwed={false} />,
-                <SummaryOwingsCard name="Rajat" amount={10} isOwed={true} />
-            ]
-        };
-    }
+     }
 
     getList() {
         const filter = this.props.filter;
-        const list = this.state.list;
+        const list = this.props.list;
+        let filtered;
 
         switch (filter) {
-            case summaryFilterEnum.none:
-            default:
-                return list;
-
             case summaryFilterEnum.owe:
-                return list.filter(x => x.props.isOwed === false);
+                filtered = list.filter(x => x.isOwed === false);
+                break;
 
             case summaryFilterEnum.owed:
-                return list.filter(x => x.props.isOwed === true);
+                filtered = list.filter(x => x.isOwed === true);
+                break;                
+            
+            case summaryFilterEnum.none:
+            default:
+                filtered = list;
+                break;
         }
+
+        return filtered.map((x) =>
+            <SummaryOwingsCard name={x.name} amount={x.amount} isOwed={x.isOwed} />
+        );
     }
 
     render() {

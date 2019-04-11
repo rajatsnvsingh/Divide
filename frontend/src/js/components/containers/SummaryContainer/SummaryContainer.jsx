@@ -46,6 +46,7 @@ class SummaryContainer extends Component {
                     onViewStateChange={this.onViewStateChange}
                     onSummaryFilterChange={this.onSummaryFilterChange}
                     summaryFilter={this.state.summaryFilter}
+                    summaryList={this.props.summaryList}
                 />
             </div>
         );

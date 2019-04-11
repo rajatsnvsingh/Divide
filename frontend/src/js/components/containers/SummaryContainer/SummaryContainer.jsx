@@ -20,7 +20,11 @@ class SummaryContainer extends Component {
     }
 
     onSummaryFilterChange(newFilter) {
+        // set new filter
         this.setState({summaryFilter: newFilter});
+
+        // automatically change view to summary when filter changed
+        this.setState({viewState: viewStateEnum.summary});
     }
 
     onViewStateChange(newViewState) {

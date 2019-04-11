@@ -8,16 +8,19 @@ class NotificationContentList extends Component {
         this.state = {
             list: [
                 {
+                    id: 1,
                     name: "Alex",
                     amount: 10,
                     isPayment: true
                 },
                 {
+                    id: 2,
                     name: "Sarah",
                     amount: 15,
                     isPayment: false
                 },
                 {
+                    id: 3,
                     name: "Eric",
                     amount: 12,
                     isPayment: 12
@@ -29,7 +32,7 @@ class NotificationContentList extends Component {
     render() {
         const list = this.state.list;
         const content = list.map((x) =>
-            <NotificationCard name={x.name} amount={x.amount} isPayment={x.isPayment} />
+            <NotificationCard key={x.id} name={x.name} amount={x.amount} isPayment={x.isPayment} />
         );
 
         return (

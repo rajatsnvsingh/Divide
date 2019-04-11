@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MainContentContainer } from "./MainContentContainer/MainContentContainer.jsx";
 import SummaryContainer from "./SummaryContainer/SummaryContainer.jsx"
+import "./Home.css";
 
 class Home extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class Home extends Component {
     return (
       <div className="row">
         <SummaryContainer className="col-md-2 sidenav" myId={this.state.myId}/>
-        <MainContentContainer className="col-md-10" myId={this.state.myId} />
+        <MainContentContainer className="col-md-10 main-content" myId={this.state.myId} />
       </div>
     );
   }

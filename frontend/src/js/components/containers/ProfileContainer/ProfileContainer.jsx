@@ -4,18 +4,18 @@ import NotificationButton from "../../presentational/NotificationButton/Notifica
 import ProfileInfo from "../../presentational/ProfileInfo/ProfileInfo.jsx";
 
 class ProfileContainer extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
     render() {
         return (
             <div className="mb-4 text-center">
-                <NotificationButton badge={3} />
+                <NotificationButton badge={3} toggleViewState={this.props.toggleViewState} />
                 <ProfileInfo name="Rajat Singh" />
                 <div className="btn-group btn-group-lg" role="group">
-                    <AmountButton style="owing" amount="50" />
-                    <AmountButton style="owed" amount="42" />
+                    <AmountButton isOwed={true} amount={50} onSummaryFilterChange={this.props.onSummaryFilterChange} />
+                    <AmountButton isOwed={false} amount={42} onSummaryFilterChange={this.props.onSummaryFilterChange} />
                 </div>
             </div>
         );

@@ -128,7 +128,7 @@ class ExpenseCardExpanded extends Component {
         // May have to conditionally render entire datepicker in order to disable it?
         let readonly = this.props.myId !== this.state.owner._id;
         return (
-            <div className="card mb-3">
+            <div className="card mb-3 card-exp">
                 <div className="card-body p-0">
                     <ExpanseCardExpandedInput 
                         myId={this.props.myId}

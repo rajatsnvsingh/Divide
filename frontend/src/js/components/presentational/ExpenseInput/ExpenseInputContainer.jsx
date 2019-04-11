@@ -133,10 +133,10 @@ class ExpenseInputContainer extends Component {
                     </div>
                 </div>
 
-                <div className="row">
-                    <div className="col">
+                <div id="bottom-input-row" className="row">
+                    <div className="col-2">
                         <div className="button-group">
-                            <button type="button" className="btn btn-default dropdown-toggle btn-block text-left sfbtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.onFilterClick}>
+                            <button type="button" className="btn btn-default dropdown-toggle btn-outline-secondary text-left sfbtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.onFilterClick}>
                                 {this.convertFromFilterTypeToString(this.props.filterType)}
                             </button>
                             <div className={"dropdown-menu " + this.state.filterDropdown} aria-labelledby="dropdownMenuButton">
@@ -146,8 +146,8 @@ class ExpenseInputContainer extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="dropdown col">
-                        <button className="btn btn-default dropdown-toggle btn-block text-left sfbtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.onSortClick}>
+                    <div className="dropdown col-2">
+                        <button className="btn btn-default dropdown-toggle btn-outline-secondary text-left sfbtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.onSortClick}>
                             {this.convertFromSortTypeToString(this.props.sortType)}
                         </button>
                         <div className={"dropdown-menu " + this.state.sortDropdown} aria-labelledby="dropdownMenuButton">
@@ -159,7 +159,7 @@ class ExpenseInputContainer extends Component {
                             <a id="oldest-sort" className="dropdown-item" href="#" onClick={this.onSortTypeClicked}>Oldest</a>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="open-closed-toggle col-2">
                         <OpenClosedToggle viewClosedExpenses={this.props.viewClosedExpenses} onViewClosedExpensesChanged={this.props.onViewClosedExpensesChanged} />
                     </div>
                 </div>

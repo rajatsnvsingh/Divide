@@ -1,8 +1,5 @@
 .newExpenseBtn {
-    height: 100%;
     width: 100%;
-    border: none;
-    font-size: 3vw;
 }
 
 .additionSymbol {
@@ -12,4 +9,19 @@
 .removePadding {
     margin: 0px;
     padding: 0px;
+}
+
+#expense-input {
+    background-color: whitesmoke;
+}
+
+.expense-input {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: whitesmoke;
+}
+
+.center-col-items {
+    align-items: center;
+    text-align: center;
 }

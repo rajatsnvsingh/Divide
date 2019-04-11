@@ -215,8 +215,8 @@ class ExpenseContainer extends Component {
 
         return (
             <div>
-                <div className="row">
-                    <div className="col-10 removePadding">
+                <div className="row expense-input">
+                    <div id="expense-input" className="col-10">
                         <ExpenseInputContainer
                             searchTerm={this.state.searchTerm}
                             filterType={this.state.filterType}
@@ -227,9 +227,9 @@ class ExpenseContainer extends Component {
                             onSortTypeChanged={this.onSortTypeChanged}
                             onViewClosedExpensesChanged={this.onViewClosedExpensesChanged} />
                     </div>
-                    <div className="col-2 removePadding">
-                        <button className="btn-dark newExpenseBtn removePadding text-center" onClick={this.onAddNewExpense}>
-                            <span className="additionSymbol">&#43;</span>
+                    <div className="col-2 center-col-items">
+                        <button className="btn btn-success newExpenseBtn text-center" onClick={this.onAddNewExpense}>
+                            Add New
                         </button>
                     </div>
                 </div>

@@ -83,9 +83,7 @@ io.use(
 http.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 const socketManager = require("./app/socketManager.js");
-io.on("connection", function(socket) {
-  socketManager(socket);
-});
+io.on("connection", socket => socketManager(socket));
 
 function onAuthorizeFail(data, message, error, accept) {
   // error indicates whether the fail is due to an error or just a unauthorized client

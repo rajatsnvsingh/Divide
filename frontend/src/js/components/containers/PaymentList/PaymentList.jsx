@@ -6,28 +6,10 @@ import { FilterEnum, SortEnum } from "../PaymentContainer/PaymentContainer.jsx";
 class PaymentList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            list: [
-                {
-                    key: 2,
-                    name: "Eric",
-                    amount: 73,
-                    date: new Date(2019, 1, 1),
-                    completed: true
-                },
-                {
-                    key: 1,
-                    name: "Alex",
-                    amount: 40,
-                    date: new Date(2019, 1, 2),
-                    completed: false
-                }
-            ]
-        };
     }
 
     getList() {
-        let list = this.state.list;
+        let list = this.props.list;
         list = this.filterList(list);
         list = this.sortList(list);
         list = this.searchList(list);

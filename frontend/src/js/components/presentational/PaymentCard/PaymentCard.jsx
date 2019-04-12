@@ -27,12 +27,12 @@ class PaymentCard extends Component {
 
         return (
             <div className="card mb-3">
-                <div className="card-body card-shadow">
+                <div className="card-body card-shadow p-0">
                     <div className="row align-items-center">
-                        <div className="col-md-3">
-                            <img className="card-img w-50 ml-4" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>
+                        <div className="col-md-2">
+                            <img className="card-img" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-7">
                             <h3>{this.props.date.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</h3>
                             {content}
                         </div>

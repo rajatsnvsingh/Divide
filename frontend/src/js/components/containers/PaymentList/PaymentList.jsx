@@ -44,11 +44,11 @@ class PaymentList extends Component {
                 return list.sort((a, b) => b.name.localeCompare(a.name));
 
             case SortEnum.dateAsc:
-                return list.sort((a, b) => (new Date(b.date) - new Date(a.date)));
+                return list.sort((a, b) => (new Date(a.date) - new Date(b.date)));
 
             default:
             case SortEnum.dateDes:
-                return list.sort((a, b) => (new Date(a.date) - new Date(b.date)));
+                return list.sort((a, b) => (new Date(b.date) - new Date(a.date)));
         }
     }
 
@@ -61,7 +61,7 @@ class PaymentList extends Component {
 
         return (
             <div className="payment-list">
-                {this.props.newPayment ? <NewPaymentCard openCard={this.props.onNewPaymentChange}/> : null}                
+                {this.props.newPayment ? <NewPaymentCard openCard={this.props.onNewPaymentChange} /> : null}                
                 {list}
             </div>
         );

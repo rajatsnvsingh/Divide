@@ -35,7 +35,7 @@ class ExpenseList extends Component {
         );
 
         return (
-            <div>
+            <div className="expense-list">
                 <ul>{newExpenseComponents}</ul>
                 <ul>{expenseComponents}</ul>
             </div>

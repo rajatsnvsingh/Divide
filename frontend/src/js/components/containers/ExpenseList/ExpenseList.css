@@ -3,3 +3,9 @@ ul {
     padding: 0px;
     list-style-type: none;
 }
+
+.expense-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
+}

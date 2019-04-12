@@ -35,6 +35,7 @@ class ExpenseCardExpanded extends Component {
         }
          
         this.state = {
+            _id: expense._id,
             title: expense.title,
             date: expense.date,
             status: expense.status,
@@ -120,7 +121,23 @@ class ExpenseCardExpanded extends Component {
 
     onSaveButtonClick(){
         // TODO verify that everything in the new expense is acceptable
-        // TODO use a web socket to send the new expense
+        let newExpense = {
+            _id: this.state._id,
+            title: this.state.title,
+            totalAmt: this.state.totalAmount,
+            ownerId: this.state.owner,
+            status: this.state.status,
+            date: this.state.date,
+            transactions: this.state.transactions
+        };
+        let newExpenseJson = JSON.stringify(newExpense);
+
+        if(newExpense.status === expenseStatusType.pending){
+            // TODO Use web socket to create a new expense
+        }
+        else if(newExpense.status === expenseStatusType.open){
+            // TODO Use web socket to update the expense
+        }
         this.props.onClose();
     }
 

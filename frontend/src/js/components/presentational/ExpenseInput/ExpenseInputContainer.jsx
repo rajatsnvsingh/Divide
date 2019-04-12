@@ -30,20 +30,17 @@ class ExpenseInputContainer extends Component {
         return (
             <div className="ExpenseInput">
                 <div className="row">
-                    <div className="col">
+                    <div className="col-md-4">
                         <input className="form-control" type="text" placeholder="Search" aria-label="Search" value={this.props.searchTerm} onChange={this.onSearchTermChanged}></input>
                     </div>
-                </div>
-
-                <div id="bottom-input-row" className="row">
-                    <div className="col-3">
+                    <div className="col-md-3">
                         <select className="form-control" onChange={this.onFilterChange} value={this.props.filterType}>
                             <option value={filterTypeEnum.noFilter}>No Filter</option>
                             <option value={filterTypeEnum.myExpenses}>My Expenses</option>
                             <option value={filterTypeEnum.otherExpenses}>Other Expenses</option>
                         </select>
                     </div>
-                    <div className="col-3">
+                    <div className="col-md-3">
                         <select className="form-control" onChange={this.onSortChange} value={this.props.sortType}>
                             <option value={sortTypeEnum.titleAsc}>Title-Ascending</option>
                             <option value={sortTypeEnum.titleDesc}>Title-Descending</option>
@@ -53,10 +50,14 @@ class ExpenseInputContainer extends Component {
                             <option value={sortTypeEnum.oldest}>Oldest</option>
                         </select>
                     </div>
-                    <div className="open-closed-toggle col-3">
+                    <div className="open-closed-toggle col-md-1">
                         <OpenClosedToggle viewClosedExpenses={this.props.viewClosedExpenses} onViewClosedExpensesChanged={this.props.onViewClosedExpensesChanged} />
                     </div>
                 </div>
+
+                
+                    
+                
             </div>
         );
     }

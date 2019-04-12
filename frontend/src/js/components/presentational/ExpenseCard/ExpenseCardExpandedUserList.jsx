@@ -189,7 +189,8 @@ class ExpenseCardExpandedUserList extends Component {
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Split Type</th>
-                                    <th scope="col">Payment Amount</th>
+                                    <th scope="col">Amount Owed</th>
+                                    <th scope="col">Amount Paid</th>
                                     <th scope="col">Payment Status</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
@@ -199,6 +200,7 @@ class ExpenseCardExpandedUserList extends Component {
                                 {userListEntries}
                             </tbody>
                         </table>
+                        {userListEntries.length === 0 && <div className="text-center text-danger">At least 1 transaction required</div>}
                     </div>
                 </div>
             </div>

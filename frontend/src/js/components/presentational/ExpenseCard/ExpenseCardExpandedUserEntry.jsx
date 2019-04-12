@@ -44,7 +44,8 @@ class ExpenseCardExpandedUserEntry extends Component {
                 <td>{transaction.userId.name}</td>
                 <td>{transaction.userId.email}</td>
                 <td>{splitType}</td>
-                <td>{remainingAmount}</td>
+                <td>{transaction.amtOwing}</td>
+                <td>{transaction.amtPaid}</td>
                 <td>{expenseStatusType}</td>
                 <td>{(!this.props.readonly && this.props.status === expenseStatusTypeEnum.open) ? <button className="btn btn-normal" onClick={this.onVoidButtonClick}>Void</button> : ""}</td>
                 <td>{(!this.props.readonly && this.props.status === expenseStatusTypeEnum.pending) ? <button className="close" aria-label="Close" onClick={this.onRemoveButtonClick}><span aria-hidden="true">&times;</span></button> : ""}</td>

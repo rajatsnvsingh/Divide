@@ -22,18 +22,25 @@ class ExpanseCardExpandedInput extends Component {
 
     onAmountChange(event){
         const newAmount = event.target.value;
+        if(newAmount !== "" && (isNaN(parseFloat(newAmount)) || !isFinite(newAmount))) return;
         this.props.onAmountChange(newAmount);
     }
     
     render() {
+        let renderTitleMessage = false;
+        let renderAmountMessage = false;
+
+        if(this.props.title.length === 0) renderTitleMessage = true;
+        if(isNaN(this.props.totalAmount) || this.props.totalAmount <= 0) renderAmountMessage = true; 
+
         return (
             <form className="input-section">
             <div className="form-row">
                 <div className="form-group col-md-6">
-                    <label className="col-form-label">Title</label>
+                    <label className="col-form-label">Title <span className="text-danger">{renderTitleMessage && "(Must not be Empty)"}</span></label>
                     <input type="text" id="inputTitle" className="form-control" value={this.props.title} placeholder="Enter a title.." onChange={this.onTitleChange} readOnly={this.props.readonly}/>
                     
-                    <label className="col-form-label">Amount</label>
+                    <label className="col-form-label">Amount <span className="text-danger">{renderAmountMessage && "(Must be a Non-Zero Number)"}</span></label>
                     <input type="text" id="inputAmount" className="form-control" value={this.props.totalAmount} placeholder="Enter Price"
                         onChange={this.onAmountChange}
                         readOnly={this.props.readonly}

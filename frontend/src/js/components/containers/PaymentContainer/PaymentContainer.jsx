@@ -19,7 +19,7 @@ class PaymentContainer extends Component {
             search: "",
             filter: FilterEnum.none,
             sort: SortEnum.dateDes,
-            newPayment: false
+            newPayment: false,
         };
     }
 
@@ -41,7 +41,7 @@ class PaymentContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="d-none d-md-block">
                 <PaymentInputContainer
                     onNewPaymentChange={this.onNewPaymentChange}
                     onSearchChange={this.onSearchChange}
@@ -56,7 +56,8 @@ class PaymentContainer extends Component {
                     onNewPaymentChange={this.onNewPaymentChange}
                     search={this.state.search}
                     filter={this.state.filter}   
-                    sort={this.state.sort}                   
+                    sort={this.state.sort}
+                    list={this.props.payments}                   
                 />
             </div>
         );

@@ -28,7 +28,7 @@ module.exports.clientHandler = function(socket) {
   print("user connected");
   socket.userId = socket.request.user._id;
   //console.log(socket.request.user._id);
-  //socket.userId = "5c92d94872f65b44e3badd33";
+  //socket.userId = "5cafd0222e9bae3c88654a1a";
   userSockets.push(socket);
   /**
    * All Expense Socket functions
@@ -45,7 +45,8 @@ module.exports.clientHandler = function(socket) {
       return "User not authenticated!";
     }
     print("User sent a new expense!");
-    expenseService.createExpense(data, callback);
+    console.log(JSON.parse(data));
+    expenseService.createExpense(JSON.parse(data), callback);
   });
   socket.on("update_expense", function(data, callback) {
     if (!checkAuth(socket)) {

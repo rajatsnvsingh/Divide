@@ -29,7 +29,7 @@ class SummaryContentList extends Component {
         }
 
         return filtered.map((x) =>
-            <SummaryOwingsCard key={x.id} name={x.name} amount={x.amount} />
+            <SummaryOwingsCard key={x.userId} name={x.name} amount={x.amount} />
         );
     }
 

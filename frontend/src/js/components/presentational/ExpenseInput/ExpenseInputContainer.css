@@ -17,3 +17,9 @@
 .open-closed-toggle {
     padding: 0;
 }
+
+.dropdown-menu {
+    margin: auto;
+    margin-left: 14px;
+    max-width: 0; 
+}

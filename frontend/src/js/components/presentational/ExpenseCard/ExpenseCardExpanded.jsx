@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ExpanseCardExpandedInput from "./ExpenseCardExpandedInput.jsx";
 import ExpenseCardExpandedUserList from "./ExpenseCardExpandedUserList.jsx";
+import "../../../../css/styles.css";
 
 const splitTypeEnum = Object.freeze({ "fraction": 1 });
 const expenseStatusType = Object.freeze({ "pending": 1, "open": 2, "closed": 3 });
@@ -135,7 +136,7 @@ class ExpenseCardExpanded extends Component {
         
         return (
             <div className="card mb-3 card-exp">
-                <div className="card-body p-0">
+                <div className="card-body card-shadow p-0">
                     <ExpanseCardExpandedInput 
                         myId={this.props.myId}
                         title={this.state.title} 

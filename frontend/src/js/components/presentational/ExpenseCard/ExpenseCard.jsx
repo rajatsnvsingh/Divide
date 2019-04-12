@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./ExpenseCard.css";
+import "../../../../css/styles.css";
+
 class ExpenseCard extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +50,7 @@ class ExpenseCard extends Component {
 
         return (
             <div className="card mb-3 excard" onClick={this.onClick}>
-                <div className="card-body p-0">
+                <div className="card-body card-shadow p-0">
                     <div className="row align-items-center">
                         <div className="col-2">
                             <h4>{monthName}</h4>

@@ -128,7 +128,6 @@ class ExpenseContainer extends Component {
         retrievedExpenses.forEach(expense => {
             // If You are the owner of the expense, get the transactions owed to you
             if(expense.ownerId._id === this.props.myId){
-                console.log("Here");
                 expense.transactions.forEach(transaction => {
                     let otherUserId = transaction.userId._id;
                     if(!(otherUserId in summaryResults))
@@ -154,7 +153,8 @@ class ExpenseContainer extends Component {
             let summary = {userId: id, name: summaryResults[id].name, amt: summaryResults[id].amt};
             summaryList.push(summary);
         }
-        
+
+        this.props.onUpdateSummaryList(summaryList);
     }
 
         // Expense List Filters and Sort

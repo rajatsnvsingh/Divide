@@ -1,48 +1,54 @@
-const mongoose = require('mongoose');
-const paymentController = require('../controllers/payment.controller');
-const notificationController = require('../controllers/notification.controller');
-const transactionController = require('../controllers/transaction.controller');
-const expenseController = require('../controllers/expense.controller');
-const Payment = mongoose.model('Payment');
-const Notification = mongoose.model('Notification');
+const mongoose = require("mongoose");
+const paymentController = require("../controllers/payment.controller");
+const notificationController = require("../controllers/notification.controller");
+const transactionController = require("../controllers/transaction.controller");
+const expenseController = require("../controllers/expense.controller");
+const Payment = mongoose.model("Payment");
+const Notification = mongoose.model("Notification");
 
-exports.createPayment = function (jsonObj, callback) {
+exports.createPayment = function(jsonObj, callback) {
   let payment = new Payment(jsonObj);
-  paymentController
-    .createPayment(payment)
-    .then(function(savedPayment) {
-      let payeeNotification = new Notification({
-        targetId: savedPayment.payeeId,
-        type: "New Payment",
-        paymentId: savedPayment._id
-      });
-      notificationController.createNotification(payeeNotification);
-      callback(savedPayment);
+  paymentController.createPayment(payment).then(function(savedPayment) {
+    let payeeNotification = new Notification({
+      targetId: savedPayment.payeeId,
+      type: "New Payment",
+      paymentId: savedPayment._id
     });
+    notificationController.createNotification(payeeNotification);
+    callback(savedPayment);
+  });
 };
 
-exports.getPaymentsByUserId = function(id) {
-  return paymentController.getPaymentByUserId(id)
+exports.getPaymentsByUserId = function(id, callback) {
+  paymentController
+    .getPaymentByUserId(id)
     .populate({
-      path: 'payerId',
-      model: 'User'
-    }).populate({
-      path: 'payeeId',
-      model: 'User'
+      path: "payerId",
+      model: "User"
+    })
+    .populate({
+      path: "payeeId",
+      model: "User"
+    })
+    .then(payments => {
+      callback(payments);
     });
 };
 
 exports.getPayments = function() {
-  return paymentController.getAllPayments()
+  return paymentController
+    .getAllPayments()
     .populate({
-      path: 'payerId',
-      model: 'User'
-    }).populate({
-      path: 'payeeId',
-      model: 'User'
-    }).populate({
-      path: 'expenses',
-      model: 'Expense'
+      path: "payerId",
+      model: "User"
+    })
+    .populate({
+      path: "payeeId",
+      model: "User"
+    })
+    .populate({
+      path: "expenses",
+      model: "Expense"
     });
 };
 
@@ -60,7 +66,9 @@ exports.acceptPayment = function(id, callback) {
     transactionController
       .getTransactionsInDirection(payment.payeeId, payment.payerId)
       .then(function(transactions) {
-        transactions = transactions.filter(transaction => transaction.status === 'Pending');
+        transactions = transactions.filter(
+          transaction => transaction.status === "Pending"
+        );
         transactions = transactions.sort(function(transactionA, transactionB) {
           return new Date(transactionA.date) - new Date(transactionB.date);
         });
@@ -69,9 +77,11 @@ exports.acceptPayment = function(id, callback) {
         let transactionsToUpdate = [];
 
         // for each of the transactions in the array
-        for (let i = 0; (i < transactions.length && amtAvailable !== 0); i++) {
-          let amtApplicable = transactions[i].amtOwing - transactions[i].amtPaid;
-          let amtBeingApplied = (amtApplicable <= amtAvailable ? amtApplicable : amtAvailable);
+        for (let i = 0; i < transactions.length && amtAvailable !== 0; i++) {
+          let amtApplicable =
+            transactions[i].amtOwing - transactions[i].amtPaid;
+          let amtBeingApplied =
+            amtApplicable <= amtAvailable ? amtApplicable : amtAvailable;
           let newPaid = transactions[i].amtPaid + amtBeingApplied;
           transactions[i].amtPaid = Math.round(newPaid * 100) / 100;
           amtAvailable -= amtBeingApplied;
@@ -80,23 +90,31 @@ exports.acceptPayment = function(id, callback) {
           transactionsToUpdate.push(transactions[i]);
         }
 
-        transactionController.updateMultipleTransactions(transactionsToUpdate).then(function(updatedTransactions) {
-          expenseController.getExpensesByTransactions(updatedTransactions).then(function(updatedExpenses) {
-            // TODO: socket emit updated expenses
-            payment.expenses = updatedExpenses;
-            payment.status = 'Accepted';
-            paymentController.updatePayment(payment).then(function(acceptedPayment) {
-              let acceptPaymentNotification = new Notification({
-                targetId: acceptedPayment.payerId,
-                type: 'Accepted Payment',
-                paymentId: acceptedPayment._id
+        transactionController
+          .updateMultipleTransactions(transactionsToUpdate)
+          .then(function(updatedTransactions) {
+            expenseController
+              .getExpensesByTransactions(updatedTransactions)
+              .then(function(updatedExpenses) {
+                // TODO: socket emit updated expenses
+                payment.expenses = updatedExpenses;
+                payment.status = "Accepted";
+                paymentController
+                  .updatePayment(payment)
+                  .then(function(acceptedPayment) {
+                    let acceptPaymentNotification = new Notification({
+                      targetId: acceptedPayment.payerId,
+                      type: "Accepted Payment",
+                      paymentId: acceptedPayment._id
+                    });
+                    notificationController
+                      .createNotification(acceptPaymentNotification)
+                      .then(function() {
+                        callback(acceptedPayment, updatedTransactions);
+                      });
+                  });
               });
-              notificationController.createNotification(acceptPaymentNotification).then(function() {
-                callback(acceptedPayment, updatedTransactions);
-              });
-            });
           });
-        });
       });
   });
 };
@@ -109,8 +127,10 @@ exports.declinePayment = function(id, callback) {
       type: "Payment Rejected",
       paymentId: deletedPayment._id
     });
-    notificationController.createNotification(paymentRejectionNotif).then(function() {
-      callback(deletedPayment);
-    });
+    notificationController
+      .createNotification(paymentRejectionNotif)
+      .then(function() {
+        callback(deletedPayment);
+      });
   });
 };

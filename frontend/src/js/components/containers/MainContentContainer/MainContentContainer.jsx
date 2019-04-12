@@ -156,7 +156,7 @@ class MainContentContainer extends Component {
         
         let summaryList = []
         for(let id in summaryResults){
-            let summary = {userId: id, name: summaryResults[id].name, amt: summaryResults[id].amt};
+            let summary = {userId: id, name: summaryResults[id].name, amount: summaryResults[id].amt};
             summaryList.push(summary);
         }
 

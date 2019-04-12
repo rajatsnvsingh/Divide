@@ -12,7 +12,7 @@ class ProfileContainer extends Component {
         return (
             <div className="mb-4 text-center">
                 <NotificationButton badge={3} toggleViewState={this.props.toggleViewState} />
-                <ProfileInfo name="Rajat Singh" />
+                <ProfileInfo name={this.props.name} />
                 <div className="btn-group btn-group-lg" role="group">
                     <AmountButton isOwed={true} amount={50} onSummaryFilterChange={this.props.onSummaryFilterChange} />
                     <AmountButton isOwed={false} amount={42} onSummaryFilterChange={this.props.onSummaryFilterChange} />

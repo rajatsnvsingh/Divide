@@ -185,11 +185,12 @@ class MainContentContainer extends Component {
         const viewIndex = this.state.viewIndex;
 
         return (
-            <div className="main-content">
+            <div className="main-content d-none d-md-block">
+                <div className="makesmaller">
                 <NavigationHeader viewIndex={viewIndex} onNavigationButtonClick={this.onNavigationButtonClick} />
                 {viewIndex === viewIndexEnum.expenses ? 
                     <ExpenseContainer myId={this.props.myId} expenses={this.state.expenses}/> : 
-                    <PaymentContainer myId={this.props.myId} payments={this.state.payments}/>}
+                    <PaymentContainer myId={this.props.myId} payments={this.state.payments}/>}</div>
             </div>
         );
     }

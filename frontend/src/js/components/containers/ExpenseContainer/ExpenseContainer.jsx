@@ -267,7 +267,7 @@ class ExpenseContainer extends Component {
         let sortedExpense = filteredExpenses.sort((a, b) => this.sortExpenses(a, b));
 
         return (
-            <div>
+            <div className="d-none d-md-block">
                 <div className="row expense-input">
                     <div id="expense-input" className="col-10">
                         <ExpenseInputContainer

@@ -79,8 +79,8 @@ class ExpenseContainer extends Component {
                     "name": "Aidan Bailey",
                     "__v": 0
                 },
-                status: expenseStatusType.closed,
-                date: new Date(),
+                status: expenseStatusType.open,
+                date: new Date(2018, 1, 3),
                 transactions: [
                     {
                         "_id": "2",
@@ -241,11 +241,30 @@ class ExpenseContainer extends Component {
         return true;
     }
 
+    sortExpenses(expenseA, expenseB){
+        switch (this.state.sortType) {
+            case sortTypeEnum.titleAsc:
+                return (expenseA.title < expenseB.title) ? -1 : 1;
+            case sortTypeEnum.titleDesc:
+                return (expenseA.title < expenseB.title) ? 1 : -1;
+            case sortTypeEnum.priceHigh:
+                return (expenseA.totalAmt < expenseB.totalAmt) ? 1 : -1;
+            case sortTypeEnum.priceLow:
+                return (expenseA.totalAmt < expenseB.totalAmt) ? -1 : 1;
+            case sortTypeEnum.latest:
+                return (expenseA.date < expenseB.date) ? 1 : -1;
+            case sortTypeEnum.oldest:
+                return (expenseA.date < expenseB.date) ? -1 : 1;
+        }
+    }
+
 
     render() {
         let filteredExpenses = this.state.expenses.filter((expense) =>
             this.filterExpense(expense)
         );
+
+        let sortedExpense = filteredExpenses.sort((a, b) => this.sortExpenses(a, b));
 
         return (
             <div>

@@ -11,7 +11,7 @@ class MainContentContainer extends Component {
         super(props);
         this.onNavigationButtonClick = this.onNavigationButtonClick.bind(this);
         this.state = {
-            viewIndex: viewIndexEnum.payments
+            viewIndex: viewIndexEnum.expenses
         }
     }
 

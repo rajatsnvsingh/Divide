@@ -127,6 +127,11 @@ class ExpenseCardExpanded extends Component {
         let readonly = true;
         if(this.props.myId === this.state.owner._id && this.state.status !== expenseStatusType.closed)
             readonly = false;
+
+        let saveBtnEnabled = false;
+        // Determine if save button should be enabled
+        if(this.state.title.length > 0 && !isNaN(this.state.totalAmount) && this.state.totalAmount > 0 && this.state.transactions.length > 0)
+            saveBtnEnabled = true;
         
         return (
             <div className="card mb-3 card-exp">
@@ -154,7 +159,7 @@ class ExpenseCardExpanded extends Component {
                     <div className="row">
                         <div className="col btn-group csbtns">
                             <button className="btn btn-secondary" onClick={this.onCancelButtonClick}>Cancel</button>
-                            {!readonly && <button className="btn btn-primary" onClick={this.onSaveButtonClick}>Save</button>}
+                            {!readonly && <button className="btn btn-primary" disabled={!saveBtnEnabled} onClick={this.onSaveButtonClick}>Save</button>}
                         </div>
                     </div>
                 </div>

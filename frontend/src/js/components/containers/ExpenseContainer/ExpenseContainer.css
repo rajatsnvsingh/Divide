@@ -11,14 +11,9 @@
     padding: 0px;
 }
 
-#expense-input {
-    background-color: whitesmoke;
-}
-
 .expense-input {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: whitesmoke;
 }
 
 .center-col-items {

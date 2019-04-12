@@ -3,7 +3,7 @@ import PaymentList from "../PaymentList/PaymentList.jsx";
 import PaymentInputContainer from "../PaymentInputContainer/PaymentInputContainer.jsx";
 
 export const FilterEnum = Object.freeze({"none": 1, "completed": 2, "pending": 3});
-export const SortEnum = Object.freeze({"date": 1, "name": 2});
+export const SortEnum = Object.freeze({"dateAsc": 1, "dateDes": 2, "nameAsc": 3, "nameDes": 4});
 
 class PaymentContainer extends Component {
     constructor(props) {
@@ -17,8 +17,8 @@ class PaymentContainer extends Component {
         
         this.state = {
             search: "",
-            filter: FilterEnum.none, // Create an enum for this probably
-            sort: SortEnum.date, // Create an enum for this probably
+            filter: FilterEnum.none,
+            sort: SortEnum.dateDes,
             newPayment: false
         };
     }

@@ -11,12 +11,14 @@ class PaymentList extends Component {
                     key: 1,
                     name: "Alex",
                     amount: 40,
+                    date: new Date(),
                     isConfirmation: false
                 },
                 {
                     key: 2,
                     name: "Eric",
                     amount: 73,
+                    date: new Date(),
                     isConfirmation: true
                 }
             ]
@@ -26,12 +28,12 @@ class PaymentList extends Component {
     render() {
         const list = this.state.list;
         const content = list.map((x) =>
-            <PaymentCard key={x.key} name={x.name} amount={x.amount} isConfirmation={x.isConfirmation} />
+            <PaymentCard key={x.key} name={x.name} amount={x.amount} date={x.date} isConfirmation={x.isConfirmation} />
         );
 
         return (
             <div>
-                <NewPaymentCard />
+                {this.props.newPayment ? <NewPaymentCard openCard={this.props.onNewPaymentChange}/> : null}                
                 {content}
             </div>
         );

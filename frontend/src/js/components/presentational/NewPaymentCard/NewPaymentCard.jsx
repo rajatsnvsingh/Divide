@@ -4,6 +4,16 @@ import '../../../../css/styles.css';
 class NewPaymentCard extends Component {
     constructor(props) {
         super(props);
+        this.closeCard = this.closeCard.bind(this);
+        this.onConfirmClick = this.onConfirmClick.bind(this);
+    }
+
+    closeCard() {
+        this.props.openCard(false);
+    }
+
+    onConfirmClick() {
+        this.closeCard();
     }
 
     render() {
@@ -18,7 +28,8 @@ class NewPaymentCard extends Component {
                             on <input type="date"  className="form-control"></input>
                         </h2>
                     </div>
-                    <button type="button" className="btn btn-primary btn-lg">Confirm</button>
+                    <button type="button" className="btn btn-secondary btn-lg mr-2" onClick={this.closeCard}>Cancel</button>
+                    <button type="button" className="btn btn-primary btn-lg" onClick={this.onConfirmClick}>Confirm</button>
                </div>
             </div>
         );

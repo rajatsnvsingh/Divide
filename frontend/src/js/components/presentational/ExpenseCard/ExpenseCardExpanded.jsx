@@ -124,8 +124,6 @@ class ExpenseCardExpanded extends Component {
     }
 
     render() {
-        // TODO fix the rest of the conditional stuff! (Also make sure to do CSS for readonly as well)
-        // May have to conditionally render entire datepicker in order to disable it?
         let readonly = true;
         if(this.props.myId === this.state.owner._id && this.state.status !== expenseStatusType.closed)
             readonly = false;

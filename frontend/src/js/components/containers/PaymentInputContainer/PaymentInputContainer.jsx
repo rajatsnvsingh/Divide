@@ -15,15 +15,15 @@ class PaymentInputContainer extends Component {
     }
 
     onFilterChange(event) {
-        this.props.onFilterChange(event.target.value);
+        this.props.onFilterChange(parseInt(event.target.value));
     }
 
     onSearchChange(event) {
-        this.props.onSearchChange(event.target.value);
+        this.props.onSearchChange(parseInt(event.target.value));
     }
 
     onSortChange(event) {
-        this.props.onSortChange(event.target.value);
+        this.props.onSortChange(parseInt(event.target.value));
     }
 
     render() {
@@ -47,8 +47,10 @@ class PaymentInputContainer extends Component {
                     </div>
                     <div className="col-md-2">
                         <select className="form-control" onChange={this.onSortChange}>
-                            <option value={SortEnum.date}>Latest</option>
-                            <option value={SortEnum.name}>Name</option>
+                            <option value={SortEnum.dateDes}>Latest</option>
+                            <option value={SortEnum.dateAsc}>Oldest</option>
+                            <option value={SortEnum.nameAsc}>Name (Ascending)</option>
+                            <option value={SortEnum.nameDes}>Name (Descending)</option>
                         </select>
                     </div>
                     <div className="col">

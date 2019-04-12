@@ -13,11 +13,30 @@ class MainContentContainer extends Component {
         this.onNavigationButtonClick = this.onNavigationButtonClick.bind(this);
         this.state = {
             viewIndex: viewIndexEnum.expenses,
-            expenses: []
+            expenses: [],
+            payments: []
         }
     }
 
     componentDidMount() {
+        let retrievedPayments = [
+            {
+                key: 2,
+                name: "Eric",
+                amount: 73,
+                date: new Date(2019, 1, 1),
+                completed: true
+            },
+            {
+                key: 1,
+                name: "Alex",
+                amount: 40,
+                date: new Date(2019, 1, 2),
+                completed: false
+            }
+        ];
+
+
         let retrievedExpenses = [
             {
                 _id: "1",
@@ -107,7 +126,8 @@ class MainContentContainer extends Component {
         ];
         
         this.setState({
-            expenses: retrievedExpenses
+            expenses: retrievedExpenses,
+            payments: retrievedPayments
         });
 
         let summaryResults = {};
@@ -155,7 +175,7 @@ class MainContentContainer extends Component {
                 <NavigationHeader viewIndex={viewIndex} onNavigationButtonClick={this.onNavigationButtonClick} />
                 {viewIndex === viewIndexEnum.expenses ? 
                     <ExpenseContainer myId={this.props.myId} expenses={this.state.expenses}/> : 
-                    <PaymentContainer myId={this.props.myId}/>}
+                    <PaymentContainer myId={this.props.myId} payments={this.state.payments}/>}
             </div>
         );
     }

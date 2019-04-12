@@ -3,6 +3,11 @@ import React, { Component } from "react";
 class PaymentInputContainer extends Component {
     constructor(props) {
         super(props);
+        this.onNewPaymentClick = this.onNewPaymentClick.bind(this);
+    }
+
+    onNewPaymentClick() {
+        this.props.onNewPaymentChange(true);
     }
 
     render() {
@@ -28,7 +33,7 @@ class PaymentInputContainer extends Component {
                         </select>
                     </div>
                     <div className="col">
-                        <button type="button" className="btn btn-primary w-100">Enter a Payment</button>
+                        <button type="button" className="btn btn-primary w-100" onClick={this.onNewPaymentClick}>Enter a Payment</button>
                     </div>
                 </div>
             </div>

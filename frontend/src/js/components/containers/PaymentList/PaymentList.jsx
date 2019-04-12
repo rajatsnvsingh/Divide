@@ -33,7 +33,7 @@ class PaymentList extends Component {
 
         return (
             <div>
-                <NewPaymentCard />
+                {this.props.newPayment ? <NewPaymentCard openCard={this.props.onNewPaymentChange}/> : null}                
                 {content}
             </div>
         );

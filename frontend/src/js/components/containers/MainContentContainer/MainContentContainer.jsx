@@ -24,14 +24,14 @@ class MainContentContainer extends Component {
                 key: 2,
                 name: "Eric",
                 amount: 73,
-                date: new Date(2019, 1, 1),
+                date: new Date(2019, 0, 1),
                 completed: true
             },
             {
                 key: 1,
                 name: "Alex",
                 amount: 40,
-                date: new Date(2019, 1, 2),
+                date: new Date(2019, 0, 2),
                 completed: false
             }
         ];

@@ -43,11 +43,11 @@ class PaymentList extends Component {
                 return list.sort((a, b) => b.name.localeCompare(a.name));
 
             case SortEnum.dateAsc:
-                return list.sort((a, b) => (new Date(a.date) - new Date(b.date)));
+                return list.sort((a, b) => (new Date(b.date) - new Date(a.date)));
 
             default:
             case SortEnum.dateDes:
-                return list.sort((a, b) => (new Date(b.date) - new Date(a.date)));
+                return list.sort((a, b) => (new Date(a.date) - new Date(b.date)));
         }
     }
 

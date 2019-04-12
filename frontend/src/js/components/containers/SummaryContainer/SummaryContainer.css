@@ -10,7 +10,9 @@
     position: fixed;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
+@media only screen and (max-width: 768px) {
+    .sidenav {
+      width: 100%;
+    }
+  }
+

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PaymentCard from "../../presentational/PaymentCard/PaymentCard.jsx";
 import NewPaymentCard from "../../presentational/NewPaymentCard/NewPaymentCard.jsx";
 import { FilterEnum, SortEnum } from "../PaymentContainer/PaymentContainer.jsx";
+import './PaymentList.css';
 
 class PaymentList extends Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class PaymentList extends Component {
         const list = this.getList();
 
         return (
-            <div>
+            <div className="payment-list">
                 {this.props.newPayment ? <NewPaymentCard openCard={this.props.onNewPaymentChange}/> : null}                
                 {list}
             </div>

@@ -21,6 +21,13 @@ class MainContentContainer extends Component {
     componentDidMount() {
         let retrievedPayments = [
             {
+                key: 1,
+                name: "Eric",
+                amount: 73,
+                date: new Date(2019, 0, 1),
+                completed: true
+            },
+            {
                 key: 2,
                 name: "Eric",
                 amount: 73,
@@ -28,7 +35,14 @@ class MainContentContainer extends Component {
                 completed: true
             },
             {
-                key: 1,
+                key: 3,
+                name: "Eric",
+                amount: 73,
+                date: new Date(2019, 0, 1),
+                completed: true
+            },
+            {
+                key: 4,
                 name: "Alex",
                 amount: 40,
                 date: new Date(2019, 0, 2),

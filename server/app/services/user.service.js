@@ -14,3 +14,7 @@ exports.getAllUsers = function(callback) {
     callback(strippedUsers);
   });
 };
+
+exports.getUserById = function(id, callback) {
+  userController.getUser(id).then(user => callback(user[0]));
+};

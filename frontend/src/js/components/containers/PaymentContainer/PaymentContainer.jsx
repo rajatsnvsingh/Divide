@@ -47,6 +47,9 @@ class PaymentContainer extends Component {
                     onSearchChange={this.onSearchChange}
                     onFilterChange={this.onFilterChange}
                     onSortChange={this.onSortChange}
+                    search={this.state.search}
+                    filter={this.state.filter}   
+                    sort={this.state.sort}               
                 />
                 <PaymentList
                     newPayment={this.state.newPayment}

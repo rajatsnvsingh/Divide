@@ -7,14 +7,15 @@ class SummaryOwingsCard extends Component {
     }
 
     render() {
-        const isOwed = this.props.isOwed;
+        const isOwed = this.props.amount > 0;
+        const amount = Math.abs(this.props.amount);
         let content;
 
         if (isOwed) {
-            content = <div>{this.props.name} owes you<br /><h4 className="text-success">${this.props.amount}</h4></div>;
+            content = <div>{this.props.name} owes you<br /><h4 className="text-success">${amount}</h4></div>;
         }
         else {
-            content = <div>You owe {this.props.name}<br /><h4 className="text-danger">${this.props.amount}</h4></div>;
+            content = <div>You owe {this.props.name}<br /><h4 className="text-danger">${amount}</h4></div>;
         }
 
         return (

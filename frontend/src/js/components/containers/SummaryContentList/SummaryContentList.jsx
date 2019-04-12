@@ -15,11 +15,11 @@ class SummaryContentList extends Component {
 
         switch (filter) {
             case summaryFilterEnum.owe:
-                filtered = list.filter(x => x.isOwed === false);
+                filtered = list.filter(x => x.amount < 0);
                 break;
 
             case summaryFilterEnum.owed:
-                filtered = list.filter(x => x.isOwed === true);
+                filtered = list.filter(x => x.amount > 0);
                 break;                
             
             case summaryFilterEnum.none:
@@ -29,7 +29,7 @@ class SummaryContentList extends Component {
         }
 
         return filtered.map((x) =>
-            <SummaryOwingsCard key={x.id} name={x.name} amount={x.amount} isOwed={x.isOwed} />
+            <SummaryOwingsCard key={x.id} name={x.name} amount={x.amount} />
         );
     }
 

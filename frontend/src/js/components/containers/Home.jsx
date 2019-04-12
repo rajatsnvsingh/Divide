@@ -11,22 +11,19 @@ class Home extends Component {
       myId: "2", // Aidan Bailey id is 2
       summaryList: [
         {
-          id: 1,
+          userId: 1,
           name: "Ruble",
           amount: 24,
-          isOwed: true
         },
         {
-          id: 2,
+          userId: 2,
           name: "Aidan",
-          amount: 12,
-          isOwed: false 
+          amount: -12,
         },
         {
-          id: 3,
+          userId: 3,
           name: "Alex",
           amount: 15,
-          isOwed: true 
         }
       ]
     };
@@ -34,7 +31,6 @@ class Home extends Component {
 
   onUpdateSummaryList(summaries){
     console.log(summaries);
-    //this.setState({summaryList: summaries});
   }
 
   render() {

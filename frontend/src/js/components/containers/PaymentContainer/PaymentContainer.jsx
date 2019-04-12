@@ -28,7 +28,7 @@ class PaymentContainer extends Component {
     }
 
     onSearchChange(newState) {
-        this.setState({seach: newState});
+        this.setState({search: newState});
     }
 
     onFilterChange(newState) {

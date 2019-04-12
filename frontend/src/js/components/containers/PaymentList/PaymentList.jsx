@@ -30,6 +30,7 @@ class PaymentList extends Component {
         let list = this.state.list;
         list = this.filterList(list);
         list = this.sortList(list);
+        list = this.searchList(list);
 
         // bind to PaymentCard
         return list.map((x) =>
@@ -66,6 +67,10 @@ class PaymentList extends Component {
             case SortEnum.dateDes:
                 return list.sort((a, b) => (new Date(b.date) - new Date(a.date)));
         }
+    }
+
+    searchList(list) {
+        return list.filter(x => x.name.toLowerCase().includes(this.props.search.toLowerCase()));
     }
 
     render() {

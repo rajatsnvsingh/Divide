@@ -19,7 +19,7 @@ class PaymentInputContainer extends Component {
     }
 
     onSearchChange(event) {
-        this.props.onSearchChange(parseInt(event.target.value));
+        this.props.onSearchChange(event.target.value);
     }
 
     onSortChange(event) {
@@ -29,14 +29,9 @@ class PaymentInputContainer extends Component {
     render() {
         return (
             <div>
-                <div className="row mt-3">
+                <div className="row mt-3 mb-3">
                     <div className="col-md-4">
-                        <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Search" onChange={this.onSearchChange} />
-                            <div className="input-group-append">
-                                <button className="btn btn-primary" type="button">Search</button>
-                            </div>
-                        </div>
+                        <input type="text" className="form-control" placeholder="Search Name" onChange={this.onSearchChange} />
                     </div>
                     <div className="col-md-2">
                         <select className="form-control" onChange={this.onFilterChange}>

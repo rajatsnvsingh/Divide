@@ -25,7 +25,9 @@ class MainContentContainer extends Component {
         return (
             <div className={this.props.className}>
                 <NavigationHeader viewIndex={viewIndex} onNavigationButtonClick={this.onNavigationButtonClick} />
-                {viewIndex === viewIndexEnum.expenses ? <ExpenseContainer myId={this.props.myId}/> : <PaymentContainer myId={this.props.myId}/>}
+                {viewIndex === viewIndexEnum.expenses ? 
+                    <ExpenseContainer myId={this.props.myId} onUpdateSummaryList={this.props.onUpdateSummaryList}/> : 
+                    <PaymentContainer myId={this.props.myId}/>}
             </div>
         );
     }

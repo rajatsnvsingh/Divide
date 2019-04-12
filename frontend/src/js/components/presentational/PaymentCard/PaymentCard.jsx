@@ -7,15 +7,15 @@ class PaymentCard extends Component {
     }
 
     render() {
-        let confirmation;
+        let completed;
         let content;
 
-        if (!this.props.isConfirmation) {
-            confirmation = <h1>Completed</h1>;
+        if (this.props.completed) {
+            completed = <h1>Completed</h1>;
             content = <h1>{this.props.name} has confirmed your payment of <span className="text-danger">${this.props.amount}</span></h1>;
         }
         else {
-            confirmation = (
+            completed = (
                 <div>
                     <h2>Pending Confirmation</h2> 
                     <button className="btn btn-secondary btn-lg mr-2">Dispute</button>
@@ -33,10 +33,11 @@ class PaymentCard extends Component {
                             <img className="card-img w-50 ml-4" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>
                         </div>
                         <div className="col-md-6">
+                            <h3>{this.props.date.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</h3>
                             {content}
                         </div>
                         <div className="col-md-3">
-                           {confirmation} 
+                           {completed} 
                         </div>
                     </div>
                 </div>

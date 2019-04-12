@@ -6,6 +6,7 @@ import "./Home.css";
 class Home extends Component {
   constructor() {
     super();
+    this.onUpdateSummaryList = this.onUpdateSummaryList.bind(this);
     this.state = {
       myId: "2", // Aidan Bailey id is 2
       summaryList: [
@@ -31,11 +32,16 @@ class Home extends Component {
     };
   }
 
+  onUpdateSummaryList(summaries){
+    console.log(summaries);
+    //this.setState({summaryList: summaries});
+  }
+
   render() {
     return (
       <div className="row">
         <SummaryContainer className="col-md-2 sidenav" myId={this.state.myId} summaryList={this.state.summaryList} />
-        <MainContentContainer className="col-md-10 main-content" myId={this.state.myId} />
+        <MainContentContainer className="col-md-10 main-content" myId={this.state.myId} onUpdateSummaryList={this.onUpdateSummaryList} />
       </div>
     );
   }

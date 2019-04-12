@@ -24,9 +24,9 @@ exports.getSummary = function(userId, callback) {
           obj.userId.equals(otherId)
         );
         if (transaction.ownerId.equals(userId)) {
-          summary_list[summaryIndex].amt += transaction.amtOwing;
+          summary_list[summaryIndex].amt += (transaction.amtOwing - transaction.amtPaid);
         } else {
-          summary_list[summaryIndex].amt -= transaction.amtOwing;
+          summary_list[summaryIndex].amt -= (transaction.amtOwing - transaction.amtPaid);
         }
       });
 

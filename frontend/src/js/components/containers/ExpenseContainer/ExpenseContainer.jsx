@@ -27,135 +27,169 @@ class ExpenseContainer extends Component {
             viewClosedExpenses: false,
             expenses: [],
             expandedCardId: "",
-            newExpenses:[] 
+            newExpenses: []
         };
     }
 
     componentDidMount() {
-        this.setState({
-            expenses: [
-                {
-                    _id: "1",
-                    title: "Pizza",
-                    totalAmt: 50.14,
-                    ownerId: {
-                        "expenseId": [],
-                        "notifications": [],
-                        "_id": "1",
-                        "email": "buddyBoi@buddyBoi.com",
-                        "name": "Calvin Lau",
-                        "__v": 0
-                    },
-                    status: expenseStatusType.open,
-                    date: new Date(),
-                    transactions: [
-                        {
-                            "_id": "1",
-                            "ownerId": "1",
-                            "userId": {
-                                "expenseId": [],
-                                "notifications": [],
-                                "_id": "2",
-                                "email": "buddyGirl@buddyBoi.com",
-                                "name": "Aidan Bailey",
-                                "__v": 0
-                            },
-                            "amtOwing": 50.14,
-                            "amtPaid": 0.0,
-                            "split": "50/50",
-                            "status": "Pending",
-                            "__v": 0
-                        }
-                    ]
+        let retrievedExpenses = [
+            {
+                _id: "1",
+                title: "Pizza",
+                totalAmt: 50.14,
+                ownerId: {
+                    "expenseId": [],
+                    "notifications": [],
+                    "_id": "1",
+                    "email": "buddyBoi@buddyBoi.com",
+                    "name": "Calvin Lau",
+                    "__v": 0
                 },
-                {
-                    _id: "2",
-                    title: "Sandwich",
-                    totalAmt: 12.55,
-                    ownerId: {
-                        "expenseId": [],
-                        "notifications": [],
-                        "_id": "2",
-                        "email": "sauceJames@germs.ca",
-                        "name": "Aidan Bailey",
-                        "__v": 0
-                    },
-                    status: expenseStatusType.closed,
-                    date: new Date(),
-                    transactions: [
-                        {
+                status: expenseStatusType.open,
+                date: new Date(),
+                transactions: [
+                    {
+                        "_id": "1",
+                        "ownerId": "1",
+                        "userId": {
+                            "expenseId": [],
+                            "notifications": [],
                             "_id": "2",
-                            "ownerId": "2",
-                            "userId": {
-                                "expenseId": [],
-                                "notifications": [],
-                                "_id": "3",
-                                "email": "buddyGirl@buddyBoi.com",
-                                "name": "Raavi Mehta",
-                                "__v": 0
-                            },
-                            "amtOwing": 6.25,
-                            "amtPaid": 0.0,
-                            "split": "50/50",
-                            "status": "Pending",
+                            "email": "buddyGirl@buddyBoi.com",
+                            "name": "Aidan Bailey",
                             "__v": 0
                         },
-                        {
+                        "amtOwing": 50.14,
+                        "amtPaid": 0.0,
+                        "split": "50/50",
+                        "status": "Pending",
+                        "__v": 0
+                    }
+                ]
+            },
+            {
+                _id: "2",
+                title: "Sandwich",
+                totalAmt: 12.55,
+                ownerId: {
+                    "expenseId": [],
+                    "notifications": [],
+                    "_id": "2",
+                    "email": "sauceJames@germs.ca",
+                    "name": "Aidan Bailey",
+                    "__v": 0
+                },
+                status: expenseStatusType.open,
+                date: new Date(2018, 1, 3),
+                transactions: [
+                    {
+                        "_id": "2",
+                        "ownerId": "2",
+                        "userId": {
+                            "expenseId": [],
+                            "notifications": [],
                             "_id": "3",
-                            "ownerId": "2",
-                            "userId": {
-                                "expenseId": [],
-                                "notifications": [],
-                                "_id": "4",
-                                "email": "buddyLad@buddyBoi.com",
-                                "name": "Quinn Bischoff",
-                                "__v": 0
-                            },
-                            "amtOwing": 6.34,
-                            "amtPaid": 0.0,
-                            "split": "50/50",
-                            "status": "Pending",
+                            "email": "buddyGirl@buddyBoi.com",
+                            "name": "Raavi Mehta",
                             "__v": 0
-                        }
-                    ]
-                }
-            ]
-        });
-    }
-
-    // Expense List Filters and Sort
-
-    onSearchTermChanged(term) {
-        this.setState({ searchTerm: term });
-    }
-
-    onFilterTypeChanged(filterType) {
-        this.setState({ filterType: filterType });
-    }
-
-    onSortTypeChanged(sortType) {
-        this.setState({ sortType: sortType });
-    }
-
-    onViewClosedExpensesChanged(isClosedExpenses) {
-        this.setState({ viewClosedExpenses: isClosedExpenses });
-    }
-
-    // Edit Card Event Handlers
-    onCardClick(expenseId){
-        this.setState({ expandedCardId: expenseId });
-    }
-    
-    onExpandedCardClose(){
-        this.setState({ expandedCardId: "-1"});
-    }
-
-    // New Card Event Handlers
-
-    onAddNewExpense() {
-        if(this.state.newExpenses.length === 1) // Only allow one new expense at a time
-            return;
+                        },
+                        "amtOwing": 6.25,
+                        "amtPaid": 0.0,
+                        "split": "50/50",
+                        "status": "Pending",
+                        "__v": 0
+                    },
+                    {
+                        "_id": "3",
+                        "ownerId": "2",
+                        "userId": {
+                            "expenseId": [],
+                            "notifications": [],
+                            "_id": "4",
+                            "email": "buddyLad@buddyBoi.com",
+                            "name": "Quinn Bischoff",
+                            "__v": 0
+                        },
+                        "amtOwing": 6.34,
+                        "amtPaid": 0.0,
+                        "split": "50/50",
+                        "status": "Pending",
+                        "__v": 0
+                    }
+                ]
+            }
+        ];
         
+        this.setState({
+            expenses: retrievedExpenses
+        });
+
+        let summaryResults = {};
+        retrievedExpenses.forEach(expense => {
+            // If You are the owner of the expense, get the transactions owed to you
+            if(expense.ownerId._id === this.props.myId){
+                expense.transactions.forEach(transaction => {
+                    let otherUserId = transaction.userId._id;
+                    if(!(otherUserId in summaryResults))
+                        summaryResults[otherUserId] = {name: transaction.userId.name, amt: 0};
+                    summaryResults[otherUserId].amt += transaction.amtOwing - transaction.amtPaid;
+                });
+            }
+            // If someone else is the owner of the expense, find just your transaction
+            else {
+                let owner = expense.ownerId;
+                if(!(owner._id in summaryResults))
+                    summaryResults[owner._id] = {name: owner.name, amt: 0};
+                expense.transactions.forEach(transaction => {
+                    if(transaction.userId._id === this.props.myId){
+                        summaryResults[transaction.ownerId].amt -= transaction.amtOwing - transaction.amtPaid
+                    }
+                });
+            }
+        });
+        
+        let summaryList = []
+        for(let id in summaryResults){
+            let summary = {userId: id, name: summaryResults[id].name, amt: summaryResults[id].amt};
+            summaryList.push(summary);
+        }
+
+        this.props.onUpdateSummaryList(summaryList);
+    }
+
+        // Expense List Filters and Sort
+
+        onSearchTermChanged(term) {
+                this.setState({ searchTerm: term });
+            }
+
+        onFilterTypeChanged(filterType) {
+                this.setState({ filterType: filterType });
+            }
+
+        onSortTypeChanged(sortType) {
+                this.setState({ sortType: sortType });
+            }
+
+        onViewClosedExpensesChanged(isClosedExpenses) {
+                this.setState({ viewClosedExpenses: isClosedExpenses });
+            }
+
+        // Edit Card Event Handlers
+        onCardClick(expenseId){
+                this.setState({ expandedCardId: expenseId });
+            }
+
+        onExpandedCardClose(){
+                this.setState({ expandedCardId: "-1" });
+            }
+
+        // New Card Event Handlers
+
+        onAddNewExpense() {
+                if(this.state.newExpenses.length === 1) // Only allow one new expense at a time
+        return;
+
         let newExpense = {
             _id: "-1",
             title: "",
@@ -174,37 +208,54 @@ class ExpenseContainer extends Component {
         };
         let newExpenses = this.state.newExpenses;
         newExpenses.push(newExpense);
-        this.setState({newExpense: newExpenses});
+        this.setState({ newExpense: newExpenses });
     }
 
-    onNewCardClose(){
+    onNewCardClose() {
         // TODO This only works because there can only be 1 new expense at a time
         // Otherwise, must add logic to identify which card closed
         let newExpenses = this.state.newExpenses;
         newExpenses.pop();
-        this.setState({newExpense: newExpenses});
+        this.setState({ newExpense: newExpenses });
     }
 
     filterExpense(expense) {
         // Check if Expense Title starts with search term
-        if(!expense.title.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()))
+        if (!expense.title.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()))
             return false;
 
         // Check if Expense Status type matches the filter being applied
-        if(expense.status === expenseStatusType.open && this.state.viewClosedExpenses)
+        if (expense.status === expenseStatusType.open && this.state.viewClosedExpenses)
             return false;
         else if (expense.status === expenseStatusType.closed && !this.state.viewClosedExpenses)
             return false;
-        
+
         // Check if Expense owner matches filter being applied
-        if(expense.ownerId._id === this.props.myId && this.state.filterType === filterTypeEnum.otherExpenses){
+        if (expense.ownerId._id === this.props.myId && this.state.filterType === filterTypeEnum.otherExpenses) {
             return false;
         }
-        if(expense.ownerId._id !== this.props.myId && this.state.filterType === filterTypeEnum.myExpenses){
+        if (expense.ownerId._id !== this.props.myId && this.state.filterType === filterTypeEnum.myExpenses) {
             return false;
         }
 
         return true;
+    }
+
+    sortExpenses(expenseA, expenseB){
+        switch (this.state.sortType) {
+            case sortTypeEnum.titleAsc:
+                return (expenseA.title < expenseB.title) ? -1 : 1;
+            case sortTypeEnum.titleDesc:
+                return (expenseA.title < expenseB.title) ? 1 : -1;
+            case sortTypeEnum.priceHigh:
+                return (expenseA.totalAmt < expenseB.totalAmt) ? 1 : -1;
+            case sortTypeEnum.priceLow:
+                return (expenseA.totalAmt < expenseB.totalAmt) ? -1 : 1;
+            case sortTypeEnum.latest:
+                return (expenseA.date < expenseB.date) ? 1 : -1;
+            case sortTypeEnum.oldest:
+                return (expenseA.date < expenseB.date) ? -1 : 1;
+        }
     }
 
 
@@ -212,6 +263,8 @@ class ExpenseContainer extends Component {
         let filteredExpenses = this.state.expenses.filter((expense) =>
             this.filterExpense(expense)
         );
+
+        let sortedExpense = filteredExpenses.sort((a, b) => this.sortExpenses(a, b));
 
         return (
             <div>

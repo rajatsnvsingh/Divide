@@ -171,7 +171,7 @@ class MainContentContainer extends Component {
         const viewIndex = this.state.viewIndex;
 
         return (
-            <div className={this.props.className}>
+            <div className="main-content">
                 <NavigationHeader viewIndex={viewIndex} onNavigationButtonClick={this.onNavigationButtonClick} />
                 {viewIndex === viewIndexEnum.expenses ? 
                     <ExpenseContainer myId={this.props.myId} expenses={this.state.expenses}/> : 

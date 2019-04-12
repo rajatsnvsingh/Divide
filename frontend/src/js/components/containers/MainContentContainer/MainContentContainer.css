@@ -1,4 +1,7 @@
-.removePadding {
-    margin: 0px;
-    padding: 0px;
+.main-content {
+    height: 100vh;
+    margin-left: 300px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #e6e8eb;
 }

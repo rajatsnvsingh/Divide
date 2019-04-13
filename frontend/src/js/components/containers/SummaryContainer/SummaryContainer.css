@@ -31,4 +31,8 @@
         padding: 10px!important;
         text-align: center;
     }
+
+    .content-container {
+        max-height: calc(100vh - 260px);
+    }
 }

@@ -22,14 +22,16 @@ class ProfileContainer extends Component {
 
     render() {
         let amountTotals = this.computeAmountTotals();
+        let amountOwed = Math.round(amountTotals.amountOwed * 100) / 100;
+        let amountOwing = Math.round(amountTotals.amountOwing * 100) / 100;
 
         return (
             <div className="mb-4 text-center">
                 <NotificationButton badge={3} toggleViewState={this.props.toggleViewState} />
                 <ProfileInfo name={this.props.name} />
                 <div className="btn-group btn-group-lg" role="group">
-                    <AmountButton isOwed={true} amount={amountTotals.amountOwed} onSummaryFilterChange={this.props.onSummaryFilterChange} />
-                    <AmountButton isOwed={false} amount={amountTotals.amountOwing} onSummaryFilterChange={this.props.onSummaryFilterChange} />
+                    <AmountButton isOwed={true} amount={amountOwed} onSummaryFilterChange={this.props.onSummaryFilterChange} />
+                    <AmountButton isOwed={false} amount={amountOwing} onSummaryFilterChange={this.props.onSummaryFilterChange} />
                 </div>
             </div>
         );

@@ -63,11 +63,9 @@ class ExpenseCardExpanded extends Component {
   }
 
   onAddNewTransaction(newUser, splitSelection) {
-    // TODO Gonna have to make this logic a little more elaborate to deal
-    // with cases in which users are being added after other have already
-    // paid
     let amountOwed =
       this.state.totalAmount / (this.state.transactions.length + 1);
+    amountOwed = Math.round(amountOwed * 100) / 100;
     let modifiedTrans = this.state.transactions.map(trans => {
       trans.amtOwing = amountOwed;
       return trans;

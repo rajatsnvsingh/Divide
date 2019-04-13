@@ -3,6 +3,9 @@ import DatePicker from "react-datepicker";
  
 import "react-datepicker/dist/react-datepicker.css";
 import "./ExpenseCardExpandedInput.css";
+
+const expenseStatusType = Object.freeze({ pending: 1, open: 2, closed: 3 });
+
 class ExpanseCardExpandedInput extends Component {
     constructor(props) {
         super(props);
@@ -31,7 +34,7 @@ class ExpanseCardExpandedInput extends Component {
         let renderAmountMessage = false;
 
         if(this.props.title.length === 0) renderTitleMessage = true;
-        if(isNaN(this.props.totalAmount) || this.props.totalAmount <= 0) renderAmountMessage = true; 
+        if(isNaN(this.props.totalAmount) || this.props.totalAmount <= 0) renderAmountMessage = true;
 
         return (
             <form className="input-section">
@@ -43,7 +46,7 @@ class ExpanseCardExpandedInput extends Component {
                     <label className="col-form-label">Amount <span className="text-danger">{renderAmountMessage && "(Must be a Non-Zero Number)"}</span></label>
                     <input type="text" id="inputAmount" className="form-control" value={this.props.totalAmount} placeholder="Enter Price"
                         onChange={this.onAmountChange}
-                        readOnly={this.props.readonly}
+                        readOnly={this.props.status !== expenseStatusType.pending}
                     />
                 </div>
                 

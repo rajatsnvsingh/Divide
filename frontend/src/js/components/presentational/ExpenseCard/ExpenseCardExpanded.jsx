@@ -177,6 +177,7 @@ class ExpenseCardExpanded extends Component {
             onDateChange={this.onDateChange}
             onAmountChange={this.onAmountChange}
             readonly={readonly}
+            status={this.state.status}
           />
           <ExpenseCardExpandedUserList
             myId={this.props.myId}

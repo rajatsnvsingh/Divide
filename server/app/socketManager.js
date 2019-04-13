@@ -3,11 +3,6 @@ const notificationService = require("./services/notification.service");
 const paymentService = require("./services/payment.service");
 const userService = require("./services/user.service");
 
-// Client_started: Sent when the client first initializes to get userId, photo, name, etc.
-// New_payment
-// New_expense
-// Update_payment - Accept/Reject
-// Update_expense
 // notification_dismissed
 
 const Debug = true;
@@ -45,7 +40,6 @@ module.exports.clientHandler = function(socket) {
       return "User not authenticated!";
     }
     print("User sent a new expense!");
-    console.log(JSON.parse(data));
     expenseService.createExpense(JSON.parse(data), callback);
   });
   socket.on("update_expense", function(data, callback) {
@@ -53,7 +47,7 @@ module.exports.clientHandler = function(socket) {
       return "User not authenticated!";
     }
     print("User sent a new expense!");
-    expenseService.updateExpense(data, callback);
+    expenseService.updateExpense(JSON.parse(data), callback);
   });
   /**
    * All Payment Socket functions
@@ -65,6 +59,27 @@ module.exports.clientHandler = function(socket) {
     print("User requested payments!");
     paymentService.getPaymentsByUserId(socket.userId, callback);
   });
+  socket.on("new_payment", function(data, callback) {
+    if (!checkAuth(socket)) {
+      return "User not authenticated!";
+    }
+    print("User sent a new payment!");
+    paymentService.createPayment(JSON.parse(data), callback);
+  });
+  socket.on("accept_payment", function(data, callback) {
+    if (!checkAuth(socket)) {
+      return "User not authenticated!";
+    }
+    print("User accepted a payment!");
+    paymentService.acceptPayment(JSON.parse(data)._id, callback);
+  });
+  socket.on("decline_payment", function(data, callback) {
+    if (!checkAuth(socket)) {
+      return "User not authenticated!";
+    }
+    print("User declined a payment!");
+    paymentService.declinePayment(JSON.parse(data)._id, callback);
+  });
   /**
    * All Notification Socket functions
    */
@@ -75,7 +90,13 @@ module.exports.clientHandler = function(socket) {
     print("User requested notifications!");
     notificationService.getAllNotificationsByUserId(socket.userId, callback);
   });
-
+  socket.on("dismiss_notifications", function(callback) {
+    if (!checkAuth(socket)) {
+      return "User not authenticated!";
+    }
+    print("User requested notifications!");
+    notificationService.deleteNotification(JSON.parse(data)._id, callback);
+  });
   /**
    * All user info socket functions
    */

@@ -67,7 +67,7 @@ exports.acceptPayment = function(id, callback) {
       .getTransactionsInDirection(payment.payeeId, payment.payerId)
       .then(function(transactions) {
         transactions = transactions.filter(
-          transaction => transaction.status === "Pending"
+          transaction => transaction.amtOwing > transaction.amtPaid
         );
         transactions = transactions.sort(function(transactionA, transactionB) {
           return new Date(transactionA.date) - new Date(transactionB.date);

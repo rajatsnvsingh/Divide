@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const expenseController = require("../controllers/expense.controller");
 const transactionController = require("../controllers/transaction.controller");
 const notificationController = require("../controllers/notification.controller");
+const notificationService = require("../services/notification.service");
 const Expense = mongoose.model("Expense");
 const Transaction = mongoose.model("Transaction");
 const Notification = mongoose.model("Notification");
@@ -40,6 +41,7 @@ exports.createExpense = function(expenseJSON, callback) {
                     type: 1,
                     expenseId: createdExpense._id
                   });
+                  //notificationService.createNotification(expenseNotif);
                   notificationController.createNotification(expenseNotif);
                 }
                 callback(createdExpense);
@@ -71,6 +73,16 @@ exports.getExpensesByUserId = function(id, callback) {
               }
             }
           ]).then(populatedExpenses => {
+            for (let expense of populatedExpenses) {
+              let expenseStatus = 2; //2-> open
+              for (let transaction of expense.transactions) {
+                if (transaction.amtOwing > transaction.amtPaid) {
+                  break;
+                }
+                expenseStatus = 3;
+              }
+              expense.status = expenseStatus;
+            }
             callback(populatedExpenses);
           });
         });
@@ -103,6 +115,14 @@ exports.updateExpense = function(expenseJSON, callback) {
         model: "Transaction"
       }
     ]).then(function(updatedExpense) {
+      let expenseStatus = 2; //2-> open
+      for (let transaction of updatedExpense.transactions) {
+        if (transaction.amtOwing > transaction.amtPaid) {
+          break;
+        }
+        expenseStatus = 3;
+      }
+      updatedExpense.status = expenseStatus;
       callback(updatedExpense);
     });
   });

@@ -41,7 +41,7 @@ class PaymentContainer extends Component {
 
     render() {
         return (
-            <div className="d-none d-md-block">
+            <div>
                 <PaymentInputContainer
                     onNewPaymentChange={this.onNewPaymentChange}
                     onSearchChange={this.onSearchChange}

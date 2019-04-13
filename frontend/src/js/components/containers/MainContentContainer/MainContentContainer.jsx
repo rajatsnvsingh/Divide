@@ -185,7 +185,7 @@ class MainContentContainer extends Component {
         const viewIndex = this.state.viewIndex;
 
         return (
-            <div className="main-content d-none d-md-block">
+            <div className="main-content">
                 <div className="makesmaller">
                 <NavigationHeader viewIndex={viewIndex} onNavigationButtonClick={this.onNavigationButtonClick} />
                 {viewIndex === viewIndexEnum.expenses ? 

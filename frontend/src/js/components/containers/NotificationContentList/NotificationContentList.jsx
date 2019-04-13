@@ -22,6 +22,15 @@ class NotificationContentList extends Component {
               });
             }.bind(this)
           );
+
+          socket.on("incoming_notification", function(data) {
+            console.log("incoming notification!");
+            let {notifications} = this.state;
+            let n = JSON.parse(data);
+            console.log(n);
+            notifications.push(JSON.parse(data));
+            this.setState(notifications);
+          }.bind(this));
     }
 
     onCardClosedCallback(id) {

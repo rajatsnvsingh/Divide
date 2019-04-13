@@ -88,7 +88,7 @@ class SearchableDropdown extends Component {
                 <div className={this.state.searchDropdown === "show" ? "" : "d-none"}>
                     <input
                         type="text"
-                        className="form-control-text ml-1 mr-1"
+                        className="form-control w-100"
                         placeholder="Enter a name..."
                         value={this.state.searchText}
                         onChange={this.onSearchTextChanged}

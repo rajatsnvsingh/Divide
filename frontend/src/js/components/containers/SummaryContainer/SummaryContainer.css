@@ -10,7 +10,29 @@
     position: fixed;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+@media (max-width: 768px) {
+    .sidenav {
+        width: 100%;
+    }
+
+    .card img {
+        display: none;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+
+    .btn-group .btn {
+        width: 50%;
+    }
+
+    .card-body {
+        padding: 10px!important;
+        text-align: center;
+    }
+
+    .content-container {
+        max-height: calc(100vh - 260px);
+    }
 }

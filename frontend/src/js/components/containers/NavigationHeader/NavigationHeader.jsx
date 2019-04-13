@@ -22,18 +22,18 @@ class NavigationHeader extends Component {
         return (
             <div className="navigation-header row">
                 <div className="col-md-10 row">
-                    <div className="d-none d-md-block">
+                    <div>
                         <h1 className={(this.props.viewIndex === viewIndexEnum.expenses) ? "mr-4 selected" : "unselected mr-4"} onClick={this.onExpenseButtonClick}>
                             Expenses
                         </h1>
                     </div>
-                    <div className="d-none d-md-block">
+                    <div>
                         <h1 className={(this.props.viewIndex === viewIndexEnum.payments) ? "selected" : "unselected"} onClick={this.onPaymentButtonClick}>
                             Payments
                         </h1>
                     </div>
                 </div>
-                <div className="col">
+                <div>
                     <a href="/auth/logout">
                         <button type="button" className="btn btn-secondary float-right">Logout</button>
                     </a>

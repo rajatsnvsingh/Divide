@@ -42,10 +42,10 @@ class ExpenseInputContainer extends Component {
                     </div>
                     <div className="col-md-3">
                         <select className="form-control" onChange={this.onSortChange} value={this.props.sortType}>
-                            <option value={sortTypeEnum.titleAsc}>Title-Ascending</option>
-                            <option value={sortTypeEnum.titleDesc}>Title-Descending</option>
-                            <option value={sortTypeEnum.priceHigh}>Price-Highest</option>
-                            <option value={sortTypeEnum.priceLow}>Price-Lowest</option>
+                            <option value={sortTypeEnum.titleAsc}>Title A-Z</option>
+                            <option value={sortTypeEnum.titleDesc}>Title Z-A</option>
+                            <option value={sortTypeEnum.priceHigh}>$ High</option>
+                            <option value={sortTypeEnum.priceLow}>$ Low</option>
                             <option value={sortTypeEnum.latest}>Latest</option>
                             <option value={sortTypeEnum.oldest}>Oldest</option>
                         </select>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ExpenseCardExpandedUserEntry from "./ExpenseCardExpandedUserEntry.jsx";
 import "./ExpenseCardUserList.css";
+import {socket} from "../../../../App.js";
 
 const splitTypeEnum = Object.freeze({ fraction: 1 });
 const expenseStatusType = Object.freeze({ pending: 1, open: 2, closed: 3 });
@@ -25,43 +26,14 @@ class ExpenseCardExpandedUserList extends Component {
   }
 
   componentDidMount() {
-    // TODO Replace with socket call later on
-    this.setState({
-      searchUsers: [
-        {
-          expenseId: [],
-          notifications: [],
-          _id: "5c92d94872f65b44e3badd33",
-          email: "sack@sack.com",
-          name: "Quinn",
-          __v: 0
-        },
-        {
-          expenseId: [],
-          notifications: [],
-          _id: "11",
-          email: "test2@gmail.com",
-          name: "Carson Swammy",
-          __v: 0
-        },
-        {
-          expenseId: [],
-          notifications: [],
-          _id: "12",
-          email: "test3@gmail.com",
-          name: "AI Bob",
-          __v: 0
-        },
-        {
-          expenseId: [],
-          notifications: [],
-          _id: "1",
-          email: "buddyBoi@buddyBoi",
-          name: "Dalvin Lau",
-          __v: 0
-        }
-      ]
-    });
+    socket.emit(
+      "get_all_users",
+      function (userList) {
+        this.setState({
+          searchUsers: userList
+        });
+      }.bind(this)
+    );
   }
 
   onSearchTextChanged(event) {

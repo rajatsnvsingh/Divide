@@ -44,7 +44,7 @@ class SummaryContainer extends Component {
     render() {
         return (
             <div className="sidenav">
-                <ProfileContainer toggleViewState={this.toggleViewState} onSummaryFilterChange={this.onSummaryFilterChange} />
+                <ProfileContainer toggleViewState={this.toggleViewState} onSummaryFilterChange={this.onSummaryFilterChange} name={this.props.name} />
                 <SummaryContentContainer
                     viewState={this.state.viewState}
                     onViewStateChange={this.onViewStateChange}

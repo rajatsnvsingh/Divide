@@ -30,7 +30,7 @@ class ExpenseInputContainer extends Component {
         return (
             <div className="ExpenseInput">
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                         <input className="form-control" type="text" placeholder="Search" aria-label="Search" value={this.props.searchTerm} onChange={this.onSearchTermChanged}></input>
                     </div>
                     <div className="col-md-3">

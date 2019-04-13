@@ -19,133 +19,38 @@ class MainContentContainer extends Component {
   }
 
   componentDidMount() {
-    socket.emit("get_expenses", function(data) {
-      console.log(data);
-    });
-    let retrievedPayments = [
-      {
-        key: 1,
-        name: "Eric",
-        amount: 73,
-        date: new Date(2018, 0, 1),
-        completed: false
-      },
-      {
-        key: 2,
-        name: "Jason",
-        amount: 12,
-        date: new Date(2018, 6, 5),
-        completed: false
-      },
-      {
-        key: 3,
-        name: "Adam",
-        amount: 14,
-        date: new Date(2018, 3, 12),
-        completed: true
-      },
-      {
-        key: 4,
-        name: "Jared",
-        amount: 40,
-        date: new Date(2019, 1, 5),
-        completed: true
-      }
-    ];
+    // Initialize Expenses
+    socket.emit("get_expenses", function (in_expenses) {
+      // Get Expenses, parse their dates correctly, then setState
+      let modifiedExpenses = in_expenses.map(expense => {
+        let modifiedExpense = expense;
+        modifiedExpense.date = new Date(Date.parse(expense.date));
+        return modifiedExpense;
+      });
+      this.setState({
+        expenses: modifiedExpenses
+      });
 
-    let retrievedExpenses = [
-      {
-        _id: "1",
-        title: "Pizza",
-        totalAmt: 50.14,
-        ownerId: {
-          expenseId: [],
-          notifications: [],
-          _id: "1",
-          email: "buddyBoi@buddyBoi.com",
-          name: "Calvin Lau",
-          __v: 0
-        },
-        status: expenseStatusType.open,
-        date: new Date(),
-        transactions: [
-          {
-            _id: "1",
-            ownerId: "1",
-            userId: {
-              expenseId: [],
-              notifications: [],
-              _id: "2",
-              email: "buddyGirl@buddyBoi.com",
-              name: "Aidan Bailey",
-              __v: 0
-            },
-            amtOwing: 50.14,
-            amtPaid: 0.0,
-            split: "50/50",
-            status: "Pending",
-            __v: 0
-          }
-        ]
-      },
-      {
-        _id: "2",
-        title: "Sandwich",
-        totalAmt: 12.55,
-        ownerId: {
-          expenseId: [],
-          notifications: [],
-          _id: "2",
-          email: "sauceJames@germs.ca",
-          name: "Aidan Bailey",
-          __v: 0
-        },
-        status: expenseStatusType.open,
-        date: new Date(2018, 1, 3),
-        transactions: [
-          {
-            _id: "2",
-            ownerId: "2",
-            userId: {
-              expenseId: [],
-              notifications: [],
-              _id: "3",
-              email: "buddyGirl@buddyBoi.com",
-              name: "Raavi Mehta",
-              __v: 0
-            },
-            amtOwing: 6.25,
-            amtPaid: 0.0,
-            split: "50/50",
-            status: "Pending",
-            __v: 0
-          },
-          {
-            _id: "3",
-            ownerId: "2",
-            userId: {
-              expenseId: [],
-              notifications: [],
-              _id: "4",
-              email: "buddyLad@buddyBoi.com",
-              name: "Quinn Bischoff",
-              __v: 0
-            },
-            amtOwing: 6.34,
-            amtPaid: 0.0,
-            split: "50/50",
-            status: "Pending",
-            __v: 0
-          }
-        ]
-      }
-    ];
+      // Using Modified Expenses, compute summaries
+      let summaryResults = this.getSummaryResultsFromExpenses(modifiedExpenses);
+      let summaryList = this.getSummaryListFromSummaryResults(summaryResults);
+      this.props.onUpdateSummaryList(summaryList);
 
-    this.setState({
-      expenses: retrievedExpenses,
-      payments: retrievedPayments
-    });
+    }.bind(this));
 
+    // Initialize Payments
+    socket.emit("get_payments", function (in_payments) {
+      console.log(in_payments);
+      let modifiedPayments = in_payments.map((payment) => {
+        let modifiedPayment = payment;
+        modifiedPayment.date = new Date(Date.parse(payment.date));
+        return modifiedPayment;
+      });
+      this.setState({payments: modifiedPayments});
+    }.bind(this));
+  }
+
+  getSummaryResultsFromExpenses(retrievedExpenses) {
     let summaryResults = {};
     retrievedExpenses.forEach(expense => {
       // If You are the owner of the expense, get the transactions owed to you
@@ -174,7 +79,10 @@ class MainContentContainer extends Component {
         });
       }
     });
+    return summaryResults;
+  }
 
+  getSummaryListFromSummaryResults(summaryResults) {
     let summaryList = [];
     for (let id in summaryResults) {
       let summary = {
@@ -184,8 +92,7 @@ class MainContentContainer extends Component {
       };
       summaryList.push(summary);
     }
-
-    this.props.onUpdateSummaryList(summaryList);
+    return summaryList;
   }
 
   onNavigationButtonClick(newViewIndex) {
@@ -207,11 +114,11 @@ class MainContentContainer extends Component {
             expenses={this.state.expenses}
           />
         ) : (
-          <PaymentContainer
-            myId={this.props.myId}
-            payments={this.state.payments}
-          />
-        )}
+            <PaymentContainer
+              myId={this.props.myId}
+              payments={this.state.payments}
+            />
+          )}
       </div>
     );
   }

@@ -51,7 +51,7 @@ class PaymentCard extends Component {
 
             else {
                 completed = <h1>Pending</h1>;
-                content = <h1>{this.props.name} has yet confirmed your payment of <span className="text-danger">${this.props.amount}</span></h1>;
+                content = <h1>{this.props.name} has not confirmed your payment of <span className="text-danger">${this.props.amount}</span></h1>;
             }
         }
 

@@ -33,7 +33,7 @@ class NewPaymentCard extends Component {
     }
 
     onDateChange(event) {
-        this.setState({date: event.target.value});
+        this.setState({date: new Date(event.target.value)});
     }
 
     closeCard() {
@@ -44,28 +44,35 @@ class NewPaymentCard extends Component {
         this.setState({errorMessage: `You only owe ${name} $${amount}`})
     }
 
-    // validate
     validate() {
+        // check that inputs not empty
+        if (this.state.user == null) {
+            this.setState({errorMessage: "Please select a user"});
+        }
+        if (this.state.amount <= 0) {
+            this.setState({errorMessage: "Please enter a valid amount"});
+        }
+
         // ensure you do not pay more than they are owed
         const list = this.props.summaryList;
-
         for (const user of list) {
 
             // find payee in list
             if (user.userId === this.state.user._id) {
+                console.log(user);
                 
                 // you owe the user some amount
-                if (user.amount < 0) {
+                if (user.amountOwing > 0) {
 
                     // you are not overpaying the user
-                    if (Math.abs(user.amount) >= this.state.amount) {
+                    if (user.amountOwing >= this.state.amount) {
                         this.setState({errorMessage: ""});
                         return true;
                     }
 
                     // you are overpaying the user
                     else {
-                        this.setState({errorMessage: `You only owe ${user.name} $${user.amount}`});
+                        this.setState({errorMessage: `You only owe ${user.name} $${user.amountOwing}`});
                         return false;
                     }
                 }

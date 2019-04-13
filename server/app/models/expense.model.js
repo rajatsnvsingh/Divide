@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ExpenseSchema = new Schema({
@@ -18,14 +18,15 @@ const ExpenseSchema = new Schema({
   },
   ownerId: {
     type: Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true
   },
   transactions: {
     type: [Schema.ObjectId],
-    ref: 'Transaction'
+    ref: "Transaction"
   },
-  status: String
+  status: Number
+  //{Pending: 1, Open: 2, Closed: 3}
 });
 
-mongoose.model('Expense', ExpenseSchema);
+mongoose.model("Expense", ExpenseSchema);

@@ -3,8 +3,6 @@ const notificationService = require("./services/notification.service");
 const paymentService = require("./services/payment.service");
 const userService = require("./services/user.service");
 
-// notification_dismissed
-
 const Debug = true;
 const print = function(string) {
   if (Debug) console.log("Debug: " + string);

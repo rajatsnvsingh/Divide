@@ -37,7 +37,7 @@ exports.createExpense = function(expenseJSON, callback) {
                 for (let createdTransaction of populatedExpense.transactions) {
                   let expenseNotif = new Notification({
                     targetId: createdTransaction.userId,
-                    type: "Added Expense",
+                    type: 1,
                     expenseId: createdExpense._id
                   });
                   notificationController.createNotification(expenseNotif);
@@ -85,7 +85,7 @@ exports.updateExpense = function(expenseJSON, callback) {
       for (let transaction of updatedTransactions) {
         let updateNotification = new Notification({
           targetId: transaction.userId,
-          type: "Updated Expense",
+          type: 4,
           expenseId: expenseJSON._id
         });
         notificationController.createNotification(updateNotification);
@@ -120,7 +120,7 @@ exports.deleteExpense = function(id, callback) {
         .then(function(deletedTransaction) {
           let deleteExpenseNotification = new Notification({
             targetId: deletedTransaction.userId,
-            type: "Deleted Expense",
+            type: 0,
             expenseId: deletedExpense._id
           });
           // Notify the payee of each transaction that the expense has been deleted

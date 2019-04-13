@@ -1,24 +1,27 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const NotificationSchema = new Schema({
   targetId: {
     type: Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true
   },
   type: {
     type: String,
     required: true
+    // { expenseAdded: 1, paymentAdded: 2, paymentDeleted: 3, updatedExpense: 4, paymentAccepted: 5}
   },
-  expenseId: {  // Populated if notification associated w/ an expense
+  expenseId: {
+    // Populated if notification associated w/ an expense
     type: Schema.ObjectId,
-    ref: 'Expense'
+    ref: "Expense"
   },
-  paymentId: {  // Populated if notification associated w/ a payment
+  paymentId: {
+    // Populated if notification associated w/ a payment
     type: Schema.ObjectId,
-    ref: 'Payment'
+    ref: "Payment"
   }
 });
 
-mongoose.model('Notification', NotificationSchema);
+mongoose.model("Notification", NotificationSchema);

@@ -11,7 +11,7 @@ exports.createPayment = function(jsonObj, callback) {
   paymentController.createPayment(payment).then(function(savedPayment) {
     let payeeNotification = new Notification({
       targetId: savedPayment.payeeId,
-      type: "New Payment",
+      type: 2,
       paymentId: savedPayment._id
     });
     notificationController.createNotification(payeeNotification);
@@ -98,13 +98,13 @@ exports.acceptPayment = function(id, callback) {
               .then(function(updatedExpenses) {
                 // TODO: socket emit updated expenses
                 payment.expenses = updatedExpenses;
-                payment.status = "Accepted";
+                payment.status = true;
                 paymentController
                   .updatePayment(payment)
                   .then(function(acceptedPayment) {
                     let acceptPaymentNotification = new Notification({
                       targetId: acceptedPayment.payerId,
-                      type: "Accepted Payment",
+                      type: 5,
                       paymentId: acceptedPayment._id
                     });
                     notificationController
@@ -124,7 +124,7 @@ exports.declinePayment = function(id, callback) {
     // create Notification for the user whose payment was declined
     let paymentRejectionNotif = new Notification({
       targetId: deletedPayment.payerId,
-      type: "Payment Rejected",
+      type: 3,
       paymentId: deletedPayment._id
     });
     notificationController

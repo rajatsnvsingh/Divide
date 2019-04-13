@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PaymentSchema = new Schema({
@@ -9,12 +9,12 @@ const PaymentSchema = new Schema({
   },
   payerId: {
     type: Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true
   },
   payeeId: {
     type: Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true
   },
   amt: {
@@ -22,11 +22,12 @@ const PaymentSchema = new Schema({
     min: 0.01,
     required: true
   },
-  status: String,
+  status: { type: Boolean, default: false },
+  // false => the payment has not been confirmed yet, and true => the payment has been confirmed.
   expenses: {
     type: [Schema.ObjectId],
-    ref: 'Expense'
+    ref: "Expense"
   }
 });
 
-mongoose.model('Payment', PaymentSchema);
+mongoose.model("Payment", PaymentSchema);

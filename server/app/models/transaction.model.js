@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TransactionSchema = new Schema({
   ownerId: {
     type: Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true
   },
   userId: {
     type: Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true
   },
   amtOwing: {
@@ -23,7 +23,8 @@ const TransactionSchema = new Schema({
     required: true
   },
   split: {
-    type: String,
+    type: Number,
+    default: 1,
     required: true
   },
   date: {
@@ -34,4 +35,4 @@ const TransactionSchema = new Schema({
   status: String
 });
 
-mongoose.model('Transaction', TransactionSchema);
+mongoose.model("Transaction", TransactionSchema);

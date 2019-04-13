@@ -59,7 +59,6 @@ class ExpenseContainer extends Component {
     // New Card Event Handlers
 
     onAddNewExpense() {
-        this.expenseList.scrollToTop();
         if (this.state.newExpenses.length === 1) // Only allow one new expense at a time
             return;
 
@@ -171,7 +170,6 @@ class ExpenseContainer extends Component {
                             onCardClick={this.onCardClick}
                             onExpandedCardClose={this.onExpandedCardClose}
                             onNewCardClose={this.onNewCardClose}
-                            ref={e => (this.expenseList = e)}
                         />
                     </div>
                 </div>

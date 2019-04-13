@@ -11,26 +11,29 @@ class PaymentList extends Component {
 
     getList() {
         let list = this.props.list;
-        // list = this.filterList(list);
-        // list = this.sortList(list);
-        // list = this.searchList(list);
 
         // bind to PaymentCard
-        return list.map((x) => {
-                let payer = x.payerId._id === this.props.myId;
-                let name = payer ? name = x.payeeId.name : name = x.payerId.name;
-                return <PaymentCard id={x._id} key={x._id} name={name} amount={x.amt} date={x.date} payer={payer} confirmed={x.status} />
-            }
-        );
+        list = list.map((x) => {
+            let payer = x.payerId._id === this.props.myId;
+            let name = payer ? name = x.payeeId.name : name = x.payerId.name;
+            return <PaymentCard id={x._id} key={x._id} name={name} amount={x.amt} date={x.date} payer={payer} confirmed={x.status} />
+        });
+
+        // filter/search/sort
+        list = this.filterList(list);
+        list = this.sortList(list);
+        list = this.searchList(list);
+
+        return list;
     }
 
     filterList(list) {
-        switch (this.props.filter) {            
+        switch (this.props.filter) {
             case FilterEnum.completed:
-                return list.filter(x => x.completed === true);
+                return list.filter(x => x.props.confirmed === true);
 
             case FilterEnum.pending:
-                return list.filter(x => x.completed === false);
+                return list.filter(x => x.props.confirmed === false);
 
             default:
             case FilterEnum.none:
@@ -40,23 +43,23 @@ class PaymentList extends Component {
 
     sortList(list) {
         switch (this.props.sort) {
-            // case SortEnum.nameAsc:
-            //     return list.sort((a, b) => a.name.localeCompare(b.name));
+            case SortEnum.nameAsc:
+                return list.sort((a, b) => a.props.name.localeCompare(b.props.name));
 
-            // case SortEnum.nameDes:
-            //     return list.sort((a, b) => b.name.localeCompare(a.name));
+            case SortEnum.nameDes:
+                return list.sort((a, b) => b.props.name.localeCompare(a.props.name));
 
             case SortEnum.dateAsc:
-                return list.sort((a, b) => (new Date(a.date) - new Date(b.date)));
+                return list.sort((a, b) => (new Date(a.props.date) - new Date(b.props.date)));
 
             default:
             case SortEnum.dateDes:
-                return list.sort((a, b) => (new Date(b.date) - new Date(a.date)));
+                return list.sort((a, b) => (new Date(b.props.date) - new Date(a.props.date)));
         }
     }
 
     searchList(list) {
-        //return list.filter(x => x.name.toLowerCase().includes(this.props.search.toLowerCase()));
+        return list.filter(x => x.props.name.toLowerCase().startsWith(this.props.search.toLowerCase()));
     }
 
     render() {
@@ -64,7 +67,7 @@ class PaymentList extends Component {
 
         return (
             <div className="payment-list">
-                {this.props.newPayment ? <NewPaymentCard myId={this.props.myId} openCard={this.props.onNewPaymentChange} /> : null}                
+                {this.props.newPayment ? <NewPaymentCard myId={this.props.myId} openCard={this.props.onNewPaymentChange} /> : null}
                 {list}
             </div>
         );

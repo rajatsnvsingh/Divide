@@ -146,6 +146,12 @@ module.exports.broadcastExpense = function(Expense) {
 module.exports.broadcastPayment = function(Payment) {
   let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
   for (socket of targetSockets) {
-    socket.emit("incoming_payment", JSON.stringify(notification));
+    socket.emit("incoming_payment", JSON.stringify(Payment));
+  }
+};
+module.exports.broadcastDeletedPayment = function(Payment) {
+  let targetSockets = getUserSockets([Payment.payerId.toString()]);
+  for (socket of targetSockets) {
+    socket.emit("disputed_payment", JSON.stringify(Payment));
   }
 };

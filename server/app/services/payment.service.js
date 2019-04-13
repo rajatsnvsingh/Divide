@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const paymentController = require("../controllers/payment.controller");
-const notificationController = require("../controllers/notification.controller");
+const notificationService = require('../services/notification.service');
 const transactionController = require("../controllers/transaction.controller");
 const expenseController = require("../controllers/expense.controller");
+const socketManager = require('../socketManager');
 const Payment = mongoose.model("Payment");
 const Notification = mongoose.model("Notification");
 
@@ -14,7 +15,7 @@ exports.createPayment = function(jsonObj, callback) {
       type: 2,
       paymentId: savedPayment._id
     });
-    notificationController.createNotification(payeeNotification);
+    notificationService.createNotification(payeeNotification, function() {});
     callback(savedPayment);
   });
 };
@@ -107,11 +108,8 @@ exports.acceptPayment = function(id, callback) {
                       type: 5,
                       paymentId: acceptedPayment._id
                     });
-                    notificationController
-                      .createNotification(acceptPaymentNotification)
-                      .then(function() {
-                        callback(acceptedPayment, updatedTransactions);
-                      });
+                    notificationService.createNotification(acceptPaymentNotification, function() {});
+                    callback(acceptedPayment, updatedTransactions);
                   });
               });
           });
@@ -127,10 +125,8 @@ exports.declinePayment = function(id, callback) {
       type: 3,
       paymentId: deletedPayment._id
     });
-    notificationController
-      .createNotification(paymentRejectionNotif)
-      .then(function() {
-        callback(deletedPayment);
-      });
+    // socketManager.broadcastDeletedPayment(deletedPayment);
+    notificationService.createNotification(paymentRejectionNotif, function() {});
+    callback(deletedPayment);
   });
 };

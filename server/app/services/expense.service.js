@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const expenseController = require("../controllers/expense.controller");
 const transactionController = require("../controllers/transaction.controller");
-const notificationController = require("../controllers/notification.controller");
 const notificationService = require("../services/notification.service");
 const Expense = mongoose.model("Expense");
 const Transaction = mongoose.model("Transaction");
@@ -41,9 +40,7 @@ exports.createExpense = function(expenseJSON, callback) {
                     type: 1,
                     expenseId: createdExpense._id
                   });
-                  notificationService.createNotification(expenseNotif, function(result) {
-
-                  });
+                  notificationService.createNotification(expenseNotif, function() {});
                   // notificationController.createNotification(expenseNotif);
                 }
                 callback(createdExpense);
@@ -102,7 +99,7 @@ exports.updateExpense = function(expenseJSON, callback) {
           type: 4,
           expenseId: expenseJSON._id
         });
-        notificationController.createNotification(updateNotification);
+        notificationService.createNotification(updateNotification, function() {});
       }
     });
   // Update expense
@@ -130,31 +127,37 @@ exports.updateExpense = function(expenseJSON, callback) {
   });
 };
 
-exports.deleteExpense = function(id, callback) {
-  // Delete expense
-  expenseController.deleteExpense(id).then(function(deletedExpense) {
-    let count = deletedExpense.transactions.length;
-
-    // Delete the expense's transactions
-    for (let transactionId of deletedExpense.transactions) {
-      transactionController
-        .deleteTransaction(transactionId)
-        .then(function(deletedTransaction) {
-          let deleteExpenseNotification = new Notification({
-            targetId: deletedTransaction.userId,
-            type: 0,
-            expenseId: deletedExpense._id
-          });
-          // Notify the payee of each transaction that the expense has been deleted
-          notificationController
-            .createNotification(deleteExpenseNotification)
-            .then(function() {
-              count--;
-              if (count === 0) {
-                callback(deletedExpense);
-              }
-            });
-        });
-    }
-  });
-};
+// exports.deleteExpense = function(id, callback) {
+//   // Delete expense
+//   expenseController.deleteExpense(id).then(function(deletedExpense) {
+//     let count = deletedExpense.transactions.length;
+//
+//     // Delete the expense's transactions
+//     for (let transactionId of deletedExpense.transactions) {
+//       transactionController
+//         .deleteTransaction(transactionId)
+//         .then(function(deletedTransaction) {
+//           let deleteExpenseNotification = new Notification({
+//             targetId: deletedTransaction.userId,
+//             type: 0,
+//             expenseId: deletedExpense._id
+//           });
+//           // Notify the payee of each transaction that the expense has been deleted
+//           notificationService.createNotification(deleteExpenseNotification, function() {
+//             count--;
+//             if (count === 0) {
+//               callback(deletedExpense);
+//             }
+//           });
+//         //   notificationController
+//         //     .createNotification(deleteExpenseNotification)
+//         //     .then(function() {
+//         //       count--;
+//         //       if (count === 0) {
+//         //         callback(deletedExpense);
+//         //       }
+//         //     });
+//         });
+//     }
+//   });
+// };

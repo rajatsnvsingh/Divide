@@ -122,22 +122,28 @@ class ExpenseCardExpanded extends Component {
   }
 
   onSaveButtonClick() {
+    let newExpense = {
+      title: this.state.title,
+      totalAmt: this.state.totalAmount,
+      ownerId: this.props.myId,
+      status: this.state.status,
+      date: this.state.date,
+      transactions: this.state.transactions
+    };
+
     if (this.state.status === expenseStatusType.pending) {
-      let newExpense = {
-        title: this.state.title,
-        totalAmt: this.state.totalAmount,
-        ownerId: this.props.myId,
-        status: this.state.status,
-        date: this.state.date,
-        transactions: this.state.transactions
-      };
       console.log(newExpense);
       let newExpenseJson = JSON.stringify(newExpense);
-      socket.emit("new_expense", newExpenseJson, function(newExpense) {
+      socket.emit("new_expense", newExpenseJson, function (newExpense) {
         console.log(newExpense);
       });
     } else if (this.state.status === expenseStatusType.open) {
-      // TODO Use web socket to update the expense
+      newExpense._id = this.state._id;
+      console.log(newExpense);
+      let updatedExpenseJson = JSON.stringify(newExpense);
+      socket.emit("update_expense", updatedExpenseJson, function (newExpense) {
+        console.log(newExpense);
+      });
     }
     this.props.onClose();
   }

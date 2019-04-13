@@ -18,6 +18,13 @@ let checkAuth = function(socket) {
     return false;
   }
 };
+let getUserSockets = function(id_list) {
+  let filteredSockets = userSockets.filter(socket => {
+    //return socket.userId === id
+    return id_list.indexOf(socket.userId) > -1;
+  });
+  return filteredSockets;
+};
 
 module.exports.clientHandler = function(socket) {
   print("user connected");
@@ -25,6 +32,10 @@ module.exports.clientHandler = function(socket) {
   //console.log(socket.request.user._id);
   //socket.userId = "5cafd0222e9bae3c88654a1a";
   userSockets.push(socket);
+  socket.on("disconnect", function() {
+    userSockets = userSockets.filter(savedSocket => savedSocket !== socket);
+    print("A user disconnected!");
+  });
   /**
    * All Expense Socket functions
    */
@@ -114,4 +125,29 @@ module.exports.clientHandler = function(socket) {
     print("User requested all users!");
     userService.getUserById(socket.userId, callback);
   });
+};
+/**
+ * Server -> Client socket functions
+ */
+module.exports.broadcastNotification = function(notification) {
+  let targetSockets = getUserSockets([notification.targetId]);
+  for (socket of targetSockets) {
+    socket.emit("incoming_notification", JSON.stringify(notification));
+  }
+};
+module.exports.broadcastExpense = function(Expense) {
+  let targedIds = [];
+  for (transaction of Expense.transactions) {
+    targedIds.push(transaction.userId);
+  }
+  let targetSockets = getUserSockets(targedIds);
+  for (socket of targetSockets) {
+    socket.emit("incoming_expense", JSON.stringify(Expense));
+  }
+};
+module.exports.broadcastPayment = function(Payment) {
+  let targetSockets = getUserSockets([Payment.payeeId]);
+  for (socket of targetSockets) {
+    socket.emit("incoming_payment", JSON.stringify(notification));
+  }
 };

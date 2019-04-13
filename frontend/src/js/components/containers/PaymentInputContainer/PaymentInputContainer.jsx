@@ -58,7 +58,7 @@ class PaymentInputContainer extends Component {
                     <div className="col-lg-2">
                         <button type="button" className="btn btn-secondary w-100" onClick={this.onClearClick}>Clear</button>
                     </div>
-                    <div className="col-lg-2">
+                    <div className="col">
                         <button type="button" className="btn btn-primary w-100" onClick={this.onNewPaymentClick}><b>PAY</b></button>
                     </div>
                 </div>

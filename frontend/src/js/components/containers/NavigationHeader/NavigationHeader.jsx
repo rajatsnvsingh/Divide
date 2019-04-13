@@ -33,7 +33,7 @@ class NavigationHeader extends Component {
                         </h1>
                     </div>
                 </div>
-                <div>
+                <div className="col-md-2">
                     <a href="/auth/logout">
                         <button type="button" className="btn btn-secondary float-right">Logout</button>
                     </a>

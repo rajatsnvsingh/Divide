@@ -1,3 +1,10 @@
 .split-button {
   align-self: flex-end; 
 }
+
+th,td {
+  font-size: 1.2vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

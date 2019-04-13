@@ -179,7 +179,7 @@ class ExpenseCardExpandedUserList extends Component {
 
         <div className="row">
           <div className="col">
-            <table className="table table-striped">
+            <table className="table table-striped table-fit">
               <thead>
                 <tr>
                   <th scope="col">#</th>

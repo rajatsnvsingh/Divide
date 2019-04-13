@@ -122,7 +122,7 @@ class ExpenseCardExpanded extends Component {
   onSaveButtonClick() {
     let newExpense = {
       title: this.state.title,
-      totalAmt: this.state.totalAmount,
+      totalAmt: Math.round(this.state.totalAmount * 100) / 100,
       ownerId: this.props.myId,
       status: this.state.status,
       date: this.state.date,

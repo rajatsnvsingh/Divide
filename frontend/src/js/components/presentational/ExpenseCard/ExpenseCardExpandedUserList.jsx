@@ -29,6 +29,7 @@ class ExpenseCardExpandedUserList extends Component {
     socket.emit(
       "get_all_users",
       function (userList) {
+        userList = userList.filter(user => user._id !== this.props.myId);
         this.setState({
           searchUsers: userList
         });

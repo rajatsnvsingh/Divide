@@ -117,7 +117,7 @@ class NewPaymentCard extends Component {
                     <div className="form-inline">
                         <h2 className="mx-auto">
                             You have paid <input type="number" value={this.state.amount} onChange={this.onAmountChange} placeholder={42} className="form-control mr-1"></input> 
-                            to <SearchableDropdown user={this.state.user} onUserChange={this.onUserChange} /> 
+                            to <SearchableDropdown myId={this.props.myId} user={this.state.user} onUserChange={this.onUserChange} /> 
                             on <input type="date" value={this.state.date.toISOString().substr(0, 10)} onChange={this.onDateChange} className="form-control"></input>
                             {this.state.errorMessage !== "" && <div class="invalid text-center">{this.state.errorMessage}</div>}
                         </h2>

@@ -11,13 +11,23 @@ class PaymentList extends Component {
 
     getList() {
         let list = this.props.list;
-        list = this.filterList(list);
-        list = this.sortList(list);
-        list = this.searchList(list);
+        // list = this.filterList(list);
+        // list = this.sortList(list);
+        // list = this.searchList(list);
 
         // bind to PaymentCard
-        return list.map((x) =>
-            <PaymentCard key={x.key} name={x.name} amount={x.amount} date={x.date} completed={x.completed} />
+        return list.map((x) => {
+            let name = "";
+            if(x.payerId._id === this.props.myId){
+                name = x.payeeId.name;
+            }
+            else{
+                name = x.payerId.name;
+            }
+
+            return <PaymentCard key={x._id} name={name} amount={x.amt} date={x.date} completed={x.completed} />
+        }
+            
         );
     }
 
@@ -37,11 +47,11 @@ class PaymentList extends Component {
 
     sortList(list) {
         switch (this.props.sort) {
-            case SortEnum.nameAsc:
-                return list.sort((a, b) => a.name.localeCompare(b.name));
+            // case SortEnum.nameAsc:
+            //     return list.sort((a, b) => a.name.localeCompare(b.name));
 
-            case SortEnum.nameDes:
-                return list.sort((a, b) => b.name.localeCompare(a.name));
+            // case SortEnum.nameDes:
+            //     return list.sort((a, b) => b.name.localeCompare(a.name));
 
             case SortEnum.dateAsc:
                 return list.sort((a, b) => (new Date(a.date) - new Date(b.date)));
@@ -53,7 +63,7 @@ class PaymentList extends Component {
     }
 
     searchList(list) {
-        return list.filter(x => x.name.toLowerCase().includes(this.props.search.toLowerCase()));
+        //return list.filter(x => x.name.toLowerCase().includes(this.props.search.toLowerCase()));
     }
 
     render() {

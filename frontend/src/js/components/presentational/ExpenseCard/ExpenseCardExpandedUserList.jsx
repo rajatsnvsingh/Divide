@@ -43,7 +43,7 @@ class ExpenseCardExpandedUserList extends Component {
 
   onSearchButtonClicked() {
     if (this.state.searchDropdown === "") {
-      this.setState({ searchDropdown: "show" });
+      this.setState({ searchDropdown: "show d-table position-absolute" });
     } else {
       this.setState({ searchDropdown: "" });
     }
@@ -159,7 +159,7 @@ class ExpenseCardExpandedUserList extends Component {
               >
                 <input
                   type="text"
-                  className="form-control-text ml-1 mr-1"
+                  className="form-control m-auto ddl"
                   placeholder="Enter a name..."
                   value={this.state.searchText}
                   onChange={this.onSearchTextChanged}

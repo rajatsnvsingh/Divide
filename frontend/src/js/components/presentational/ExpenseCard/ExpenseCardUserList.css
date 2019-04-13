@@ -2,6 +2,10 @@
   align-self: flex-end; 
 }
 
+.ddl {
+  width: 90%;
+}
+
 th,td {
   font-size: 1.2vw;
   white-space: nowrap;

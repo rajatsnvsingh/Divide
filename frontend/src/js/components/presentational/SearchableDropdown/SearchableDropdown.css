@@ -1,0 +1,6 @@
+.searchable-ddl {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    border: 1px solid #dee2e6;
+}

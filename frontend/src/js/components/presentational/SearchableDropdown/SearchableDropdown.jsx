@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../../presentational/ExpenseInput/ExpenseInputContainer.css';
+import './SearchableDropdown.css';
 import { socket } from "../../../../App.js";
 
 class SearchableDropdown extends Component {
@@ -87,7 +88,7 @@ class SearchableDropdown extends Component {
                 >
                     {this.state.selectedUser !== null ? this.state.selectedUser.name : "Select User"}
                 </button>
-                <div className={this.state.searchDropdown === "show" ? "" : "d-none"}>
+                <div className={this.state.searchDropdown === "show" ? "searchable-ddl" : "d-none"}>
                     <input
                         type="text"
                         className="form-control w-100"

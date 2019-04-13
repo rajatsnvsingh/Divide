@@ -13,7 +13,7 @@ class SearchableDropdown extends Component {
             searchText: "",
             searchDropdown: "",
             searchUsers: [],
-            selectedUser: null
+            selectedUser: this.props.user
         };
     }
 
@@ -51,6 +51,7 @@ class SearchableDropdown extends Component {
                     selectedUser: user,
                     searchDropdown: ""
                 });
+                this.props.onUserChange(user);
             }
         }
     }

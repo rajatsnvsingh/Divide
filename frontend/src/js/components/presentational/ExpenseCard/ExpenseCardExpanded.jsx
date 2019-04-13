@@ -74,8 +74,7 @@ class ExpenseCardExpanded extends Component {
     });
 
     let newTransaction = {
-      //_id: "",
-      ownerId: "5cafd0222e9bae3c88654a1a",
+      ownerId: this.props.myId,
       userId: newUser,
       amtOwing: amountOwed,
       amtPaid: 0.0,
@@ -123,23 +122,21 @@ class ExpenseCardExpanded extends Component {
   }
 
   onSaveButtonClick() {
-    // TODO verify that everything in the new expense is acceptable
-    let newExpense = {
-      //_id: this.state._id,
-      title: this.state.title,
-      totalAmt: this.state.totalAmount,
-      ownerId: "5cafd0222e9bae3c88654a1a",
-      status: this.state.status,
-      date: this.state.date,
-      transactions: this.state.transactions
-    };
-    let newExpenseJson = JSON.stringify(newExpense);
-
-    if (newExpense.status === expenseStatusType.pending) {
+    if (this.state.status === expenseStatusType.pending) {
+      let newExpense = {
+        title: this.state.title,
+        totalAmt: this.state.totalAmount,
+        ownerId: this.props.myId,
+        status: this.state.status,
+        date: this.state.date,
+        transactions: this.state.transactions
+      };
+      console.log(newExpense);
+      let newExpenseJson = JSON.stringify(newExpense);
       socket.emit("new_expense", newExpenseJson, function(newExpense) {
         console.log(newExpense);
       });
-    } else if (newExpense.status === expenseStatusType.open) {
+    } else if (this.state.status === expenseStatusType.open) {
       // TODO Use web socket to update the expense
     }
     this.props.onClose();

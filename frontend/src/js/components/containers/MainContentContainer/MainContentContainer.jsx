@@ -56,6 +56,25 @@ class MainContentContainer extends Component {
       this.setState({expenses: expenses});
     }.bind(this));
 
+    socket.on("incoming_payment", function(in_payment) {
+      let inPayment = JSON.parse(in_payment);
+      inPayment.date = new Date(Date.parse(inPayment.date));
+      let payments = this.state.payments;
+
+      console.log(inPayment);
+
+      for (let i = 0; i < payments.length; i++) {
+        if (payments[i]._id === inPayment._id) {
+          payments[i] = inPayment;
+          this.setState({payments: payments});
+          return;
+        }
+      }
+
+      payments.push(inPayment);
+      this.setState({payments: payments});
+    }.bind(this));
+
     // Initialize Payments
     socket.emit("get_payments", function (in_payments) {
       console.log(in_payments);

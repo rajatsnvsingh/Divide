@@ -154,6 +154,7 @@ module.exports.broadcastExpense = function(Expense) {
 };
 module.exports.broadcastPayment = function(Payment) {
   let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
+  targetSockets.push(Payment.payerId._id.toString());
   for (let socket of targetSockets) {
     socket.emit("incoming_payment", JSON.stringify(Payment));
   }

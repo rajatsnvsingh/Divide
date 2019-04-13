@@ -51,8 +51,8 @@ class PaymentInputContainer extends Component {
                         <select className="form-control" onChange={this.onSortChange} value={this.props.sort}>
                             <option value={SortEnum.dateDes}>Latest</option>
                             <option value={SortEnum.dateAsc}>Oldest</option>
-                            <option value={SortEnum.nameAsc}>Name (Ascending)</option>
-                            <option value={SortEnum.nameDes}>Name (Descending)</option>
+                            <option value={SortEnum.nameAsc}>Name A-Z</option>
+                            <option value={SortEnum.nameDes}>Name Z-A</option>
                         </select>
                     </div>
                     <div className="col-md-1">

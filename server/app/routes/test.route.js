@@ -66,9 +66,9 @@ module.exports = function(router) {
   });
 
   router.get('/payment/:userId', (req, res) => {
-    paymentService.getPaymentsByUserId(req.params.userId).exec(function(err, payments) {
+    paymentService.getPaymentsByUserId(req.params.userId, function(payments) {
       res.send(payments);
-    })
+    });
   });
 
   router.get('/payment/accept/:paymentId', (req, res) => {

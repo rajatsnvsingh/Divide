@@ -18,8 +18,7 @@ let checkAuth = function(socket) {
 };
 let getUserSockets = function(id_list) {
   let filteredSockets = userSockets.filter(socket => {
-    //return socket.userId === id
-    return id_list.indexOf(socket.userId) > -1;
+    return id_list.includes(socket.userId.toString());
   });
   return filteredSockets;
 };
@@ -128,7 +127,8 @@ module.exports.clientHandler = function(socket) {
  * Server -> Client socket functions
  */
 module.exports.broadcastNotification = function(notification) {
-  let targetSockets = getUserSockets([notification.targetId]);
+  let targetSockets = getUserSockets([notification.targetId._id.toString()]);
+  console.log("number of matching sockets " + targetSockets.length);
   for (socket of targetSockets) {
     socket.emit("incoming_notification", JSON.stringify(notification));
   }
@@ -136,7 +136,7 @@ module.exports.broadcastNotification = function(notification) {
 module.exports.broadcastExpense = function(Expense) {
   let targedIds = [];
   for (transaction of Expense.transactions) {
-    targedIds.push(transaction.userId);
+    targedIds.push(transaction.userId.toString());
   }
   let targetSockets = getUserSockets(targedIds);
   for (socket of targetSockets) {
@@ -144,7 +144,7 @@ module.exports.broadcastExpense = function(Expense) {
   }
 };
 module.exports.broadcastPayment = function(Payment) {
-  let targetSockets = getUserSockets([Payment.payeeId]);
+  let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
   for (socket of targetSockets) {
     socket.emit("incoming_payment", JSON.stringify(notification));
   }

@@ -8,7 +8,7 @@ const NotificationSchema = new Schema({
     required: true
   },
   type: {
-    type: String,
+    type: Number,
     required: true
     // { expenseAdded: 1, paymentAdded: 2, paymentDeleted: 3, updatedExpense: 4, paymentAccepted: 5}
   },

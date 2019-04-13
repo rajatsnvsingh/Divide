@@ -41,8 +41,10 @@ exports.createExpense = function(expenseJSON, callback) {
                     type: 1,
                     expenseId: createdExpense._id
                   });
-                  //notificationService.createNotification(expenseNotif);
-                  notificationController.createNotification(expenseNotif);
+                  notificationService.createNotification(expenseNotif, function(result) {
+
+                  });
+                  // notificationController.createNotification(expenseNotif);
                 }
                 callback(createdExpense);
               });

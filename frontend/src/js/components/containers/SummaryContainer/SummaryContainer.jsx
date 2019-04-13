@@ -14,7 +14,6 @@ class SummaryContainer extends Component {
         this.toggleViewState = this.toggleViewState.bind(this);
         this.state = {
             viewState: viewStateEnum.summary,
-            numNotifications: 0,
             summaryFilter: summaryFilterEnum.none
         };
     }
@@ -45,12 +44,12 @@ class SummaryContainer extends Component {
         return (
             <div className="sidenav">
                 <ProfileContainer 
-                    toggleViewState={this.toggleViewState} 
                     onSummaryFilterChange={this.onSummaryFilterChange} 
                     name={this.props.name} 
                     summaryList={this.props.summaryList}
                 />
                 <SummaryContentContainer
+                    toggleViewState={this.toggleViewState} 
                     viewState={this.state.viewState}
                     onViewStateChange={this.onViewStateChange}
                     onSummaryFilterChange={this.onSummaryFilterChange}

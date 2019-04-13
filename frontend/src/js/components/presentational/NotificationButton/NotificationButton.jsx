@@ -15,7 +15,7 @@ class NotificationButton extends Component {
         return (
             <div className="row">
                 <button type="button" className="btn btn-secondary notification-button" onClick={this.onNotificationButtonClick}>
-                    Notifications <span class="badge badge-light">3</span>
+                    Notifications   <span className="badge badge-light">{this.props.count}</span>
                 </button>
             </div>
         );

@@ -1,0 +1,21 @@
+.mountains {
+    background:url(https://photos.smugmug.com/Engagements/Ruble--Tania/i-fg6FX6G/0/d11b8d56/X2/Ruble%20%26%20Tania%20Surprise%20Engagement%20-%2001-X2.jpg);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    image-rendering: -webkit-optimize-contrast; 
+}
+
+.frmbckrnd { 
+    background-color: rgba(245, 245, 245, 0.6);
+    padding: 7%;
+    
+}
+
+.perfect-centering {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }

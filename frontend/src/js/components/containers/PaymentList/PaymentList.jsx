@@ -17,17 +17,20 @@ class PaymentList extends Component {
 
         // bind to PaymentCard
         return list.map((x) => {
-            let name = "";
-            if(x.payerId._id === this.props.myId){
-                name = x.payeeId.name;
-            }
-            else{
-                name = x.payerId.name;
-            }
+                let name = "";
+                let completed = false;
 
-            return <PaymentCard key={x._id} name={name} amount={x.amt} date={x.date} completed={x.completed} />
-        }
-            
+                if (x.payerId._id === this.props.myId) {
+                    name = x.payeeId.name;
+                    completed = true;
+                }
+                else {
+                    name = x.payerId.name;
+                    completed = false;
+                }
+
+                return <PaymentCard key={x._id} name={name} amount={x.amt} date={x.date} completed={completed} />
+            }
         );
     }
 

@@ -37,17 +37,17 @@ class PaymentInputContainer extends Component {
         return (
             <div>
                 <div className="row mt-3 mb-3">
-                    <div className="col-md-4">
+                    <div className="col-xl-3">
                         <input type="text" className="form-control" placeholder="Search Name" onChange={this.onSearchChange} value={this.props.search} />
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-lg-2">
                         <select className="form-control" onChange={this.onFilterChange} value={this.props.filter}>
                             <option value={FilterEnum.none}>No Filter</option>
                             <option value={FilterEnum.completed}>Completed</option>
                             <option value={FilterEnum.pending}>Pending</option>
                         </select>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-lg-2">
                         <select className="form-control" onChange={this.onSortChange} value={this.props.sort}>
                             <option value={SortEnum.dateDes}>Latest</option>
                             <option value={SortEnum.dateAsc}>Oldest</option>
@@ -55,11 +55,11 @@ class PaymentInputContainer extends Component {
                             <option value={SortEnum.nameDes}>Name Z-A</option>
                         </select>
                     </div>
-                    <div className="col-md-1">
+                    <div className="col-lg-2">
                         <button type="button" className="btn btn-secondary w-100" onClick={this.onClearClick}>Clear</button>
                     </div>
-                    <div className="col">
-                        <button type="button" className="btn btn-primary w-100" onClick={this.onNewPaymentClick}>Enter a Payment</button>
+                    <div className="col-lg-2">
+                        <button type="button" className="btn btn-primary w-100" onClick={this.onNewPaymentClick}><b>PAY</b></button>
                     </div>
                 </div>
             </div>

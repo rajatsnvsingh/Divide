@@ -152,9 +152,9 @@ class ExpenseContainer extends Component {
                             onSortTypeChanged={this.onSortTypeChanged}
                             onViewClosedExpensesChanged={this.onViewClosedExpensesChanged} />
                     </div>
-                    <div className="col-2 center-col-items">
+                    <div className="col-md-2 center-col-items">
                         <button className="btn btn-success newExpenseBtn text-center" onClick={this.onAddNewExpense}>
-                            Add New
+                            <b>+EXP</b>
                         </button>
                     </div>
                 </div>

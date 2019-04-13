@@ -8,8 +8,8 @@ const ExpenseSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
-    required: true
+default: Date.now,
+  required: true
   },
   totalAmt: {
     type: Number,

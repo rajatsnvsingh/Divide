@@ -122,7 +122,6 @@ module.exports.clientHandler = function(socket) {
     print("User requested all users!");
     userService.getUserById(socket.userId, callback);
   });
-  socket.on("")
 };
 /**
  * Server -> Client socket functions
@@ -135,6 +134,14 @@ module.exports.broadcastNotification = function(notification) {
   }
 };
 module.exports.broadcastExpense = function(Expense) {
+  let expenseStatus = 2; //2-> open
+  for (let transaction of Expense.transactions) {
+    if (transaction.amtOwing > transaction.amtPaid) {
+      break;
+    }
+    expenseStatus = 3;
+  }
+  Expense.status = expenseStatus;
   let targedIds = [];
   for (transaction of Expense.transactions) {
     targedIds.push(transaction.userId.toString());

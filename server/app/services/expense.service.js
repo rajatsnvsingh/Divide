@@ -1,5 +1,3 @@
-import {socket} from "../../../frontend/src/App";
-
 const mongoose = require("mongoose");
 const expenseController = require("../controllers/expense.controller");
 const transactionController = require("../controllers/transaction.controller");
@@ -29,14 +27,21 @@ exports.createExpense = function(expenseJSON, callback) {
           expenseController
             .createExpense(newExpense)
             .then(function(createdExpense) {
-              Expense.populate(createdExpense, {
-                path: "transactions",
-                model: "Transaction",
-                populate: {
-                  path: "userId",
-                  model: "User"
-                }
-              }).then(function(populatedExpense) {
+              Expense.populate(createdExpense,
+                [
+                  {
+                    path: "ownerId",
+                    model: "User"
+                  },
+                  {
+                    path: "transactions",
+                    model: "Transaction",
+                    populate: {
+                      path: "userId",
+                      model: "User"
+                    }
+                  }
+              ]).then(function(populatedExpense) {
                 for (let createdTransaction of populatedExpense.transactions) {
                   let expenseNotif = new Notification({
                     targetId: createdTransaction.userId,
@@ -115,7 +120,11 @@ exports.updateExpense = function(expenseJSON, callback) {
       },
       {
         path: "transactions",
-        model: "Transaction"
+        model: "Transaction",
+        populate: {
+          path: "userId",
+          model: "User"
+        }
       }
     ]).then(function(updatedExpense) {
       let expenseStatus = 2; //2-> open
@@ -126,6 +135,7 @@ exports.updateExpense = function(expenseJSON, callback) {
         expenseStatus = 3;
       }
       updatedExpense.status = expenseStatus;
+      socketManager.broadcastExpense(updatedExpense);
       callback(updatedExpense);
     });
   });

@@ -5,6 +5,11 @@
 
 .exinf{
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5vw;
+    
 }
 
 .excard:hover { 
@@ -19,3 +24,17 @@
   .tdex {
       font-weight: bold;
   }
+
+  .extit {
+      font-size: 2.5vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+  
+  .exdt {
+    font-size: 2vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

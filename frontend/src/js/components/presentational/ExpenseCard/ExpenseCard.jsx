@@ -53,8 +53,8 @@ class ExpenseCard extends Component {
                 <div className="card-body card-shadow p-0">
                     <div className="row align-items-center">
                         <div className="col-2">
-                            <h4>{monthName}</h4>
-                            <h5>{expense.date.getDate()}</h5>
+                            <h4 className="exdt">{monthName}</h4>
+                            <h5 className="exdt">{expense.date.getDate()}</h5>
                         </div>
                         <div className="col-md-3">
                             <h2 className="extit">{expense.title}</h2>

@@ -98,11 +98,11 @@ module.exports.clientHandler = function(socket) {
     print("User requested notifications!");
     notificationService.getAllNotificationsByUserId(socket.userId, callback);
   });
-  socket.on("dismiss_notifications", function(callback) {
+  socket.on("dismiss_notifications", function(data, callback) {
     if (!checkAuth(socket)) {
       return "User not authenticated!";
     }
-    print("User requested notifications!");
+    print("User dismissed notification!");
     notificationService.deleteNotification(JSON.parse(data)._id, callback);
   });
   /**

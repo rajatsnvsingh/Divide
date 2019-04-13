@@ -13,12 +13,29 @@ exports.getAllNotificationsByUserId = function(id, callback) {
           model: "User"
         },
         {
-          path: "expenseId",
-          model: "Expense"
+          path: 'expenseId',
+          model: 'Expense',
+          populate:{
+            path:'ownerId',
+            model:'User',
+            populate:{
+              path:'transactions',
+              model: 'Transaction'
+            }
+          }
         },
         {
-          path: "paymentId",
-          model: "Payment"
+          path: 'paymentId',
+          model: 'Payment',
+          populate: [
+          {
+            path:'payeeId',
+            model:'User'                
+          },
+          {
+            path: 'payerId',
+            model: 'User'
+          }]
         }
       ]).then(function(populatedNotifications) {
         callback(populatedNotifications);

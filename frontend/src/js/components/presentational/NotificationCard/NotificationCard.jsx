@@ -3,31 +3,58 @@ import React, { Component } from "react";
 class NotificationCard extends Component {
     constructor(props) {
         super(props);
+        this.closeButtonOnClick = this.closeButtonOnClick.bind(this);
+    }
+
+    closeButtonOnClick(id) {
+        this.props.onCardClosed(id);
     }
 
     render() {
-        let header;
-        let content;
-
-        if (this.props.isPayment) {
-            header = "Payment";
-            content = <p>{this.props.name} has payed you <b className="text-success">${this.props.amount}</b></p>
-        }
-        else {
-            header = "Expense";
-            content = <p>You owe {this.props.name} <b className="text-danger">${this.props.amount}</b></p>
-        }
-
+        let [header, content] = this.getNotificationText(this.props.notification);
+        let cardId = "notification-" + this.props.notification._id;
+        let text = <p>{content}</p>
         return (
-            <div className="card mb-3">
+            <div id={cardId} className="card mb-3">
                 <div className="card-header p-2">
                     <h6 className="float-left">{header}</h6>
+                    <button className='btn float-right' onClick={() => this.closeButtonOnClick(cardId)}>x</button>
                 </div>
                 <div className="card-body p-3">
-                    {content}
+                    {text}
                 </div>
             </div>
         );
+    }
+
+    getNotificationText(notification) {
+        let header="";
+        let content="";
+        switch(Number(notification.type)) {
+            case 1: // expense added
+                header = 'expense';
+                content = notification.expenseId.ownerId.name + ' added you to an expense';
+                break;
+            case 2: //payment added
+                header = 'payment';
+                content = notification.paymentId.payerId.name + ' paid you';
+                break;
+            case 3: //payment deleted
+                header = 'payment';
+                content = content = notification.paymentId.payeeId.name + ' rejected your payment';
+                break;
+            case 4: //expense updated
+                header = 'expense';
+                content = notification.expenseId.ownerId.name + ' updated an expense'
+                break;
+            case 5: //payment accepted
+                header = 'payment';
+                content = content = notification.paymentId.payeeId.name + ' accepted your payment';
+                break;
+            default:
+                return "invalid type";
+        }
+        return [header, content];
     }
 }
 

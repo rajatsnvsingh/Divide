@@ -151,14 +151,27 @@ exports.acceptPayment = function(id, callback) {
 
 exports.declinePayment = function(id, callback) {
   paymentController.deletePayment(id).then(function(deletedPayment) {
-    // create Notification for the user whose payment was declined
-    let paymentRejectionNotif = new Notification({
-      targetId: deletedPayment.payerId,
-      type: 3,
-      paymentId: deletedPayment._id
+    Payment.populate(deletedPayment,
+      [
+        {
+          path: 'payerId',
+          model: 'User'
+        },
+        {
+          path: 'payeeId',
+          model: 'User'
+        }
+      ]).then(function(populatedPayment) {
+      // create Notification for the user whose payment was declined
+      let paymentRejectionNotif = new Notification({
+        targetId: populatedPayment.payerId,
+        type: 3,
+        paymentId: populatedPayment._id
+      });
+      // socketManager.broadcastDeletedPayment(deletedPayment);
+      notificationService.createNotification(paymentRejectionNotif, function() {});
+      socketManager.broadcastPayment(populatedPayment);
+      callback(populatedPayment);
     });
-    // socketManager.broadcastDeletedPayment(deletedPayment);
-    notificationService.createNotification(paymentRejectionNotif, function() {});
-    callback(deletedPayment);
   });
 };

@@ -129,7 +129,7 @@ module.exports.clientHandler = function(socket) {
 module.exports.broadcastNotification = function(notification) {
   let targetSockets = getUserSockets([notification.targetId._id.toString()]);
   console.log("number of matching sockets " + targetSockets.length);
-  for (socket of targetSockets) {
+  for (let socket of targetSockets) {
     socket.emit("incoming_notification", JSON.stringify(notification));
   }
 };
@@ -143,30 +143,18 @@ module.exports.broadcastExpense = function(Expense) {
   }
   Expense.status = expenseStatus;
   let targedIds = [];
-  for (transaction of Expense.transactions) {
+  for (let transaction of Expense.transactions) {
     targedIds.push(transaction.userId._id.toString());
   }
   targedIds.push(Expense.ownerId._id.toString());
   let targetSockets = getUserSockets(targedIds);
-  for (socket of targetSockets) {
+  for (let socket of targetSockets) {
     socket.emit("incoming_expense", JSON.stringify(Expense));
   }
 };
 module.exports.broadcastPayment = function(Payment) {
   let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
-  for (socket of targetSockets) {
+  for (let socket of targetSockets) {
     socket.emit("incoming_payment", JSON.stringify(Payment));
-  }
-};
-module.exports.broadcastAcceptedPayment = function(Payment) {
-  let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
-  for (socket of targetSockets) {
-    socket.emit("accepted_payment", JSON.stringify(Payment));
-  }
-};
-module.exports.broadcastDeletedPayment = function(Payment) {
-  let targetSockets = getUserSockets([Payment.payerId.toString()]);
-  for (socket of targetSockets) {
-    socket.emit("disputed_payment", JSON.stringify(Payment));
   }
 };

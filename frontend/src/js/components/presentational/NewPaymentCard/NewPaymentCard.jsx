@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchableDropdown from "../SearchableDropdown/SearchableDropdown.jsx";
 import { socket } from "../../../../App.js";
 import '../../../../css/styles.css'; 
+import './NewPaymentCard.css';
 
 class NewPaymentCard extends Component {
     constructor(props) {
@@ -18,7 +19,8 @@ class NewPaymentCard extends Component {
         this.state = {
             amount: 0,
             user: null,
-            date: new Date()
+            date: new Date(),
+            errorMessage: ""
         }
     }
 
@@ -38,7 +40,51 @@ class NewPaymentCard extends Component {
         this.props.openCard(false);
     }
 
+    showError(name, amount) {
+        this.setState({errorMessage: `You only owe ${name} $${amount}`})
+    }
+
+    // validate
+    validate() {
+        // ensure you do not pay more than they are owed
+        const list = this.props.summaryList;
+
+        for (const user of list) {
+
+            // find payee in list
+            if (user.userId === this.state.user._id) {
+                
+                // you owe the user some amount
+                if (user.amount < 0) {
+
+                    // you are not overpaying the user
+                    if (Math.abs(user.amount) >= this.state.amount) {
+                        this.setState({errorMessage: ""});
+                        return true;
+                    }
+
+                    // you are overpaying the user
+                    else {
+                        this.setState({errorMessage: `You only owe ${user.name} $${user.amount}`});
+                        return false;
+                    }
+                }
+
+                // you do not owe the user anything
+                else {
+                    this.setState({errorMessage: `You do not owe ${user.name}`});
+                    return false;
+                }
+            }
+        }
+
+        this.setState({errorMessage: "Please check your inputs"});
+        return false;
+    }
+
     onConfirmClick() {
+        if (!this.validate()) return;
+
         let payment = {
             payerId: this.props.myId,
             payeeId: this.state.user._id,
@@ -66,6 +112,7 @@ class NewPaymentCard extends Component {
                             You have paid <input type="number" value={this.state.amount} onChange={this.onAmountChange} placeholder={42} className="form-control mr-1"></input> 
                             to <SearchableDropdown user={this.state.user} onUserChange={this.onUserChange} /> 
                             on <input type="date" value={this.state.date} onChange={this.onDateChange} className="form-control"></input>
+                            {this.state.errorMessage !== "" && <div class="invalid text-center">{this.state.errorMessage}</div>}
                         </h2>
                     </div>
                     <button type="button" className="btn btn-secondary btn-lg mr-2" onClick={this.closeCard}>Cancel</button>

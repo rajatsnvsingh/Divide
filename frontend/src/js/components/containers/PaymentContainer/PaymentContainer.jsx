@@ -55,6 +55,7 @@ class PaymentContainer extends Component {
                     myId={this.props.myId}
                     newPayment={this.state.newPayment}
                     onNewPaymentChange={this.onNewPaymentChange}
+                    summaryList={this.props.summaryList}
                     search={this.state.search}
                     filter={this.state.filter}   
                     sort={this.state.sort}

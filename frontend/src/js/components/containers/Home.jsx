@@ -34,7 +34,7 @@ class Home extends Component {
     return (
       <div>
         <SummaryContainer myId={this.state.myId} summaryList={this.state.summaryList} name={this.state.name}/>
-        <MainContentContainer myId={this.state.myId} onUpdateSummaryList={this.onUpdateSummaryList} />
+        <MainContentContainer myId={this.state.myId} summaryList={this.state.summaryList} onUpdateSummaryList={this.onUpdateSummaryList} />
       </div>
     );
   }

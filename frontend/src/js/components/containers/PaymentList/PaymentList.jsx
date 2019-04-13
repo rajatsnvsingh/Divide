@@ -67,7 +67,13 @@ class PaymentList extends Component {
 
         return (
             <div className="payment-list">
-                {this.props.newPayment ? <NewPaymentCard myId={this.props.myId} openCard={this.props.onNewPaymentChange} /> : null}
+                {this.props.newPayment &&
+                    <NewPaymentCard
+                        summaryList={this.props.summaryList}
+                        myId={this.props.myId}
+                        openCard={this.props.onNewPaymentChange}
+                    />
+                }
                 {list}
             </div>
         );

@@ -117,6 +117,7 @@ class MainContentContainer extends Component {
             <PaymentContainer
               myId={this.props.myId}
               payments={this.state.payments}
+              summaryList={this.props.summaryList}
             />
           )}
       </div>

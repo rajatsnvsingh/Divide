@@ -59,6 +59,7 @@ class ExpenseContainer extends Component {
     // New Card Event Handlers
 
     onAddNewExpense() {
+        this.expenseList.scrollToTop();
         if (this.state.newExpenses.length === 1) // Only allow one new expense at a time
             return;
 
@@ -80,6 +81,7 @@ class ExpenseContainer extends Component {
         };
         let newExpenses = this.state.newExpenses;
         newExpenses.push(newExpense);
+        
         this.setState({ newExpense: newExpenses });
     }
 
@@ -89,6 +91,7 @@ class ExpenseContainer extends Component {
         let newExpenses = this.state.newExpenses;
         newExpenses.pop();
         this.setState({ newExpense: newExpenses });
+
     }
 
     filterExpense(expense) {
@@ -168,6 +171,7 @@ class ExpenseContainer extends Component {
                             onCardClick={this.onCardClick}
                             onExpandedCardClose={this.onExpandedCardClose}
                             onNewCardClose={this.onNewCardClose}
+                            ref={e => (this.expenseList = e)}
                         />
                     </div>
                 </div>

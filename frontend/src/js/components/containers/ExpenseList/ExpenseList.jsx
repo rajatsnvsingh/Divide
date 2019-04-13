@@ -36,11 +36,17 @@ class ExpenseList extends Component {
 
         return (
             <div className="expense-list">
-                <ul>{newExpenseComponents}</ul>
+                <div ref={el => (this.newExpenseListRef = el)}></div>
+                <ul >{newExpenseComponents}</ul>
                 <ul>{expenseComponents}</ul>
             </div>
             
         );
+    }
+
+    scrollToTop(){
+        console.log("Test");
+        this.newExpenseListRef.scrollIntoView();
     }
 
 }

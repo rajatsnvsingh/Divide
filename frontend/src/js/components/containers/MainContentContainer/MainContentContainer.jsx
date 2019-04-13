@@ -38,6 +38,24 @@ class MainContentContainer extends Component {
 
     }.bind(this));
 
+    socket.on("incoming_expense", function(in_expense){
+      console.log("here");
+      let inExpense = JSON.parse(in_expense);
+      inExpense.date = new Date(Date.parse(inExpense.date));
+      console.log(inExpense);
+      let expenses = this.state.expenses;
+      for(let i = 0; i < expenses.length; i++){
+        if(expenses[i]._id === inExpense._id)
+        {
+          expenses[i] = inExpense;
+          this.setState({expenses: expenses});
+          return;
+        }
+      }
+      expenses.push(inExpense);
+      this.setState({expenses: expenses});
+    }.bind(this));
+
     // Initialize Payments
     socket.emit("get_payments", function (in_payments) {
       console.log(in_payments);

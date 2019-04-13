@@ -144,8 +144,9 @@ module.exports.broadcastExpense = function(Expense) {
   Expense.status = expenseStatus;
   let targedIds = [];
   for (transaction of Expense.transactions) {
-    targedIds.push(transaction.userId.toString());
+    targedIds.push(transaction.userId._id.toString());
   }
+  targedIds.push(Expense.ownerId._id.toString());
   let targetSockets = getUserSockets(targedIds);
   for (socket of targetSockets) {
     socket.emit("incoming_expense", JSON.stringify(Expense));

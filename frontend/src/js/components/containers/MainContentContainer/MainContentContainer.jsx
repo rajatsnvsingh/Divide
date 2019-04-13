@@ -60,9 +60,10 @@ class MainContentContainer extends Component {
           if (!(otherUserId in summaryResults))
             summaryResults[otherUserId] = {
               name: transaction.userId.name,
-              amt: 0
+              amtOwed: 0,
+              amtOwing: 0
             };
-          summaryResults[otherUserId].amt +=
+          summaryResults[otherUserId].amtOwed +=
             transaction.amtOwing - transaction.amtPaid;
         });
       }
@@ -70,10 +71,14 @@ class MainContentContainer extends Component {
       else {
         let owner = expense.ownerId;
         if (!(owner._id in summaryResults))
-          summaryResults[owner._id] = { name: owner.name, amt: 0 };
+          summaryResults[owner._id] = {
+            name: owner.name,
+            amtOwed: 0,
+            amtOwing: 0 
+          };
         expense.transactions.forEach(transaction => {
           if (transaction.userId._id === this.props.myId) {
-            summaryResults[transaction.ownerId].amt -=
+            summaryResults[transaction.ownerId].amtOwing +=
               transaction.amtOwing - transaction.amtPaid;
           }
         });
@@ -88,7 +93,9 @@ class MainContentContainer extends Component {
       let summary = {
         userId: id,
         name: summaryResults[id].name,
-        amount: summaryResults[id].amt
+        amountOwing: summaryResults[id].amtOwing,
+        amountOwed: summaryResults[id].amtOwed,
+        amount: summaryResults[id].amtOwed - summaryResults[id].amtOwing
       };
       summaryList.push(summary);
     }

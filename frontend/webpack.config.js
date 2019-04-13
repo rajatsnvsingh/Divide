@@ -33,6 +33,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     proxy: {
+      "/images": {
+        target: "http://localhost:3001/images",
+        pathRewrite: { "^/images": "" },
+        secure: false,
+        changeOrigin: true
+      },
       "/api": {
         target: "http://localhost:3001/api",
         pathRewrite: { "^/api": "" },

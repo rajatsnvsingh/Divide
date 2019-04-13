@@ -1,7 +1,10 @@
+import {socket} from "../../../frontend/src/App";
+
 const mongoose = require("mongoose");
 const expenseController = require("../controllers/expense.controller");
 const transactionController = require("../controllers/transaction.controller");
 const notificationService = require("../services/notification.service");
+const socketManager = require('../socketManager');
 const Expense = mongoose.model("Expense");
 const Transaction = mongoose.model("Transaction");
 const Notification = mongoose.model("Notification");
@@ -41,6 +44,7 @@ exports.createExpense = function(expenseJSON, callback) {
                     expenseId: createdExpense._id
                   });
                   notificationService.createNotification(expenseNotif, function() {});
+                  socketManager.broadcastExpense(populatedExpense);
                   // notificationController.createNotification(expenseNotif);
                 }
                 callback(createdExpense);

@@ -57,7 +57,8 @@ app.use(passport.session());
 app.use("/api", router);
 // load our routes and pass in our app and fully configured passport
 require("./app/routes.js")(app, router, passport);
-
+console.log(path.join(__dirname, "app/images"));
+app.use('/images', express.static(path.join(__dirname, "app/images")));
 //FOR PRODUCTION BUILDS, SET TO TRUE
 if (false) {
   // Serve any static files

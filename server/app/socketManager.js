@@ -122,6 +122,7 @@ module.exports.clientHandler = function(socket) {
     print("User requested all users!");
     userService.getUserById(socket.userId, callback);
   });
+  socket.on("")
 };
 /**
  * Server -> Client socket functions
@@ -147,6 +148,12 @@ module.exports.broadcastPayment = function(Payment) {
   let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
   for (socket of targetSockets) {
     socket.emit("incoming_payment", JSON.stringify(Payment));
+  }
+};
+module.exports.broadcastAcceptedPayment = function(Payment) {
+  let targetSockets = getUserSockets([Payment.payeeId._id.toString()]);
+  for (socket of targetSockets) {
+    socket.emit("accepted_payment", JSON.stringify(Payment));
   }
 };
 module.exports.broadcastDeletedPayment = function(Payment) {

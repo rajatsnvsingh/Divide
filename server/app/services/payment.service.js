@@ -5,17 +5,31 @@ const transactionController = require("../controllers/transaction.controller");
 const expenseController = require("../controllers/expense.controller");
 const socketManager = require('../socketManager');
 const Payment = mongoose.model("Payment");
+const Expense = mongoose.model('Expense');
 const Notification = mongoose.model("Notification");
 
 exports.createPayment = function(jsonObj, callback) {
   let payment = new Payment(jsonObj);
   paymentController.createPayment(payment).then(function(savedPayment) {
-    let payeeNotification = new Notification({
-      targetId: savedPayment.payeeId,
-      type: 2,
-      paymentId: savedPayment._id
+    Payment.populate(savedPayment,
+      [
+        {
+          path: 'payerId',
+          model: 'User'
+        },
+        {
+          path: 'payeeId',
+          model: 'User'
+        }
+      ]).then(function(populatedPayment) {
+      let payeeNotification = new Notification({
+        targetId: populatedPayment.payeeId,
+        type: 2,
+        paymentId: populatedPayment._id
+      });
+      notificationService.createNotification(payeeNotification, function() {});
+      socketManager.broadcastPayment(populatedPayment);
     });
-    notificationService.createNotification(payeeNotification, function() {});
     callback(savedPayment);
   });
 };
@@ -97,7 +111,25 @@ exports.acceptPayment = function(id, callback) {
             expenseController
               .getExpensesByTransactions(updatedTransactions)
               .then(function(updatedExpenses) {
-                // TODO: socket emit updated expenses
+                for (const expense of updatedExpenses) {
+                  Expense.populate(expense,
+                    [
+                      {
+                        path: "ownerId",
+                        model: "User"
+                      },
+                      {
+                        path: "transactions",
+                        model: "Transaction",
+                        populate: {
+                          path: "userId",
+                          model: "User"
+                        }
+                      }
+                    ]).then(function(populatedExpense) {
+                      socketManager.broadcastExpense(populatedExpense);
+                  });
+                }
                 payment.expenses = updatedExpenses;
                 payment.status = true;
                 paymentController

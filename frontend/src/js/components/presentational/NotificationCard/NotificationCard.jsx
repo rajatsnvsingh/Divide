@@ -18,7 +18,9 @@ class NotificationCard extends Component {
             <div id={cardId} className="card mb-3">
                 <div className="card-header p-2">
                     <h6 className="float-left">{header}</h6>
-                    <button className='btn float-right' onClick={() => this.closeButtonOnClick(cardId)}>x</button>
+                    <button type="button" class="close float-right" onClick={() => this.closeButtonOnClick(cardId)}>
+                        <span>&times;</span>
+                    </button>
                 </div>
                 <div className="card-body p-3">
                     {text}
@@ -32,23 +34,23 @@ class NotificationCard extends Component {
         let content="";
         switch(Number(notification.type)) {
             case 1: // expense added
-                header = 'expense';
+                header = 'Expense';
                 content = notification.expenseId.ownerId.name + ' added you to an expense';
                 break;
             case 2: //payment added
-                header = 'payment';
+                header = 'Payment';
                 content = notification.paymentId.payerId.name + ' paid you';
                 break;
             case 3: //payment deleted
-                header = 'payment';
+                header = 'Payment';
                 content = content = notification.paymentId.payeeId.name + ' rejected your payment';
                 break;
             case 4: //expense updated
-                header = 'expense';
+                header = 'Expense';
                 content = notification.expenseId.ownerId.name + ' updated an expense'
                 break;
             case 5: //payment accepted
-                header = 'payment';
+                header = 'Payment';
                 content = content = notification.paymentId.payeeId.name + ' accepted your payment';
                 break;
             default:

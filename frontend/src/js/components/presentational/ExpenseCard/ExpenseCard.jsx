@@ -12,6 +12,15 @@ class ExpenseCard extends Component {
         this.props.onCardClick(this.props.expense._id);
     }
 
+    generateimagesrc(expense){
+        if (this.props.myId === expense.ownerId._id){
+            return <img className="card-img-top" src={expense.transactions[0].userId.picture}></img>;
+        }
+        else {
+            return <img className="card-img-top" src={expense.ownerId.picture}></img>;
+        }
+    }
+    
     generateExpenseMessage(expense) {
         let totalAmountOwed = 0;
         expense.transactions.forEach(transaction => {
@@ -49,6 +58,7 @@ class ExpenseCard extends Component {
         const expense = this.props.expense;
         let content = this.generateExpenseMessage(expense);
         let monthName = this.generateMonthName(expense);
+        let imagesource = this.generateimagesrc(expense);
 
         return (
             <div className="card mb-3 excard" onClick={this.onClick}>
@@ -65,7 +75,7 @@ class ExpenseCard extends Component {
                             {content}
                         </div>
                         <div className="col-2">
-                            <img className="card-img-top" src={expense.ownerId.picture}></img>
+                            {imagesource}
                         </div>
                     </div>
                 </div>

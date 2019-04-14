@@ -45,13 +45,13 @@ class PaymentCard extends Component {
 
             // if payment completed
             if (this.props.confirmed) {
-                completed = <h1>Completed</h1>;
-                content = <h1>{this.props.name} has confirmed your payment of <span className="text-danger">${this.props.amount}</span></h1>;
+                completed = <h2>Completed</h2>;
+                content = <h2>{this.props.name} has confirmed your payment of <span className="text-danger">${this.props.amount}</span></h2>;
             }
 
             else {
-                completed = <h1>Pending</h1>;
-                content = <h1>{this.props.name} has not confirmed your payment of <span className="text-danger">${this.props.amount}</span></h1>;
+                completed = <h2>Pending</h2>;
+                content = <h2>{this.props.name} has not confirmed your payment of <span className="text-danger">${this.props.amount}</span></h2>;
             }
         }
 
@@ -59,7 +59,7 @@ class PaymentCard extends Component {
         else {
             // if you have confirmed the payment
             if (this.props.confirmed) {
-                completed = <h1>Completed</h1>;
+                completed = <h2>Completed</h2>;
             }
 
             else {
@@ -72,7 +72,7 @@ class PaymentCard extends Component {
                 );
             }
 
-            content = <h1>{this.props.name} has payed you <span className="text-success">${this.props.amount}</span></h1>;
+            content = <h2>{this.props.name} has payed you <span className="text-success">${this.props.amount}</span></h2>;
         }
 
         return (

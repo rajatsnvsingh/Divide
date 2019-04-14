@@ -54,7 +54,7 @@ class MainContentContainer extends Component {
       this.setState({expenses: expenses});
       
       // Using Modified Expenses, compute summaries
-      let summaryResults = this.getSummaryListFromSummaryResults(expenses);
+      let summaryResults = this.getSummaryResultsFromExpenses(expenses);
       let summaryList = this.getSummaryListFromSummaryResults(summaryResults);
       this.props.onUpdateSummaryList(summaryList);
     }.bind(this));

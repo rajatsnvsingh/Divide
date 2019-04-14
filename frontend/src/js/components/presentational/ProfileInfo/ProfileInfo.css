@@ -1,4 +1,26 @@
+.image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+}
+
 .profile-card {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 50%;
+    margin: auto;
+}
+
+.profile-card:hover img {
+    opacity: 0.6;
+    
+}
+
+.profile-card:hover .image-text {
+    color: white;
+    display: block;
+    cursor: pointer;
+}
+.profile-card:hover #profile-image {
+    background-color: black;
 }

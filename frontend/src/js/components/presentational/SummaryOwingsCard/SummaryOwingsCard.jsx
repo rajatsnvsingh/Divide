@@ -20,12 +20,12 @@ class SummaryOwingsCard extends Component {
 
         return (
             <div className="card mb-3">
-                <div className="card-body p-0">
+                <div className="card-body p-0 pr-1">
                     <div className="row align-items-center">
                         <div className="col-md-5">
                             <img className="card-img-top" src={this.props.picture}></img>
                         </div>
-                        <div className="col-md-5">
+                        <div className="col-md-7">
                             {content}
                         </div>
                     </div>

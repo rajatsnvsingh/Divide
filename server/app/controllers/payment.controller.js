@@ -60,6 +60,7 @@ exports.updatePayment = function(payment) {
   return Payment.findOneAndUpdate(
     { _id: payment._id },
     payment,
+    { new: true },
     function(err, result) {
       if (err) {
         console.error(err);

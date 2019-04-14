@@ -38,28 +38,30 @@ class MainContentContainer extends Component {
 
     }.bind(this));
 
-    socket.on("incoming_expense", function(in_expense){
+    socket.on("incoming_expense", function (in_expense) {
       let inExpense = JSON.parse(in_expense);
       inExpense.date = new Date(Date.parse(inExpense.date));
       let expenses = this.state.expenses;
-      for(let i = 0; i < expenses.length; i++){
-        if(expenses[i]._id === inExpense._id)
-        {
+      for (let i = 0; i < expenses.length; i++) {
+        if (expenses[i]._id === inExpense._id) {
           expenses[i] = inExpense;
-          this.setState({expenses: expenses});
+          this.setState({ expenses: expenses });
+          let summaryResults = this.getSummaryResultsFromExpenses(expenses);
+          let summaryList = this.getSummaryListFromSummaryResults(summaryResults);
+          this.props.onUpdateSummaryList(summaryList);
           return;
         }
       }
       expenses.push(inExpense);
-      this.setState({expenses: expenses});
-      
+      this.setState({ expenses: expenses });
+
       // Using Modified Expenses, compute summaries
       let summaryResults = this.getSummaryResultsFromExpenses(expenses);
       let summaryList = this.getSummaryListFromSummaryResults(summaryResults);
       this.props.onUpdateSummaryList(summaryList);
     }.bind(this));
 
-    socket.on("incoming_payment", function(in_payment) {
+    socket.on("incoming_payment", function (in_payment) {
       let inPayment = JSON.parse(in_payment);
       inPayment.date = new Date(Date.parse(inPayment.date));
       let payments = this.state.payments;
@@ -67,21 +69,21 @@ class MainContentContainer extends Component {
       for (let i = 0; i < payments.length; i++) {
         if (payments[i]._id === inPayment._id) {
           payments[i] = inPayment;
-          this.setState({payments: payments});
+          this.setState({ payments: payments });
           return;
         }
       }
 
       payments.push(inPayment);
-      this.setState({payments: payments});
+      this.setState({ payments: payments });
     }.bind(this));
 
-    socket.on("dismissed_payment", function(in_payment) {
+    socket.on("dismissed_payment", function (in_payment) {
       let inPayment = JSON.parse(in_payment);
       let payments = this.state.payments;
 
       payments = payments.filter(x => x._id !== inPayment._id);
-      this.setState({payments: payments});      
+      this.setState({ payments: payments });
     }.bind(this));
 
     // Initialize Payments
@@ -91,7 +93,7 @@ class MainContentContainer extends Component {
         modifiedPayment.date = new Date(Date.parse(payment.date));
         return modifiedPayment;
       });
-      this.setState({payments: modifiedPayments});
+      this.setState({ payments: modifiedPayments });
     }.bind(this));
   }
 

@@ -67,7 +67,8 @@ class SummaryContentContainer extends Component {
         const viewState = this.props.viewState;
         const {notifications} = this.state;
         if (viewState === viewStateEnum.summary) {
-            const closeButtonStyle = this.props.summaryFilter === summaryFilterEnum.none ? "close float-right d-none" : "close float-right";
+            const closeButtonStyle = this.props.summaryFilter === summaryFilterEnum.none ?
+                "close float-right text-white d-none" : "close float-right text-white";
 
             return (
                 <div>

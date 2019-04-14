@@ -13,15 +13,20 @@ class ExpenseCard extends Component {
     }
 
     generateExpenseMessage(expense) {
+        let totalAmountOwed = 0;
+        expense.transactions.forEach(transaction => {
+            totalAmountOwed += transaction.amtOwing - transaction.amtPaid;
+        });
+
         if (this.props.myId === expense.ownerId._id) {
             if (expense.transactions.length === 1) {
-                return <p>{expense.transactions[0].userId.name} owes you <span className="text-success tsex">${expense.totalAmt}</span></p>;
+                return <p>{expense.transactions[0].userId.name} owes you <span className="text-success tsex">${totalAmountOwed}</span></p>;
             }
             else if (expense.transactions.length <= 2) {
-                return <p>{expense.transactions[0].userId.name} and {expense.transactions[1].userId.name} owe you <span className="text-success tsex">${expense.totalAmt}</span></p>;
+                return <p>{expense.transactions[0].userId.name} and {expense.transactions[1].userId.name} owe you <span className="text-success tsex">${totalAmountOwed}</span></p>;
             }
             else {
-                return <p>{expense.transactions[0].userId.name}, {expense.transactions[1].userId.name}, and {expense.transactions.length - 2} other(s) owe you <span className="text-success tsex">${expense.totalAmt}</span></p>;
+                return <p>{expense.transactions[0].userId.name}, {expense.transactions[1].userId.name}, and {expense.transactions.length - 2} other(s) owe you <span className="text-success tsex">${totalAmountOwed}</span></p>;
             }
         }
         else {

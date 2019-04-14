@@ -18,7 +18,7 @@ class NotificationCard extends Component {
             <div id={cardId} className="card mb-3">
                 <div className="card-header p-2">
                     <h6 className="float-left">{header}</h6>
-                    <button type="button" class="close float-right" onClick={() => this.closeButtonOnClick(cardId)}>
+                    <button type="button" className="close float-right" onClick={() => this.closeButtonOnClick(cardId)}>
                         <span>&times;</span>
                     </button>
                 </div>

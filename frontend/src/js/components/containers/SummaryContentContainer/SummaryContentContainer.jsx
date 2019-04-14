@@ -86,7 +86,7 @@ class SummaryContentContainer extends Component {
             return (
                 <div>
                     <h1 className="float-left text-white">Notifications</h1>
-                    <button type="button" className="close float-right" onClick={this.closeButtonOnClick}>
+                    <button type="button" className="close float-right text-white" onClick={this.closeButtonOnClick}>
                         <span><h1>&times;</h1></span>
                     </button>
                     <div className="clearfix mb-2"></div>

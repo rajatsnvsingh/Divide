@@ -52,6 +52,11 @@ class MainContentContainer extends Component {
       }
       expenses.push(inExpense);
       this.setState({expenses: expenses});
+      
+      // Using Modified Expenses, compute summaries
+      let summaryResults = this.getSummaryListFromSummaryResults(expenses);
+      let summaryList = this.getSummaryListFromSummaryResults(summaryResults);
+      this.props.onUpdateSummaryList(summaryList);
     }.bind(this));
 
     socket.on("incoming_payment", function(in_payment) {

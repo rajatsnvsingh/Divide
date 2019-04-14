@@ -59,7 +59,7 @@ class PaymentList extends Component {
     }
 
     searchList(list) {
-        return list.filter(x => x.props.name.toLowerCase().startsWith(this.props.search.toLowerCase()));
+        return list.filter(x => x.props.name.toLowerCase().includes(this.props.search.toLowerCase()));
     }
 
     render() {

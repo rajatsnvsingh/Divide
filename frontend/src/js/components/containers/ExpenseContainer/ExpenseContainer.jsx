@@ -95,7 +95,7 @@ class ExpenseContainer extends Component {
 
     filterExpense(expense) {
         // Check if Expense Title starts with search term
-        if (!expense.title.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()))
+        if (!expense.title.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
             return false;
 
         // Check if Expense Status type matches the filter being applied

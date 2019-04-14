@@ -61,8 +61,6 @@ class MainContentContainer extends Component {
       inPayment.date = new Date(Date.parse(inPayment.date));
       let payments = this.state.payments;
 
-      console.log(inPayment);
-
       for (let i = 0; i < payments.length; i++) {
         if (payments[i]._id === inPayment._id) {
           payments[i] = inPayment;
@@ -73,6 +71,14 @@ class MainContentContainer extends Component {
 
       payments.push(inPayment);
       this.setState({payments: payments});
+    }.bind(this));
+
+    socket.on("dismissed_payment", function(in_payment) {
+      let inPayment = JSON.parse(in_payment);
+      let payments = this.state.payments;
+
+      payments = payments.filter(x => x._id !== inPayment._id);
+      this.setState({payments: payments});      
     }.bind(this));
 
     // Initialize Payments

@@ -43,7 +43,7 @@ class NotificationCard extends Component {
                 break;
             case 3: //payment deleted
                 header = 'Payment';
-                content = content = notification.paymentId.payeeId.name + ' rejected your payment';
+                content = content = notification.payeeName + ' rejected your payment';
                 break;
             case 4: //expense updated
                 header = 'Expense';

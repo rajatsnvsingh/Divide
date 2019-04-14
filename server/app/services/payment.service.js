@@ -166,11 +166,12 @@ exports.declinePayment = function(id, callback) {
       let paymentRejectionNotif = new Notification({
         targetId: populatedPayment.payerId,
         type: 3,
-        paymentId: populatedPayment._id
+        paymentId: populatedPayment._id,
+        payeeName:  populatedPayment.payeeId.name
       });
       // socketManager.broadcastDeletedPayment(deletedPayment);
       notificationService.createNotification(paymentRejectionNotif, function() {});
-      socketManager.broadcastPayment(populatedPayment);
+      socketManager.broadcastPaymentDismissal(populatedPayment);
       callback(populatedPayment);
     });
   });

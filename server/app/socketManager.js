@@ -158,3 +158,9 @@ module.exports.broadcastPayment = function(Payment) {
     socket.emit("incoming_payment", JSON.stringify(Payment));
   }
 };
+module.exports.broadcastPaymentDismissal = function(Payment){
+  let targetSockets = getUserSockets([Payment.payeeId._id.toString(),Payment.payerId._id.toString()]);
+  for (socket of targetSockets) {
+    socket.emit("dismissed_payment", JSON.stringify(Payment));
+  }
+}

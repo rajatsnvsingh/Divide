@@ -21,6 +21,9 @@ const NotificationSchema = new Schema({
     // Populated if notification associated w/ a payment
     type: Schema.ObjectId,
     ref: "Payment"
+  }, 
+  payeeName:{
+    type: String
   }
 });
 

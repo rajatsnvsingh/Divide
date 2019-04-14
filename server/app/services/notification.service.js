@@ -75,8 +75,8 @@ exports.createNotification = function(notification, callback) {
         }]
       }
     ]).then(function(populatedNotif) {
-      socketManager.broadcastNotification(notif);
-      callback(notif);
+      socketManager.broadcastNotification(populatedNotif);
+      callback(populatedNotif);
     });
   });
 };

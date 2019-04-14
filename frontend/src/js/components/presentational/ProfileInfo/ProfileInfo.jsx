@@ -44,14 +44,14 @@ class ProfileInfo extends Component {
         }
         return (
             <div className="card mt-2 mb-4 profile-card">
-                <div id="profile-image">
-                    <img id="profilepic" onClick={this.imageClicked} className="card-img-top" src={img}></img>
+                <div id="profile-image" onClick={this.imageClicked}>
+                    <img id="profilepic" className="card-img-top" src={img}></img>
                     <h6 className="image-text">Click to change image!</h6>
                 </div>
                 <div className="card-body p-2">
                     <h6 className="card-title text-center mb-0">{this.props.name}</h6>
                 </div>
-                <input className="d-none" type="file" id="logo" onChange={() => this.setImage()}></input>
+                <input className="d-none" type="file" id="logo" accept="image/png" onChange={() => this.setImage()}></input>
             </div>
         );
     }

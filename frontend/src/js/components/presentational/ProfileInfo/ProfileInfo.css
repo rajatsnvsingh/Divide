@@ -19,8 +19,8 @@
 .profile-card:hover .image-text {
     color: white;
     display: block;
-    cursor: pointer;
 }
 .profile-card:hover #profile-image {
     background-color: black;
+    cursor: pointer;
 }

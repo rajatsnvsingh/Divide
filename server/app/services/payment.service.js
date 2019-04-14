@@ -140,8 +140,23 @@ exports.acceptPayment = function(id, callback) {
                       type: 5,
                       paymentId: acceptedPayment._id
                     });
-                    notificationService.createNotification(acceptPaymentNotification, function() {});
-                    callback(acceptedPayment, updatedTransactions);
+                    Payment.populate(
+                      acceptedPayment,
+                      [
+                        {
+                          path: 'payerId',
+                          model: 'User'
+                        },
+                        {
+                          path: 'payeeId',
+                          model: 'User'
+                        }
+                      ]
+                    ).then(function(populatedPayment) {
+                      socketManager.broadcastPayment(populatedPayment);
+                      notificationService.createNotification(acceptPaymentNotification, function() {});
+                      callback(populatedPayment, updatedTransactions);
+                    });
                   });
               });
           });

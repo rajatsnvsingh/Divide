@@ -23,7 +23,7 @@ class SummaryOwingsCard extends Component {
                 <div className="card-body p-0">
                     <div className="row align-items-center">
                         <div className="col-md-5">
-                            <img className="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>
+                            <img className="card-img-top" src={this.props.picture}></img>
                         </div>
                         <div className="col-md-5">
                             {content}

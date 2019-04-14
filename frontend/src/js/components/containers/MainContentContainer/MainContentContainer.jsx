@@ -39,10 +39,8 @@ class MainContentContainer extends Component {
     }.bind(this));
 
     socket.on("incoming_expense", function(in_expense){
-      console.log("here");
       let inExpense = JSON.parse(in_expense);
       inExpense.date = new Date(Date.parse(inExpense.date));
-      console.log(inExpense);
       let expenses = this.state.expenses;
       for(let i = 0; i < expenses.length; i++){
         if(expenses[i]._id === inExpense._id)
@@ -83,7 +81,6 @@ class MainContentContainer extends Component {
 
     // Initialize Payments
     socket.emit("get_payments", function (in_payments) {
-      console.log(in_payments);
       let modifiedPayments = in_payments.map((payment) => {
         let modifiedPayment = payment;
         modifiedPayment.date = new Date(Date.parse(payment.date));
@@ -104,7 +101,8 @@ class MainContentContainer extends Component {
             summaryResults[otherUserId] = {
               name: transaction.userId.name,
               amtOwed: 0,
-              amtOwing: 0
+              amtOwing: 0,
+              picture: transaction.userId.picture
             };
           summaryResults[otherUserId].amtOwed +=
             transaction.amtOwing - transaction.amtPaid;
@@ -117,7 +115,8 @@ class MainContentContainer extends Component {
           summaryResults[owner._id] = {
             name: owner.name,
             amtOwed: 0,
-            amtOwing: 0 
+            amtOwing: 0,
+            picture: owner.picture
           };
         expense.transactions.forEach(transaction => {
           if (transaction.userId._id === this.props.myId) {
@@ -138,7 +137,8 @@ class MainContentContainer extends Component {
         name: summaryResults[id].name,
         amountOwing: summaryResults[id].amtOwing,
         amountOwed: summaryResults[id].amtOwed,
-        amount: summaryResults[id].amtOwed - summaryResults[id].amtOwing
+        amount: summaryResults[id].amtOwed - summaryResults[id].amtOwing,
+        picture: summaryResults[id].picture
       };
       summaryList.push(summary);
     }

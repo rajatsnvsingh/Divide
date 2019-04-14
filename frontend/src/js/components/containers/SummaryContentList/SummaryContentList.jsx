@@ -27,9 +27,8 @@ class SummaryContentList extends Component {
                 filtered = list;
                 break;
         }
-
         return filtered.map((x) =>
-            <SummaryOwingsCard key={x.userId} name={x.name} amount={Math.round(x.amount * 100) / 100} />
+            <SummaryOwingsCard key={x.userId} picture={x.picture} name={x.name} amount={Math.round(x.amount * 100) / 100} />
         );
     }
 

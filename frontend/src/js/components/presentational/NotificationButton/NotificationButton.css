@@ -1,6 +1,6 @@
 .notification-button {
     width: 100%;
     bottom: 0;
-    position: fixed;
+    position: absolute;
     border-radius: 0 !important;
 }

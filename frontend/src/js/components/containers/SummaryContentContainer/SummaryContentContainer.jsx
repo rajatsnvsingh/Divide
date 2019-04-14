@@ -71,7 +71,7 @@ class SummaryContentContainer extends Component {
 
             return (
                 <div>
-                    <h1 className="float-left text-white">Owings</h1>
+                    <h1 className="float-left text-white">Summary</h1>
                     <button type="button" className={closeButtonStyle} onClick={this.closeButtonOnClick}>
                         <span><h1>&times;</h1></span>
                     </button>

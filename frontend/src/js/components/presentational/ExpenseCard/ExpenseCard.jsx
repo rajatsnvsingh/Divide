@@ -20,13 +20,10 @@ class ExpenseCard extends Component {
 
         if (this.props.myId === expense.ownerId._id) {
             if (expense.transactions.length === 1) {
-                return <p>{expense.transactions[0].userId.name} owes you <span className="text-success tsex">${totalAmountOwed}</span></p>;
-            }
-            else if (expense.transactions.length <= 2) {
-                return <p>{expense.transactions[0].userId.name} and {expense.transactions[1].userId.name} owe you <span className="text-success tsex">${totalAmountOwed}</span></p>;
+                return <p className="exinf">{expense.transactions[0].userId.name} owes you <span className="text-success tsex">${totalAmountOwed}</span></p>;
             }
             else {
-                return <p>{expense.transactions[0].userId.name}, {expense.transactions[1].userId.name}, and {expense.transactions.length - 2} other(s) owe you <span className="text-success tsex">${totalAmountOwed}</span></p>;
+                return <p className="exinf">{expense.transactions[0].userId.name} and {expense.transactions.length - 1} other(s) owe you <span className="text-success tsex">${totalAmountOwed}</span></p>;
             }
         }
         else {
@@ -36,7 +33,7 @@ class ExpenseCard extends Component {
                     amount = transaction.amtOwing - transaction.amtPaid;
                 }
             }
-            return <p>You owe {expense.ownerId.name} <span className="text-danger tdex">${amount}</span></p>;
+            return <p className="exinf">You owe {expense.ownerId.name} <span className="text-danger tdex">${amount}</span></p>;
         }
     }
 
@@ -64,7 +61,7 @@ class ExpenseCard extends Component {
                         <div className="col-md-3">
                             <h2 className="extit">{expense.title}</h2>
                         </div>
-                        <div className="col-md-5 exinf">
+                        <div className="col-md-5">
                             {content}
                         </div>
                         <div className="col-2">

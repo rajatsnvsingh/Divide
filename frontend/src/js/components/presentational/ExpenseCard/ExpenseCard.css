@@ -8,7 +8,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1.5vw;
+    direction: rtl;
+    font-size: 1.2vw;
+    margin-top: 15px;
     
 }
 

@@ -14,9 +14,11 @@ class PaymentList extends Component {
 
         // bind to PaymentCard
         list = list.map((x) => {
+            console.log(x);
             let payer = x.payerId._id === this.props.myId;
             let name = payer ? name = x.payeeId.name : name = x.payerId.name;
-            return <PaymentCard id={x._id} key={x._id} name={name} amount={x.amt} date={x.date} payer={payer} confirmed={x.status} />
+            let picture = payer ? picture = x.payeeId.picture : picture = x.payerId.picture;
+            return <PaymentCard picture={picture} id={x._id} key={x._id} name={name} amount={x.amt} date={x.date} payer={payer} confirmed={x.status} />
         });
 
         // filter/search/sort

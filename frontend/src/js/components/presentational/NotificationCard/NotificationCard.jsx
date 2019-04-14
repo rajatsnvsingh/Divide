@@ -11,9 +11,15 @@ class NotificationCard extends Component {
     }
 
     render() {
-        let [header, content] = this.getNotificationText(this.props.notification);
+        let header = "";
+        let content = "";
+        try {
+            [header, content] = this.getNotificationText(this.props.notification);
+        } catch(err) {
+            return null;
+        }
         let cardId = "notification-" + this.props.notification._id;
-        let text = <p>{content}</p>
+        let text = <p>{content}</p>;
         return (
             <div id={cardId} className="card mb-3">
                 <div className="card-header p-2">
@@ -47,7 +53,7 @@ class NotificationCard extends Component {
                 break;
             case 4: //expense updated
                 header = 'Expense';
-                content = notification.expenseId.ownerId.name + ' updated an expense'
+                content = notification.expenseId.ownerId.name + ' updated an expense';
                 break;
             case 5: //payment accepted
                 header = 'Payment';

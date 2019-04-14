@@ -27,6 +27,9 @@ class ProfileContainer extends Component {
         return (
             <div className="mb-4 text-center">
                 <ProfileInfo myPicture = {this.props.myPicture} name={this.props.name} />
+                <a href="/auth/logout" className="logout-mobile d-none">
+                    <button type="button" className="btn btn-secondary w-100 mb-4">Logout</button>
+                </a>
                 <div className="btn-group btn-group-lg w-100" role="group">
                     <AmountButton isOwed={true} amount={amountOwed} onSummaryFilterChange={this.props.onSummaryFilterChange} />
                     <AmountButton isOwed={false} amount={amountOwing} onSummaryFilterChange={this.props.onSummaryFilterChange} />

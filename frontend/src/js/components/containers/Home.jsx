@@ -20,7 +20,8 @@ class Home extends Component {
       function (myUser) {
         this.setState({
           myId: myUser._id,
-          name: myUser.name
+          name: myUser.name,
+          myPicture: myUser.picture
         });
       }.bind(this)
     );
@@ -33,7 +34,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <SummaryContainer myId={this.state.myId} summaryList={this.state.summaryList} name={this.state.name}/>
+        <SummaryContainer myPicture={this.state.myPicture} myId={this.state.myId} summaryList={this.state.summaryList} name={this.state.name}/>
         <MainContentContainer myId={this.state.myId} summaryList={this.state.summaryList} onUpdateSummaryList={this.onUpdateSummaryList} />
       </div>
     );

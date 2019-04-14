@@ -63,7 +63,7 @@ class ExpenseCard extends Component {
                             {content}
                         </div>
                         <div className="col-2">
-                            <img className="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"></img>
+                            <img className="card-img-top" src={expense.ownerId.picture}></img>
                         </div>
                     </div>
                 </div>

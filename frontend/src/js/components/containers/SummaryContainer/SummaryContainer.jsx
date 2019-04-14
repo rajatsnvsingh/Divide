@@ -44,6 +44,8 @@ class SummaryContainer extends Component {
         return (
             <div className="sidenav">
                 <ProfileContainer 
+                    myPicture = {this.props.myPicture}
+                    myId = {this.props.myId}
                     onSummaryFilterChange={this.onSummaryFilterChange} 
                     name={this.props.name} 
                     summaryList={this.props.summaryList}

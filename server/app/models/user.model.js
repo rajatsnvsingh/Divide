@@ -19,8 +19,8 @@ const UserSchema = new Schema({
     required: true
   },
   picture: {
-    type: String
-    // default ... TODO: assign default user picture
+    type: String,
+    default: '/images/default.png'
   },
   expenseId: {
     type: [Schema.ObjectId],

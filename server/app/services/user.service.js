@@ -8,6 +8,7 @@ exports.getAllUsers = function(callback) {
       let newUser = {};
       newUser.name = user.authentication.google.name;
       newUser.email = user.authentication.google.email;
+      newUser.picture = user.picture;
       newUser._id = user._id;
       return newUser;
     });
@@ -16,5 +17,17 @@ exports.getAllUsers = function(callback) {
 };
 
 exports.getUserById = function(id, callback) {
-  userController.getUser(id).then(user => callback(user[0]));
+  userController.getUser(id).then(user => callback(user));
+};
+
+exports.updateUserPicture = function(id, picture, callback) {
+  userController.getUser(id).then(user => {
+    user.picture = picture;
+    console.log(user);
+    userController.updateUser(user).then(updatedUser => {
+      console.log("UPDATED");
+      console.log(updatedUser);
+      callback(updatedUser);
+    });
+  });
 };

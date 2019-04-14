@@ -2,6 +2,8 @@ const expenseService = require("./services/expense.service");
 const notificationService = require("./services/notification.service");
 const paymentService = require("./services/payment.service");
 const userService = require("./services/user.service");
+const fs = require("fs");
+const path = require("path");
 
 const Debug = true;
 const print = function(string) {
@@ -121,6 +123,17 @@ module.exports.clientHandler = function(socket) {
     }
     print("User requested all users!");
     userService.getUserById(socket.userId, callback);
+  });
+  /**
+   * Handle images sent through socket
+   */
+  socket.on("profile_picture", function(buf, callback) {
+    let imgSrc = buf.replace(/^data:image\/png;base64,/, "");
+    const filename = "/images/" + socket.userId + ".png";
+    fs.writeFile(path.join(__dirname, "images") + "/" + socket.userId + ".png", imgSrc, 'base64', function(err) {
+      console.log(err);
+    }); 
+    userService.updateUserPicture(socket.userId.toString(), filename, callback);
   });
 };
 /**

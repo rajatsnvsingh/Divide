@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = mongoose.model('User');
 
 exports.createUser = function(user) {
   return user.save(function(err, newUser) {
@@ -23,7 +24,7 @@ exports.getUsers = function() {
 };
 
 exports.getUser = function(id) {
-  return mongoose.model("User").find({ _id: id }, function(err, user) {
+  return mongoose.model("User").findOne({ _id: id }, function(err, user) {
     if (err) {
       console.error(err);
     } else {
@@ -34,16 +35,18 @@ exports.getUser = function(id) {
 };
 
 exports.updateUser = function(user) {
-  return mongoose
-    .model("User")
-    .findByIdAndUpdate(user._id, user, {}, function(err, result) {
+  return User.findOneAndUpdate(
+    {_id: user._id},
+    user,
+    { new: true},
+    function(err, updatedUser) {
       if (err) {
         console.error(err);
       } else {
-        //console.log(result);
-        return result;
+        return updatedUser;
       }
-    });
+    }
+  )
 };
 
 exports.deleteUser = function(user) {

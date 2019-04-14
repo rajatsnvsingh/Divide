@@ -26,7 +26,7 @@ class ProfileContainer extends Component {
 
         return (
             <div className="mb-4 text-center">
-                <ProfileInfo name={this.props.name} />
+                <ProfileInfo myPicture = {this.props.myPicture} name={this.props.name} />
                 <div className="btn-group btn-group-lg w-100" role="group">
                     <AmountButton isOwed={true} amount={amountOwed} onSummaryFilterChange={this.props.onSummaryFilterChange} />
                     <AmountButton isOwed={false} amount={amountOwing} onSummaryFilterChange={this.props.onSummaryFilterChange} />

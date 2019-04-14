@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { summaryFilterEnum } from "../../containers/SummaryContainer/SummaryContainer.jsx";
+import "./AmountButton.css";
 
 class AmountButton extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class AmountButton extends Component {
         const style = this.props.isOwed ? "btn btn-success" : "btn btn-danger";
 
         return (
-            <button type="button" className={style} onClick={this.onAmountButtonClick}>
+            <button type="button" className={style + " amount-button"} onClick={this.onAmountButtonClick}>
                 {"$" + this.props.amount}
             </button>
         );

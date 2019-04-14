@@ -21,6 +21,9 @@ class PaymentList extends Component {
             return <PaymentCard picture={picture} id={x._id} key={x._id} name={name} amount={x.amt} date={x.date} payer={payer} confirmed={x.status} />
         });
 
+        // want unconfirmed payments at the top
+        list = list.sort((x, y) => (x.props.confirmed === y.props.confirmed) ? 0 : x.props.confirmed ? 1 : -1);
+
         // filter/search/sort
         list = this.filterList(list);
         list = this.sortList(list);

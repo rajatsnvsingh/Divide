@@ -24,7 +24,7 @@ class SummaryContentList extends Component {
             
             case summaryFilterEnum.none:
             default:
-                filtered = list.filter(x => x.amount != 0); // always remove "0" amounts
+                filtered = list.filter(x => x.amount !== 0); // always remove "0" amounts
                 break;
         }
         return filtered.map((x) =>
